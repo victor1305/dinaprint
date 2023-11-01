@@ -15,7 +15,7 @@ const MainSecond: React.FC = () => (
         />
       </div>
       <div className="absolute border-4 z-[-2] border-r-0 border-primary bg-trasnparent h-[290px] -top-6 right-0 w-[290px] min-[550px]:w-[350px] min-[550px]:h-[340px] sm:border-r-4 sm:right-1/2 sm:left-1/2 lg:w-[500px]" />
-      <div className="pt-14 px-10 mx-auto max-w-[720px] pb-24">
+      <div className="pt-14 px-10 mx-auto max-w-[720px] lg:pb-10">
         <h2 className="text-3xl font-semibold text-secondary pb-8">NOSOTROS</h2>
         <p className="pb-4 text-base">
           En <strong>Dinaprint</strong> llevamos más de 25 años dedicándonos a

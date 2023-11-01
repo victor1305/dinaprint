@@ -20,13 +20,20 @@ const config: Config = {
         'dina-gray': '#565656',
         'footer-bg': '#ededed',
         'footer-li': '#5e5e5e',
-        'modal-back': 'rgba(0,0,0,0.8)'
+        'gray-space': '#636569',
+        'modal-back': 'rgba(0,0,0,0.8)',
+        'green-low': '#68A042',
+        'orange-low': 'rgba(255,107,0,0.73)',
+        'yellow-main': '#ffc700'
       },
       boxShadow: {
         menu: '0 3px 6px 0 rgba(0,0,0,0.16)'
       },
       dropShadow: {
         'title-home': '2px 2px 2px black'
+      },
+      animation: {
+        'swip-main': 'fadeInUp 1s'
       }
     }
   },

@@ -107,11 +107,8 @@ const Header: React.FC = () => {
             }`}
           >
             {menuPaths.map((elm, index) => (
-              <div  key={index}>
-                <div
-                  
-                  className="flex justify-between px-5 items-center"
-                >
+              <div key={index}>
+                <div className="flex justify-between px-5 items-center">
                   <Link href={elm.path} className="block leading-[50px]">
                     {elm.name}
                   </Link>
