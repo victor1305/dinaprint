@@ -33,7 +33,7 @@ const config: Config = {
         'title-home': '2px 2px 2px black'
       },
       animation: {
-        'swip-main': 'fadeInUp 1s'
+        'swip-main': 'fadeInUp 0.5s'
       }
     }
   },
