@@ -8,6 +8,8 @@ import MainSwiperImages from './MainSwiperImages';
 import MainSwiperText from './MainSwiperText';
 import MainWhy from './MainWhy';
 import SectionPrincipalBanner from './SectionPrincipalBanner';
+import Service from './Service';
+import ServicesPrincipal from './ServicesPrincipal';
 
 export {
   AboutEnviromental,
@@ -19,5 +21,7 @@ export {
   MainSwiperImages,
   MainSwiperText,
   MainWhy,
-  SectionPrincipalBanner
+  SectionPrincipalBanner,
+  Service,
+  ServicesPrincipal
 };

@@ -88,3 +88,48 @@ export const thirdMainSwiper = [
     url: 'catalogo/flyers-y-desplegables'
   }
 ];
+
+export const servicesTypes = [
+  {
+    title: 'Asesoramiento',
+    icon: '/handshake.png',
+    text: 'Si no tienes un diseño claro te podemos orientar de forma gratuita, enseñarte muestras y orientarte en acabados y papeles. si quieres un diseño concreto contamos con un departamento de diseño y precios asequibles.',
+    image: '/project-pitch-lg.jpg',
+    imageLeft: false
+  },
+  {
+    title: 'Preimpresión',
+    icon: '/text-lines.png',
+    text: 'Chequeamos todos los archivos, asegurándonos que son óptimos para su impresión. Si encontramos cualquier anomalía lo comunicamos al cliente y procedemos a encontrar la solución más adecuada.',
+    image: 'preimpresion-01.jpg',
+    imageLeft: true
+  },
+  {
+    title: 'Impresión offset',
+    icon: '/home-repair.png',
+    text: 'Imprimimos cualquier formato de cartas, tarjetas y flyers en tiempos récord. Para otros productos como folletos de varias hojas, o que lleven algún acabado aparte, pídenos timing, siempre te daremos la solución más rápida.',
+    image: '/impresion-off.jpg',
+    imageLeft: false
+  },
+  {
+    title: 'Impresión digital',
+    icon: '/printing.png',
+    text: 'No por imprimir pocos ejemplares se debe bajar la calidad de la impresión. Contamos con una de las mejores máquinas del mercado de impresión digital, el modelo de Fuji: Jet Press 7S, consiguiendo más del 90% en la gama Pantone. Si necesitas imprimir cantidades cortas es tu mejor opción.',
+    image: '/impresion-digital.jpg',
+    imageLeft: true
+  },
+  {
+    title: 'Acabados y manipulados',
+    icon: '/open-box.png',
+    text: 'Plastificados, troquelados, encuadernaciones, mailing, personalizaciones... Todo lo que necesites para dar un toque personal a tu producto.',
+    image: '/Packaging-001.jpg',
+    imageLeft: false
+  },
+  {
+    title: 'Distribución y envíos',
+    icon: '/warehouse.png',
+    text: 'Enviamos el trabajo realizado a cualquier lugar de la península sin coste adicional. Si necesitas una distribución amplia, nos encargamos de ello, pasándote un informe con las cantidades y los envíos, según tus instrucciones.',
+    image: '/envios-002.jpg',
+    imageLeft: true
+  }
+];
