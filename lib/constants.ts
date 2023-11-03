@@ -133,3 +133,51 @@ export const servicesTypes = [
     imageLeft: true
   }
 ];
+
+export const catalogOptions = [
+  {
+    image: '/papeleria-corporativa-01.jpg',
+    title: 'Papelería corporativa',
+    path: 'papeleria-corporativa'
+  },
+  {
+    image: '/flyer-001.jpg',
+    title: 'Flyers y desplegables',
+    path: 'flyers-y-desplegables'
+  },
+  {
+    image: '/Folletos-y-revistas-001.jpg',
+    title: 'Folletos y revistas',
+    path: 'folletos-y-revistas'
+  },
+  {
+    image: '/calendar-1.jpg',
+    title: 'Calendarios',
+    path: 'calendarios'
+  },
+  {
+    image: '/rollup-001.jpg',
+    title: 'Roll up',
+    path: 'roll-up'
+  },
+  {
+    image: '/stand-001.jpg',
+    title: 'Expositores',
+    path: 'expositores'
+  },
+  {
+    image: '/cajas-packing-01.jpg',
+    title: 'Cajas y packaging',
+    path: 'cajas-y-packaging'
+  },
+  {
+    image: '/regalo-promocional-01.jpg',
+    title: 'Regalo promocional',
+    path: 'regalo-promocional'
+  },
+  {
+    image: '/carteles-01.jpg',
+    title: 'Carteles',
+    path: 'carteles'
+  }
+];
