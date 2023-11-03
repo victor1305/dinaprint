@@ -26,8 +26,13 @@ const CatalogOption: React.FC<CatalogOptionProps> = ({
         />
       </div>
     </Link>
-    <h4 className="mt-5 text-center">
-      <Link href={path}>{title}</Link>
+    <h4 className="mt-5 font-medium text-center">
+      <Link
+        href={path}
+        className="hover:text-lg hover:underline hover:text-secondary"
+      >
+        {title}
+      </Link>
     </h4>
   </div>
 );

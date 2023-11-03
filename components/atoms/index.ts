@@ -2,6 +2,7 @@ import AboutEnviromental from './AboutEnvironmental';
 import AboutExperience from './AboutExperience';
 import AboutVersatility from './AboutVersatility';
 import CatalogOption from './CatalogOption';
+import KnowMore from './KnowMore';
 import MainLast from './MainLast';
 import MainPrincipal from './MainPrincipal';
 import MainSecond from './MainSecond';
@@ -17,6 +18,7 @@ export {
   AboutExperience,
   AboutVersatility,
   CatalogOption,
+  KnowMore,
   MainLast,
   MainPrincipal,
   MainSecond,

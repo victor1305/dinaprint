@@ -2,7 +2,7 @@ import React from 'react';
 
 import { catalogOptions } from '@/lib/constants';
 
-import { CatalogOption, SectionPrincipalBanner } from '@/components/atoms';
+import { CatalogOption, KnowMore, SectionPrincipalBanner } from '@/components/atoms';
 
 const Catalog: React.FC = () => (
   <div>
@@ -17,6 +17,7 @@ const Catalog: React.FC = () => (
         </div>
       ))}
     </div>
+    <KnowMore />
   </div>
 );
 
