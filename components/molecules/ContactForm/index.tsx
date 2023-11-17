@@ -69,10 +69,10 @@ const ContactForm: React.FC = () => {
     if (formRef.current) {
       emailjs
         .sendForm(
-          'service_w6quol4',
-          'template_ldxiev7',
+          process.env.NEXT_PUBLIC_FORM_SERVICE as string,
+          process.env.NEXT_PUBLIC_FORM_TEMPLATE as string,
           formRef.current,
-          'UQNlmmHpfzhuB5ZVq'
+          process.env.NEXT_PUBLIC_FORM_KEY as string
         )
         .then((result) => console.log(result)),
         (error: Error) => console.log(error);
