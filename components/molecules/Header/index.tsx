@@ -13,17 +13,17 @@ const Header: React.FC = () => {
   const menuPaths = [
     {
       name: 'SOBRE NOSOTROS',
-      path: 'sobre-nosotros',
+      path: '/sobre-nosotros',
       subsection: []
     },
     {
       name: 'SOLUCIONES Y SERVICIOS',
-      path: 'servicios',
+      path: '/servicios',
       subsection: []
     },
     {
       name: 'CATÁLOGO',
-      path: 'catalogo',
+      path: '/catalogo',
       subsection: [
         { name: 'PAPELERÍA CORPORATIVA', path: 'papeleria-corporativa' },
         { name: 'FLYERS Y DESPLEGABLES', path: 'flyers-y-desplegables' },
@@ -38,7 +38,7 @@ const Header: React.FC = () => {
     },
     {
       name: 'CONTACTO',
-      path: 'contacto',
+      path: '/contacto',
       subsection: []
     }
   ];
@@ -78,7 +78,7 @@ const Header: React.FC = () => {
                       <Link
                         className="block p-5 bg-white text-dina-gray text-[13px] hover:bg-secondary hover:text-white"
                         key={subIndex}
-                        href={`catalogo/${item.path}`}
+                        href={`/catalogo/${item.path}`}
                       >
                         {item.name}
                       </Link>
@@ -109,7 +109,7 @@ const Header: React.FC = () => {
             {menuPaths.map((elm, index) => (
               <div key={index}>
                 <div className="flex justify-between px-5 items-center">
-                  <Link href={elm.path} className="block leading-[50px]">
+                  <Link href={elm.path} className="block leading-[50px]" onClick={() => setOpenMenu(false)}>
                     {elm.name}
                   </Link>
                   {elm.subsection.length > 0 &&
@@ -131,7 +131,8 @@ const Header: React.FC = () => {
                       <Link
                         className="p-5 block"
                         key={subIndex}
-                        href={`catalogo/${item.path}`}
+                        href={`/catalogo/${item.path}`}
+                        onClick={() => setOpenMenu(false)}
                       >
                         {item.name}
                       </Link>

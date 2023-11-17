@@ -31,19 +31,19 @@ export const firstMainSwiper = [
     title: 'Papelería corporativa',
     image: '/papeleria-corporativa.png',
     backImage: '/papeleria-corporativa.jpg',
-    url: 'catalogo/papeleria-corporativa'
+    url: '/catalogo/papeleria-corporativa'
   },
   {
     title: 'Folletos',
     image: '/folletos.png',
     backImage: '/folletos.jpg',
-    url: 'catalogo/folletos'
+    url: '/catalogo/folletos'
   },
   {
     title: 'Carteles',
     image: '/carteles.png',
     backImage: '/carteles.jpg',
-    url: 'catalogo/carteles'
+    url: '/catalogo/carteles'
   }
 ];
 
@@ -52,19 +52,19 @@ export const secondMainSwiper = [
     title: 'Roll up',
     image: '/rollup.png',
     backImage: '/rollup.jpg',
-    url: 'catalogo/roll-up'
+    url: '/catalogo/roll-up'
   },
   {
     title: 'Expositores',
     image: '/expositor.png',
     backImage: '/expositor.jpg',
-    url: 'catalogo/expositores'
+    url: '/catalogo/expositores'
   },
   {
     title: 'Calendarios',
     image: '/calendarios.png',
     backImage: '/calendarios.jpg',
-    url: 'catalogo/calendarios'
+    url: '/catalogo/calendarios'
   }
 ];
 
@@ -73,19 +73,19 @@ export const thirdMainSwiper = [
     title: 'Regalo Promocional',
     image: '/regalo-promocional.png',
     backImage: '/regalo-promocional.jpg',
-    url: 'catalogo/regalo-promocional'
+    url: '/catalogo/regalo-promocional'
   },
   {
     title: 'Cajas y packaging',
     image: '/cajas.png',
     backImage: '/cajas-y-packaging.jpg',
-    url: 'catalogo/cajas-y-packaging'
+    url: '/catalogo/cajas-y-packaging'
   },
   {
     title: 'Flyers y desplegables',
     image: '/folletos.png',
     backImage: '/folletos.jpg',
-    url: 'catalogo/flyers-y-desplegables'
+    url: '/catalogo/flyers-y-desplegables'
   }
 ];
 
@@ -138,46 +138,61 @@ export const catalogOptions = [
   {
     image: '/papeleria-corporativa-01.jpg',
     title: 'Papelería corporativa',
-    path: 'catalogo/papeleria-corporativa'
+    path: '/catalogo/papeleria-corporativa'
   },
   {
     image: '/flyer-001.jpg',
     title: 'Flyers y desplegables',
-    path: 'catalogo/flyers-y-desplegables'
+    path: '/catalogo/flyers-y-desplegables'
   },
   {
     image: '/Folletos-y-revistas-001.jpg',
     title: 'Folletos y revistas',
-    path: 'catalogo/folletos-y-revistas'
+    path: '/catalogo/folletos-y-revistas'
   },
   {
     image: '/calendar-1.jpg',
     title: 'Calendarios',
-    path: 'catalogo/calendarios'
+    path: '/catalogo/calendarios'
   },
   {
     image: '/rollup-001.jpg',
     title: 'Roll up',
-    path: 'catalogo/roll-up'
+    path: '/catalogo/roll-up'
   },
   {
     image: '/stand-001.jpg',
     title: 'Expositores',
-    path: 'catalogo/expositores'
+    path: '/catalogo/expositores'
   },
   {
     image: '/cajas-packing-01.jpg',
     title: 'Cajas y packaging',
-    path: 'catalogo/cajas-y-packaging'
+    path: '/catalogo/cajas-y-packaging'
   },
   {
     image: '/regalo-promocional-01.jpg',
     title: 'Regalo promocional',
-    path: 'catalogo/regalo-promocional'
+    path: '/catalogo/regalo-promocional'
   },
   {
     image: '/carteles-01.jpg',
     title: 'Carteles',
-    path: 'catalogo/carteles'
+    path: '/catalogo/carteles'
+  }
+];
+
+export const findBoxes = [
+  {
+    title: 'Teléfono',
+    subtitle: '678 519 403 | 678 519 404'
+  },
+  {
+    title: 'Email',
+    subtitle: 'dinaprint@dinaprint.com'
+  },
+  {
+    title: 'Ubicación',
+    subtitle: 'C/ Coto de Doñana, 9 Area Empresarial Andalucía 28320, Pinto, Madrid'
   }
 ];

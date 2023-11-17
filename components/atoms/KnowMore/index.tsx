@@ -2,7 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const KnowMore: React.FC = () => (
+interface KnowMoreProps {
+  path: string;
+  copy: string;
+}
+
+const KnowMore: React.FC<KnowMoreProps> = ({ path, copy }: KnowMoreProps) => (
   <div
     className="mt-20 relative bg-transparent lg:mt-[100px]"
     style={{
@@ -35,10 +40,10 @@ const KnowMore: React.FC = () => (
           ¿Quieres saber más sobre nuestros servicios?
         </h2>
         <Link
-          href={'contacto'}
+          href={path}
           className="text-base font-semibold bg-primary py-2.5 px-6 text-white hover:shadow-xl"
         >
-          CONTÁCTENOS
+          {copy}
         </Link>
       </div>
       <div className="p-5 md:w-1/2 lg:mt-[-10%] lg:absolute lg:w-[500px] min-[1100px]:w-[600px] lg:h-[418px] lg:right-[50%] lg:left-[50%] lg:bottom-[20px]">

@@ -11,7 +11,7 @@ const MainPrincipal: React.FC = () => (
       solución.
     </h4>
     <Link
-      href={'servicios'}
+      href={'/servicios'}
       className="text-base font-semibold bg-primary py-2.5 px-6 text-white hover:shadow-xl"
     >
       VER MÁS

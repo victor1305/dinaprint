@@ -30,7 +30,7 @@ const MainSecond: React.FC = () => (
           requiera su negocio, ya sea grande o pequeño.
         </p>
         <Link
-          href={'sobre-nosotros'}
+          href={'/sobre-nosotros'}
           className="text-base font-semibold bg-primary py-2.5 px-6 text-white hover:shadow-xl"
         >
           VER MÁS
@@ -62,7 +62,7 @@ const MainSecond: React.FC = () => (
           requiera su negocio, ya sea grande o pequeño.
         </p>
         <Link
-          href={'sobre-nosotros'}
+          href={'/sobre-nosotros'}
           className="text-base font-semibold bg-primary py-2.5 px-6 text-white hover:shadow-xl"
         >
           VER MÁS

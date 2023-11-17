@@ -24,7 +24,7 @@ const Product: React.FC<ProductProps> = ({
     <div className='pt-10'>
       <CatalogDetail {...{product, text, image, list}} />
     </div>
-    <KnowMore />
+    <KnowMore path={'/contacto'} copy={'CONTÁCTENOS'} />
   </div>
 );
 

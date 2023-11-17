@@ -3,6 +3,8 @@ import AboutExperience from './AboutExperience';
 import AboutVersatility from './AboutVersatility';
 import CatalogDetail from './CatalogDetail';
 import CatalogOption from './CatalogOption';
+import ContactMain from './ContactMain';
+import FindBox from './FindBox';
 import KnowMore from './KnowMore';
 import MainLast from './MainLast';
 import MainPrincipal from './MainPrincipal';
@@ -20,6 +22,8 @@ export {
   AboutVersatility,
   CatalogDetail,
   CatalogOption,
+  ContactMain,
+  FindBox,
   KnowMore,
   MainLast,
   MainPrincipal,

@@ -27,7 +27,8 @@ const config: Config = {
         'yellow-main': '#ffc700'
       },
       boxShadow: {
-        menu: '0 3px 6px 0 rgba(0,0,0,0.16)'
+        menu: '0 3px 6px 0 rgba(0,0,0,0.16)',
+        findBox: '0px 0px 20px 0px rgba(0,0,0,0.15)'
       },
       dropShadow: {
         'title-home': '2px 2px 2px black'

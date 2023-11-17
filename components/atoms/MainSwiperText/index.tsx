@@ -17,7 +17,7 @@ const MainSwiperText: React.FC = () => (
         se merece el mejor trato.
       </p>
       <Link
-        href={'catalogo'}
+        href={'/catalogo'}
         className="text-base font-semibold bg-primary py-2.5 px-6 text-white hover:shadow-xl"
       >
         VER MÁS

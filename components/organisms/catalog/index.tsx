@@ -17,7 +17,7 @@ const Catalog: React.FC = () => (
         </div>
       ))}
     </div>
-    <KnowMore />
+    <KnowMore path={'/contacto'} copy={'CONTÁCTENOS'} />
   </div>
 );
 

@@ -27,7 +27,7 @@ const Footer: React.FC = () => (
             <h4 className="text-base font-semibold">CATÁLOGO</h4>
             <p className="pt-1 pb-1.5">
               <Link
-                href="catalogo"
+                href="/catalogo"
                 className="text-footer-li hover:text-primary"
               >
                 Productos
@@ -36,7 +36,7 @@ const Footer: React.FC = () => (
             <hr />
             <p className="pt-1 pb-1.5">
               <Link
-                href="catalogo/papeleria-corporativa"
+                href="/catalogo/papeleria-corporativa"
                 className="text-footer-li hover:text-primary"
               >
                 Papelería corporativa
@@ -45,7 +45,7 @@ const Footer: React.FC = () => (
             <hr />
             <p className="pt-1 pb-1.5">
               <Link
-                href="catalogo/flyers-y-desplegables"
+                href="/catalogo/flyers-y-desplegables"
                 className="text-footer-li hover:text-primary"
               >
                 Flyers y desplegables
@@ -54,7 +54,7 @@ const Footer: React.FC = () => (
             <hr />
             <p className="pt-1 pb-1.5">
               <Link
-                href="catalogo/folletos-y-revistas"
+                href="/catalogo/folletos-y-revistas"
                 className="text-footer-li hover:text-primary"
               >
                 Folletos y revistas
@@ -63,7 +63,7 @@ const Footer: React.FC = () => (
             <hr />
             <p className="pt-1 pb-1.5">
               <Link
-                href="catalogo/calendarios"
+                href="/catalogo/calendarios"
                 className="text-footer-li hover:text-primary"
               >
                 Calendarios
@@ -74,7 +74,7 @@ const Footer: React.FC = () => (
           <div className="p-2.5 pt-0 lg:pt-2.5 lg:w-1/5">
             <p className="pt-1 pb-1.5 lg:mt-6">
               <Link
-                href="catalogo/roll-up"
+                href="/catalogo/roll-up"
                 className="text-footer-li hover:text-primary"
               >
                 Roll Up
@@ -83,7 +83,7 @@ const Footer: React.FC = () => (
             <hr />
             <p className="pt-1 pb-1.5">
               <Link
-                href="catalogo/expositores"
+                href="/catalogo/expositores"
                 className="text-footer-li hover:text-primary"
               >
                 Expositores
@@ -92,7 +92,7 @@ const Footer: React.FC = () => (
             <hr />
             <p className="pt-1 pb-1.5">
               <Link
-                href="catalogo/cajas-y-packaging"
+                href="/catalogo/cajas-y-packaging"
                 className="text-footer-li hover:text-primary"
               >
                 Cajas y packaging
@@ -101,7 +101,7 @@ const Footer: React.FC = () => (
             <hr />
             <p className="pt-1 pb-1.5">
               <Link
-                href="catalogo/regalo-promocional"
+                href="/catalogo/regalo-promocional"
                 className="text-footer-li hover:text-primary"
               >
                 Regalo promocional
@@ -110,7 +110,7 @@ const Footer: React.FC = () => (
             <hr />
             <p className="pt-1 pb-1.5">
               <Link
-                href="catalogo/carteles"
+                href="/catalogo/carteles"
                 className="text-footer-li hover:text-primary"
               >
                 Carteles
@@ -121,7 +121,7 @@ const Footer: React.FC = () => (
             <h4 className="text-base font-semibold">NOSOTROS</h4>
             <p className="pt-1 pb-1.5">
               <Link
-                href="sobre-nosotros"
+                href="/sobre-nosotros"
                 className="text-footer-li hover:text-primary"
               >
                 Quiénes somos
@@ -130,7 +130,7 @@ const Footer: React.FC = () => (
             <hr />
             <p className="pt-1 pb-1.5">
               <Link
-                href="servicios"
+                href="/servicios"
                 className="text-footer-li hover:text-primary"
               >
                 Soluciones y servicios
@@ -139,7 +139,7 @@ const Footer: React.FC = () => (
             <hr />
             <p className="pt-1 pb-1.5">
               <Link
-                href="contacto"
+                href="/contacto"
                 className="text-footer-li hover:text-primary"
               >
                 Contacto
@@ -153,7 +153,7 @@ const Footer: React.FC = () => (
               Madrid
             </p>
             <p className="text-footer-li pb-3 hover:text-primary">
-              dinaprint@dinaprint.com
+              <a href="mailto:dinaprint@dinaprint.com">dinaprint@dinaprint.com</a>
             </p>
             <p className="text-footer-li hover:text-primary">678 519 403</p>
             <p className="text-footer-li hover:text-primary">678 519 404</p>
@@ -163,19 +163,19 @@ const Footer: React.FC = () => (
     </div>
     <div className="text-[13px] p-2.5 text-center bg-white">
       <span>© Dinaprint 2023 | </span>
-      <Link href="aviso-legal" className="text-footer-li hover:text-primary">
+      <Link href="/aviso-legal" className="text-footer-li hover:text-primary">
         Aviso legal
       </Link>{' '}
       |{' '}
       <Link
-        href="politica-de-privacidad"
+        href="/politica-de-privacidad"
         className="text-footer-li hover:text-primary"
       >
         Política de privacidad
       </Link>{' '}
       |{' '}
       <Link
-        href="politica-de-cookies"
+        href="/politica-de-cookies"
         className="text-footer-li hover:text-primary"
       >
         Política de cookies
