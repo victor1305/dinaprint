@@ -1,5 +1,12 @@
 import { Product } from '@/components/organisms';
 
+import type { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Regalo promocional - Dinaprint',
+  description: 'Un regalo promocional es una buena manera de acabar una reunión, crea empatía con el cliente',
+};
+
 export default async function Page() {
   const data = {
     title: 'Regalo promocional',

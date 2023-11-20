@@ -1,3 +1,10 @@
+import type { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Aviso legal - Dinaprint',
+  description: 'Aviso legal de Dinaprint S.L.',
+};
+
 export default async function Page() {
   return (
     <main className="px-5 py-10 mx-auto max-w-[1200px]">

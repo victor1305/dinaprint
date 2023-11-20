@@ -1,3 +1,10 @@
+import type { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Política de privacidad - Dinaprint',
+  description: 'Política de privacidad de Dinaprint.S.L.',
+};
+
 export default async function Page() {
   return (
     <main className="px-5 py-10 mx-auto max-w-[1200px]">

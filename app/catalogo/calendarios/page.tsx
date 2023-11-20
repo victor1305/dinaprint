@@ -1,5 +1,12 @@
 import { Product } from '@/components/organisms';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Calendarios - Dinaprint',
+  description: 'Los calendarios son la mejor herramienta de marketing. Son muy útiles, están a la vista en cualquier mesa, estante, etc…'
+};
+
 export default async function Page() {
   const data = {
     title: 'Calendarios',

@@ -1,5 +1,12 @@
 import { Product } from '@/components/organisms';
 
+import type { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Papelería corporativa - Dinaprint',
+  description: 'La comunicación impresa de cualquier negocio o empresa, transmite su identidad y provoca sensaciones y opiniones.',
+};
+
 export default async function Page() {
   const data = {
     title: 'Papelería corporativa',

@@ -1,5 +1,12 @@
 import { Product } from '@/components/organisms';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Cajas y packaging - Dinaprint',
+  description: 'Un buen Packaging debe identificar al producto de una manera positiva e inducir a la compra, transmitiendo confianza y calidad.'
+};
+
 export default async function Page() {
   const data = {
     title: 'Cajas y packaging',

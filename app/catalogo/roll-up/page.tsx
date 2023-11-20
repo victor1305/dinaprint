@@ -1,5 +1,12 @@
 import { Product } from '@/components/organisms';
 
+import type { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Roll-up - Dinaprint',
+  description: 'Roll up en varios tamaños y acabados, según la necesidad del cliente',
+};
+
 export default async function Page() {
   const data = {
     title: 'Roll up',

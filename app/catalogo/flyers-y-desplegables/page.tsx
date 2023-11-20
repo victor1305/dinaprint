@@ -1,5 +1,12 @@
 import { Product } from '@/components/organisms';
 
+import type { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Flyers y desplegables - Dinaprint',
+  description: 'Los flyers y desplegables se utilizan especialmente para comunicar las principales características de algún producto o servicio.',
+};
+
 export default async function Page() {
   const data = {
     title: 'Flyers y desplegables',

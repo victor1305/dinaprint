@@ -1,5 +1,12 @@
 import { Product } from '@/components/organisms';
 
+import type { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Folletos y revistas - Dinaprint',
+  description: 'Folletos y revistas impresos a todo color en varios tipos de encuadernaciones, hilo, wire-o, cola pur…',
+};
+
 export default async function Page() {
   const data = {
     title: 'Folletos y revistas',

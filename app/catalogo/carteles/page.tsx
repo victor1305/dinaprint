@@ -1,5 +1,12 @@
 import { Product } from '@/components/organisms';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Carteles - Dinaprint',
+  description: 'Los carteles difunden una información, un evento, o la promoción de un producto.'
+};
+
 export default async function Page() {
   const data = {
     title: 'Carteles',
