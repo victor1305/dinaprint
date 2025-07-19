@@ -21,6 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
+      <head>
+        <script
+          defer
+          data-domain="dinaprint.com"
+          src="https://analytics.vicdev.com.es/js/script.js"
+        ></script>
+      </head>
       <body className={`${montserrat.className} text-font-primary`}>
         <Header />
         <div>{children}</div>
