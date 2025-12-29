@@ -37,7 +37,7 @@ export const firstMainSwiper = [
     title: 'Folletos',
     image: '/folletos.png',
     backImage: '/folletos.jpg',
-    url: '/catalogo/folletos'
+    url: '/catalogo/folletos-y-revistas'
   },
   {
     title: 'Carteles',
