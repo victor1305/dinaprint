@@ -4,6 +4,9 @@ import type { MetadataRoute } from 'next';
 
 const routes = [
   '/',
+  '/imprenta-madrid',
+  '/imprenta-sur-de-madrid',
+  '/imprenta-pinto',
   '/catalogo',
   '/catalogo/papeleria-corporativa',
   '/catalogo/flyers-y-desplegables',

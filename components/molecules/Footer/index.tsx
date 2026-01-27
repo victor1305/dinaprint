@@ -145,6 +145,33 @@ const Footer: React.FC = () => (
                 Contacto
               </Link>
             </p>
+            <hr />
+            <p className="pt-1 pb-1.5">
+              <Link
+                href="/imprenta-madrid"
+                className="text-footer-li hover:text-primary"
+              >
+                Imprenta en Madrid
+              </Link>
+            </p>
+            <hr />
+            <p className="pt-1 pb-1.5">
+              <Link
+                href="/imprenta-sur-de-madrid"
+                className="text-footer-li hover:text-primary"
+              >
+                Imprenta en el sur de Madrid
+              </Link>
+            </p>
+            <hr />
+            <p className="pt-1 pb-1.5">
+              <Link
+                href="/imprenta-pinto"
+                className="text-footer-li hover:text-primary"
+              >
+                Imprenta en Pinto
+              </Link>
+            </p>
           </div>
           <div className="p-2.5 lg:w-1/5">
             <h4 className="text-base font-semibold">INFORMACIÓN</h4>
@@ -162,7 +189,7 @@ const Footer: React.FC = () => (
       </div>
     </div>
     <div className="text-[13px] p-2.5 text-center bg-white">
-      <span>© Dinaprint 2023 | </span>
+      <span>© Dinaprint {new Date().getFullYear()} | </span>
       <Link href="/aviso-legal" className="text-footer-li hover:text-primary">
         Aviso legal
       </Link>{' '}

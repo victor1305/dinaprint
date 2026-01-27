@@ -4,6 +4,7 @@ import AboutVersatility from './AboutVersatility';
 import CatalogDetail from './CatalogDetail';
 import CatalogOption from './CatalogOption';
 import ContactMain from './ContactMain';
+import FAQ from './FAQ';
 import FindBox from './FindBox';
 import KnowMore from './KnowMore';
 import MainLast from './MainLast';
@@ -23,6 +24,7 @@ export {
   CatalogDetail,
   CatalogOption,
   ContactMain,
+  FAQ,
   FindBox,
   KnowMore,
   MainLast,
