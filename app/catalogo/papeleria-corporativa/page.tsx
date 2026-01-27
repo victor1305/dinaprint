@@ -3,8 +3,19 @@ import { Product } from '@/components/organisms';
 import type { Metadata } from 'next';
  
 export const metadata: Metadata = {
-  title: 'Papelería corporativa - Dinaprint',
-  description: 'La comunicación impresa de cualquier negocio o empresa, transmite su identidad y provoca sensaciones y opiniones.',
+  title: 'Papelería corporativa: tarjetas, carpetas y material de empresa',
+  description:
+    'Papelería corporativa en Madrid (Pinto): tarjetas de visita, carpetas, cartas, catálogos y folletos con acabados profesionales.',
+  alternates: {
+    canonical: '/catalogo/papeleria-corporativa'
+  },
+  keywords: [
+    'papelería corporativa',
+    'tarjetas de visita madrid',
+    'carpetas corporativas',
+    'imprenta madrid',
+    'imprenta pinto'
+  ]
 };
 
 export default async function Page() {

@@ -3,8 +3,19 @@ import { Product } from '@/components/organisms';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Carteles - Dinaprint',
-  description: 'Los carteles difunden una información, un evento, o la promoción de un producto.'
+  title: 'Impresión de carteles',
+  description:
+    'Impresión de carteles en Madrid (Pinto): distintos soportes (papel y rígidos), medidas y cantidades, con acabados como UVI, barnices y troquelado.',
+  alternates: {
+    canonical: '/catalogo/carteles'
+  },
+  keywords: [
+    'imprimir carteles madrid',
+    'cartelería',
+    'imprenta pinto',
+    'acabado uvi',
+    'troquelado'
+  ]
 };
 
 export default async function Page() {

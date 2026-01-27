@@ -3,8 +3,21 @@ import { Services } from "@/components/organisms";
 import type { Metadata } from 'next';
  
 export const metadata: Metadata = {
-  title: 'Soluciones y servicios - Dinaprint',
-  description: 'Aportamos soluciones y servicios para todas las necesidades en comunicación gráfica.',
+  title: 'Servicios de imprenta: impresión digital, offset y acabados',
+  description:
+    'Servicios de imprenta en Madrid (Pinto, sur de Madrid): preimpresión, impresión offset y digital, acabados y manipulados, distribución y envíos.',
+  alternates: {
+    canonical: '/servicios'
+  },
+  keywords: [
+    'servicios imprenta',
+    'impresión digital madrid',
+    'impresión offset madrid',
+    'preimpresión',
+    'acabados impresión',
+    'troquelado',
+    'plastificado'
+  ]
 };
 
 export default async function Page() {

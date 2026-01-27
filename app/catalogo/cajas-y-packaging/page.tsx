@@ -3,8 +3,19 @@ import { Product } from '@/components/organisms';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Cajas y packaging - Dinaprint',
-  description: 'Un buen Packaging debe identificar al producto de una manera positiva e inducir a la compra, transmitiendo confianza y calidad.'
+  title: 'Cajas y packaging personalizados',
+  description:
+    'Cajas y packaging personalizados en Madrid (Pinto): impresión de calidad, acabados y tiradas cortas con impresión digital.',
+  alternates: {
+    canonical: '/catalogo/cajas-y-packaging'
+  },
+  keywords: [
+    'packaging madrid',
+    'cajas personalizadas',
+    'imprimir cajas',
+    'imprenta pinto',
+    'acabados packaging'
+  ]
 };
 
 export default async function Page() {

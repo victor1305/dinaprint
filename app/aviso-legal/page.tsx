@@ -1,8 +1,15 @@
 import type { Metadata } from 'next';
  
 export const metadata: Metadata = {
-  title: 'Aviso legal - Dinaprint',
+  title: 'Aviso legal',
   description: 'Aviso legal de Dinaprint S.L.',
+  alternates: {
+    canonical: '/aviso-legal'
+  },
+  robots: {
+    index: false,
+    follow: true
+  }
 };
 
 export default async function Page() {

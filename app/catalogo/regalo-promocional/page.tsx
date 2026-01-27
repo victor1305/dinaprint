@@ -3,8 +3,19 @@ import { Product } from '@/components/organisms';
 import type { Metadata } from 'next';
  
 export const metadata: Metadata = {
-  title: 'Regalo promocional - Dinaprint',
-  description: 'Un regalo promocional es una buena manera de acabar una reunión, crea empatía con el cliente',
+  title: 'Regalo promocional personalizado',
+  description:
+    'Regalo promocional personalizado en Madrid (Pinto): soluciones para promociones, puntos de venta y acciones comerciales desde tiradas cortas.',
+  alternates: {
+    canonical: '/catalogo/regalo-promocional'
+  },
+  keywords: [
+    'regalo promocional',
+    'merchandising personalizado',
+    'promociones',
+    'imprenta madrid',
+    'imprenta pinto'
+  ]
 };
 
 export default async function Page() {

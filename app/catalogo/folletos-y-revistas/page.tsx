@@ -3,8 +3,19 @@ import { Product } from '@/components/organisms';
 import type { Metadata } from 'next';
  
 export const metadata: Metadata = {
-  title: 'Folletos y revistas - Dinaprint',
-  description: 'Folletos y revistas impresos a todo color en varios tipos de encuadernaciones, hilo, wire-o, cola pur…',
+  title: 'Impresión de folletos y revistas',
+  description:
+    'Impresión de folletos y revistas en Madrid (Pinto): encuadernación (wire-o, hilo, cola PUR), plastificados y troquelados. Digital u offset según tirada.',
+  alternates: {
+    canonical: '/catalogo/folletos-y-revistas'
+  },
+  keywords: [
+    'imprimir folletos madrid',
+    'impresión revistas madrid',
+    'encuadernación pur',
+    'wire-o',
+    'imprenta pinto'
+  ]
 };
 
 export default async function Page() {

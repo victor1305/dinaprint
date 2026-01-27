@@ -3,8 +3,19 @@ import { Product } from '@/components/organisms';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Calendarios - Dinaprint',
-  description: 'Los calendarios son la mejor herramienta de marketing. Son muy útiles, están a la vista en cualquier mesa, estante, etc…'
+  title: 'Impresión de calendarios personalizados',
+  description:
+    'Impresión de calendarios personalizados en Madrid (Pinto): de pared, mesa o bolsillo, en cualquier cantidad, medida y soporte.',
+  alternates: {
+    canonical: '/catalogo/calendarios'
+  },
+  keywords: [
+    'imprimir calendarios madrid',
+    'calendarios personalizados',
+    'imprenta pinto',
+    'impresión digital',
+    'impresión offset'
+  ]
 };
 
 export default async function Page() {

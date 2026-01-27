@@ -1,8 +1,15 @@
 import type { Metadata } from 'next';
  
 export const metadata: Metadata = {
-  title: 'Política de privacidad - Dinaprint',
+  title: 'Política de privacidad',
   description: 'Política de privacidad de Dinaprint.S.L.',
+  alternates: {
+    canonical: '/politica-de-privacidad'
+  },
+  robots: {
+    index: false,
+    follow: true
+  }
 };
 
 export default async function Page() {

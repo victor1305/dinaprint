@@ -1,8 +1,15 @@
 import type { Metadata } from 'next';
  
 export const metadata: Metadata = {
-  title: 'Política de cookies - Dinaprint',
+  title: 'Política de cookies',
   description: 'Política de cookies de Dinaprint.S.L.',
+  alternates: {
+    canonical: '/politica-de-cookies'
+  },
+  robots: {
+    index: false,
+    follow: true
+  }
 };
 
 export default async function Page() {
@@ -88,8 +95,9 @@ export default async function Page() {
       <p className="pb-4">
         - Google Chrome:{' '}
         <a
-          href="http://help.opera.com/Windows/8.54/es-ES/index.html"
+          href="https://support.google.com/chrome/answer/95647?hl=es"
           target="_blank"
+          rel="noopener noreferrer"
         >
           https://support.google.com/chrome/answer/95647?hl=es
         </a>
@@ -99,6 +107,7 @@ export default async function Page() {
         <a
           href="http://help.opera.com/Windows/8.54/es-ES/index.html"
           target="_blank"
+          rel="noopener noreferrer"
         >
           http://support.mozilla.org/es/home
         </a>
@@ -108,6 +117,7 @@ export default async function Page() {
         <a
           href="http://help.opera.com/Windows/8.54/es-ES/index.html"
           target="_blank"
+          rel="noopener noreferrer"
         >
           http://support.apple.com/kb/HT1677?viewlocale=es_ES
         </a>
@@ -117,6 +127,7 @@ export default async function Page() {
         <a
           href="http://help.opera.com/Windows/8.54/es-ES/index.html"
           target="_blank"
+          rel="noopener noreferrer"
         >
           http://support.microsoft.com/ph/807/es-es
         </a>
@@ -126,10 +137,11 @@ export default async function Page() {
         <a
           href="http://help.opera.com/Windows/8.54/es-ES/index.html"
           target="_blank"
+          rel="noopener noreferrer"
         >
           http://help.opera.com/Windows/8.54/es-ES/index.html
         </a>
       </p>
     </main>
-  );
+  );  
 }

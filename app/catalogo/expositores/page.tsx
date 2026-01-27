@@ -3,8 +3,19 @@ import { Product } from '@/components/organisms';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Expositores - Dinaprint',
-  description: 'Los expositores sirven para el aprovechamiento al máximo del punto de venta, el producto sale al encuentro del cliente'
+  title: 'Expositores para punto de venta',
+  description:
+    'Expositores para punto de venta en Madrid (Pinto): soluciones para retail con medidas y acabados personalizados.',
+  alternates: {
+    canonical: '/catalogo/expositores'
+  },
+  keywords: [
+    'expositores punto de venta',
+    'expositores madrid',
+    'PLV',
+    'imprenta pinto',
+    'acabados personalizados'
+  ]
 };
 
 export default async function Page() {

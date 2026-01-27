@@ -3,8 +3,19 @@ import { Product } from '@/components/organisms';
 import type { Metadata } from 'next';
  
 export const metadata: Metadata = {
-  title: 'Roll-up - Dinaprint',
-  description: 'Roll up en varios tamaños y acabados, según la necesidad del cliente',
+  title: 'Roll up: impresión y montaje para ferias y eventos',
+  description:
+    'Roll up en Madrid (Pinto): impresión a todo color, varios tamaños y acabados. Ideal para ferias, exposiciones y eventos.',
+  alternates: {
+    canonical: '/catalogo/roll-up'
+  },
+  keywords: [
+    'roll up madrid',
+    'imprimir roll up',
+    'roll up ferias',
+    'imprenta pinto',
+    'impresión gran formato'
+  ]
 };
 
 export default async function Page() {
