@@ -37,6 +37,11 @@ const Header: React.FC = () => {
       ]
     },
     {
+      name: 'BLOG',
+      path: '/blog',
+      subsection: []
+    },
+    {
       name: 'CONTACTO',
       path: '/contacto',
       subsection: []

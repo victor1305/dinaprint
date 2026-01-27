@@ -1,6 +1,7 @@
 import AboutEnviromental from './AboutEnvironmental';
 import AboutExperience from './AboutExperience';
 import AboutVersatility from './AboutVersatility';
+import { Breadcrumbs } from './Breadcrumbs';
 import CatalogDetail from './CatalogDetail';
 import CatalogOption from './CatalogOption';
 import ContactMain from './ContactMain';
@@ -21,6 +22,7 @@ export {
   AboutEnviromental,
   AboutExperience,
   AboutVersatility,
+  Breadcrumbs,
   CatalogDetail,
   CatalogOption,
   ContactMain,

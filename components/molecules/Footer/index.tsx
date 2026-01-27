@@ -139,6 +139,15 @@ const Footer: React.FC = () => (
             <hr />
             <p className="pt-1 pb-1.5">
               <Link
+                href="/blog"
+                className="text-footer-li hover:text-primary"
+              >
+                Blog
+              </Link>
+            </p>
+            <hr />
+            <p className="pt-1 pb-1.5">
+              <Link
                 href="/contacto"
                 className="text-footer-li hover:text-primary"
               >
