@@ -38,37 +38,32 @@
  * ============================================================
  */
 
-import postsData from '@/content/posts.json';
+import postsData from "@/content/posts.json";
 
 export interface BlogPost {
-  slug: string;
-  title: string;
-  description: string;
-  image: string;
-  author: string;
-  publishedAt: string;
-  updatedAt?: string;
-  category: string;
-  tags: string[];
-  readingTime: number;
-  content: ContentBlock[];
+	slug: string;
+	title: string;
+	description: string;
+	image: string;
+	author: string;
+	publishedAt: string;
+	updatedAt?: string;
+	category: string;
+	tags: string[];
+	readingTime: number;
+	content: ContentBlock[];
 }
 
 export interface ContentBlock {
-  type: 'paragraph' | 'heading' | 'list' | 'image' | 'quote';
-  text?: string;
-  items?: string[];
-  src?: string;
-  alt?: string;
-  level?: 2 | 3;
+	type: "paragraph" | "heading" | "list" | "image" | "quote";
+	text?: string;
+	items?: string[];
+	src?: string;
+	alt?: string;
+	level?: 2 | 3;
 }
 
-export const BLOG_CATEGORIES = [
-  'Guías',
-  'Consejos',
-  'Tendencias',
-  'Casos de éxito'
-] as const;
+export const BLOG_CATEGORIES = ["Guías", "Consejos", "Tendencias", "Casos de éxito"] as const;
 
 // Cargar posts desde el JSON
 const BLOG_POSTS: BlogPost[] = postsData.posts as BlogPost[];
@@ -77,71 +72,71 @@ const BLOG_POSTS: BlogPost[] = postsData.posts as BlogPost[];
  * Obtiene todos los posts ordenados por fecha (más recientes primero)
  */
 export function getAllPosts(): BlogPost[] {
-  return [...BLOG_POSTS].sort(
-    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-  );
+	return [...BLOG_POSTS].sort(
+		(a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+	);
 }
 
 /**
  * Obtiene un post por su slug
  */
 export function getPostBySlug(slug: string): BlogPost | undefined {
-  return BLOG_POSTS.find((post) => post.slug === slug);
+	return BLOG_POSTS.find((post) => post.slug === slug);
 }
 
 /**
  * Obtiene posts por categoría
  */
 export function getPostsByCategory(category: string): BlogPost[] {
-  return getAllPosts().filter((post) => post.category === category);
+	return getAllPosts().filter((post) => post.category === category);
 }
 
 /**
  * Obtiene posts relacionados (misma categoría, excluyendo el actual)
  */
 export function getRelatedPosts(currentSlug: string, limit = 3): BlogPost[] {
-  const current = getPostBySlug(currentSlug);
-  if (!current) return [];
+	const current = getPostBySlug(currentSlug);
+	if (!current) return [];
 
-  return getAllPosts()
-    .filter((post) => post.slug !== currentSlug && post.category === current.category)
-    .slice(0, limit);
+	return getAllPosts()
+		.filter((post) => post.slug !== currentSlug && post.category === current.category)
+		.slice(0, limit);
 }
 
 /**
  * Obtiene todos los slugs (para generateStaticParams)
  */
 export function getAllPostSlugs(): string[] {
-  return BLOG_POSTS.map((post) => post.slug);
+	return BLOG_POSTS.map((post) => post.slug);
 }
 
 /**
  * Genera el schema Article para un post
  */
 export function getArticleSchema(post: BlogPost, url: string) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: post.title,
-    description: post.description,
-    image: `https://dinaprint.com${post.image}`,
-    author: {
-      '@type': 'Organization',
-      name: post.author
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Dinaprint',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://dinaprint.com/logo-dinaprint-final-02.png'
-      }
-    },
-    datePublished: post.publishedAt,
-    dateModified: post.updatedAt || post.publishedAt,
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': url
-    }
-  };
+	return {
+		"@context": "https://schema.org",
+		"@type": "Article",
+		headline: post.title,
+		description: post.description,
+		image: `https://dinaprint.com${post.image}`,
+		author: {
+			"@type": "Organization",
+			name: post.author,
+		},
+		publisher: {
+			"@type": "Organization",
+			name: "Dinaprint",
+			logo: {
+				"@type": "ImageObject",
+				url: "https://dinaprint.com/logo-dinaprint-final-02.png",
+			},
+		},
+		datePublished: post.publishedAt,
+		dateModified: post.updatedAt || post.publishedAt,
+		mainEntityOfPage: {
+			"@type": "WebPage",
+			"@id": url,
+		},
+	};
 }

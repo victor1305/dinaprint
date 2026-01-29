@@ -5,11 +5,4 @@ import Main from "./main";
 import Product from "./product";
 import Services from "./services";
 
-export {
-  AboutUs,
-  Catalog,
-  Contact,
-  Main,
-  Product,
-  Services
-};
+export { AboutUs, Catalog, Contact, Main, Product, Services };
