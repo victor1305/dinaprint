@@ -9,6 +9,7 @@ const MainWhy = () => (
 		</h2>
 		<div className="md:flex md:justify-center md:max-w-[1200px] mx-auto">
 			<div className="h-[50px] w-full bg-gray-space md:h-[200px] md:w-[70px]" />
+			<div className="hidden bg-green-low" />
 			<div className="hidden bg-orange-low bg-yellow-main" />
 			{mainAnswers.map((elm) => (
 				<div
