@@ -1,4 +1,5 @@
 import { Main } from "@/components/organisms";
+import { absoluteUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -8,6 +9,15 @@ export const metadata: Metadata = {
 		"Imprenta en Madrid (Pinto, sur de Madrid). Impresión digital y offset, papelería corporativa, folletos, carteles, packaging y regalo promocional.",
 	alternates: {
 		canonical: "/",
+	},
+	openGraph: {
+		title: "Imprenta en Madrid (Pinto) | Impresión digital y offset",
+		url: absoluteUrl("/"),
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+	},
+	twitter: {
+		title: "Imprenta en Madrid (Pinto) | Impresión digital y offset",
+		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
 		"imprenta madrid",

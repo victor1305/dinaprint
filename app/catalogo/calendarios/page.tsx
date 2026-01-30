@@ -1,6 +1,6 @@
 import { FAQ } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema } from "@/lib/seo";
+import { buildServiceSchema, absoluteUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -10,6 +10,15 @@ export const metadata: Metadata = {
 		"Impresión de calendarios personalizados en Madrid (Pinto): de pared, mesa o bolsillo, en cualquier cantidad, medida y soporte.",
 	alternates: {
 		canonical: "/catalogo/calendarios",
+	},
+	openGraph: {
+		title: "Impresión de calendarios personalizados",
+		url: absoluteUrl("/catalogo/calendarios"),
+		images: [{ url: absoluteUrl("/calendar-1.jpg") }],
+	},
+	twitter: {
+		title: "Impresión de calendarios personalizados",
+		images: [absoluteUrl("/calendar-1.jpg")],
 	},
 	keywords: [
 		"imprimir calendarios madrid",

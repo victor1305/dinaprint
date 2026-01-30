@@ -1,6 +1,6 @@
 import { FAQ } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema } from "@/lib/seo";
+import { buildServiceSchema, absoluteUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -10,6 +10,15 @@ export const metadata: Metadata = {
 		"Impresión de flyers y desplegables en Madrid (Pinto): distintos tamaños, papeles y acabados para buzoneo, promociones y puntos de venta.",
 	alternates: {
 		canonical: "/catalogo/flyers-y-desplegables",
+	},
+	openGraph: {
+		title: "Impresión de flyers y desplegables",
+		url: absoluteUrl("/catalogo/flyers-y-desplegables"),
+		images: [{ url: absoluteUrl("/flyer-001.jpg") }],
+	},
+	twitter: {
+		title: "Impresión de flyers y desplegables",
+		images: [absoluteUrl("/flyer-001.jpg")],
 	},
 	keywords: [
 		"imprimir flyers madrid",

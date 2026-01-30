@@ -1,3 +1,4 @@
+import { absoluteUrl } from "@/lib/seo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,6 +10,15 @@ export const metadata: Metadata = {
 	robots: {
 		index: false,
 		follow: true,
+	},
+	openGraph: {
+		title: "Aviso legal",
+		url: absoluteUrl("/aviso-legal"),
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+	},
+	twitter: {
+		title: "Aviso legal",
+		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
 	},
 };
 

@@ -1,6 +1,6 @@
 import { FAQ } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema } from "@/lib/seo";
+import { buildServiceSchema, absoluteUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -10,6 +10,15 @@ export const metadata: Metadata = {
 		"Expositores para punto de venta en Madrid (Pinto): soluciones para retail con medidas y acabados personalizados.",
 	alternates: {
 		canonical: "/catalogo/expositores",
+	},
+	openGraph: {
+		title: "Expositores para punto de venta",
+		url: absoluteUrl("/catalogo/expositores"),
+		images: [{ url: absoluteUrl("/stand-001.jpg") }],
+	},
+	twitter: {
+		title: "Expositores para punto de venta",
+		images: [absoluteUrl("/stand-001.jpg")],
 	},
 	keywords: [
 		"expositores punto de venta",

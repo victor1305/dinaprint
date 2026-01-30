@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { FAQ, KnowMore, SectionPrincipalBanner } from "@/components/atoms";
+import { absoluteUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -10,6 +11,15 @@ export const metadata: Metadata = {
 		"Imprenta en Madrid especializada en impresión digital y offset. Papelería corporativa, folletos, carteles, packaging y más. Servicio en Madrid y sur de Madrid.",
 	alternates: {
 		canonical: "/imprenta-madrid",
+	},
+	openGraph: {
+		title: "Imprenta en Madrid",
+		url: absoluteUrl("/imprenta-madrid"),
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+	},
+	twitter: {
+		title: "Imprenta en Madrid",
+		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
 		"imprenta madrid",

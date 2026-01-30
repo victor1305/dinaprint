@@ -1,6 +1,6 @@
 import { FAQ } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema } from "@/lib/seo";
+import { buildServiceSchema, absoluteUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -10,6 +10,15 @@ export const metadata: Metadata = {
 		"Papelería corporativa en Madrid (Pinto): tarjetas de visita, carpetas, cartas, catálogos y folletos con acabados profesionales.",
 	alternates: {
 		canonical: "/catalogo/papeleria-corporativa",
+	},
+	openGraph: {
+		title: "Papelería corporativa: tarjetas, carpetas y material de empresa",
+		url: absoluteUrl("/catalogo/papeleria-corporativa"),
+		images: [{ url: absoluteUrl("/papeleria-corporativa-01.jpg") }],
+	},
+	twitter: {
+		title: "Papelería corporativa: tarjetas, carpetas y material de empresa",
+		images: [absoluteUrl("/papeleria-corporativa-01.jpg")],
 	},
 	keywords: [
 		"papelería corporativa",

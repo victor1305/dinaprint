@@ -1,6 +1,6 @@
 import { FAQ } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema } from "@/lib/seo";
+import { buildServiceSchema, absoluteUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -10,6 +10,15 @@ export const metadata: Metadata = {
 		"Impresión de carteles en Madrid (Pinto): distintos soportes (papel y rígidos), medidas y cantidades, con acabados como UVI, barnices y troquelado.",
 	alternates: {
 		canonical: "/catalogo/carteles",
+	},
+	openGraph: {
+		title: "Impresión de carteles",
+		url: absoluteUrl("/catalogo/carteles"),
+		images: [{ url: absoluteUrl("/carteles-01.jpg") }],
+	},
+	twitter: {
+		title: "Impresión de carteles",
+		images: [absoluteUrl("/carteles-01.jpg")],
 	},
 	keywords: [
 		"imprimir carteles madrid",

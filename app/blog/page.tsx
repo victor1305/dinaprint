@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { BLOG_CATEGORIES, getAllPosts } from "@/lib/blog";
+import { absoluteUrl } from "@/lib/seo";
 
 import { Breadcrumbs, SectionPrincipalBanner } from "@/components/atoms";
 
@@ -13,6 +14,15 @@ export const metadata: Metadata = {
 		"Blog sobre impresión, diseño gráfico y artes gráficas. Guías para preparar archivos, elegir papel, acabados de impresión y tendencias de packaging.",
 	alternates: {
 		canonical: "/blog",
+	},
+	openGraph: {
+		title: "Blog de imprenta: guías, consejos y tendencias",
+		url: absoluteUrl("/blog"),
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+	},
+	twitter: {
+		title: "Blog de imprenta: guías, consejos y tendencias",
+		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
 		"blog imprenta",

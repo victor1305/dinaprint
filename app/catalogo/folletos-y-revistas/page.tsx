@@ -1,6 +1,6 @@
 import { FAQ } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema } from "@/lib/seo";
+import { buildServiceSchema, absoluteUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -10,6 +10,15 @@ export const metadata: Metadata = {
 		"Impresión de folletos y revistas en Madrid (Pinto): encuadernación (wire-o, hilo, cola PUR), plastificados y troquelados. Digital u offset según tirada.",
 	alternates: {
 		canonical: "/catalogo/folletos-y-revistas",
+	},
+	openGraph: {
+		title: "Impresión de folletos y revistas",
+		url: absoluteUrl("/catalogo/folletos-y-revistas"),
+		images: [{ url: absoluteUrl("/Folletos-y-revistas-001.jpg") }],
+	},
+	twitter: {
+		title: "Impresión de folletos y revistas",
+		images: [absoluteUrl("/Folletos-y-revistas-001.jpg")],
 	},
 	keywords: [
 		"imprimir folletos madrid",

@@ -39,6 +39,8 @@ export const metadata: Metadata = {
 		type: "website",
 		locale: "es_ES",
 		siteName: SITE_NAME,
+		title: SITE_NAME,
+		url: new URL(getSiteUrl()).toString(),
 		images: [
 			{
 				url: OG_IMAGE_PATH,
@@ -47,6 +49,7 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
+		title: SITE_NAME,
 		images: [OG_IMAGE_PATH],
 	},
 };

@@ -1,6 +1,6 @@
 import { FAQ } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema } from "@/lib/seo";
+import { buildServiceSchema, absoluteUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -10,6 +10,15 @@ export const metadata: Metadata = {
 		"Regalo promocional personalizado en Madrid (Pinto): soluciones para promociones, puntos de venta y acciones comerciales desde tiradas cortas.",
 	alternates: {
 		canonical: "/catalogo/regalo-promocional",
+	},
+	openGraph: {
+		title: "Regalo promocional personalizado",
+		url: absoluteUrl("/catalogo/regalo-promocional"),
+		images: [{ url: absoluteUrl("/regalo-promocional-01.jpg") }],
+	},
+	twitter: {
+		title: "Regalo promocional personalizado",
+		images: [absoluteUrl("/regalo-promocional-01.jpg")],
 	},
 	keywords: [
 		"regalo promocional",

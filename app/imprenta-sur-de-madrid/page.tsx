@@ -2,6 +2,8 @@ import Link from "next/link";
 
 import { FAQ, KnowMore, SectionPrincipalBanner } from "@/components/atoms";
 
+import { absoluteUrl } from "@/lib/seo";
+
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,6 +12,15 @@ export const metadata: Metadata = {
 		"Imprenta en el sur de Madrid: impresión digital y offset, acabados y envío. Servicio para Pinto, Valdemoro, Getafe y alrededores.",
 	alternates: {
 		canonical: "/imprenta-sur-de-madrid",
+	},
+	openGraph: {
+		title: "Imprenta sur de Madrid",
+		url: absoluteUrl("/imprenta-sur-de-madrid"),
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+	},
+	twitter: {
+		title: "Imprenta sur de Madrid",
+		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
 		"imprenta sur de madrid",

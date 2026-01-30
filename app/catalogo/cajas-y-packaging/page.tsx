@@ -1,6 +1,6 @@
 import { FAQ } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema } from "@/lib/seo";
+import { buildServiceSchema, absoluteUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -10,6 +10,15 @@ export const metadata: Metadata = {
 		"Cajas y packaging personalizados en Madrid (Pinto): impresión de calidad, acabados y tiradas cortas con impresión digital.",
 	alternates: {
 		canonical: "/catalogo/cajas-y-packaging",
+	},
+	openGraph: {
+		title: "Cajas y packaging personalizados",
+		url: absoluteUrl("/catalogo/cajas-y-packaging"),
+		images: [{ url: absoluteUrl("/packing-01.jpg") }],
+	},
+	twitter: {
+		title: "Cajas y packaging personalizados",
+		images: [absoluteUrl("/packing-01.jpg")],
 	},
 	keywords: [
 		"packaging madrid",
