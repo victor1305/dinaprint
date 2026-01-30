@@ -11,9 +11,12 @@ export const metadata: Metadata = {
 		canonical: "/sobre-nosotros",
 	},
 	openGraph: {
+		type: "website",
 		title: "Sobre nosotros: imprenta con experiencia en Madrid",
 		url: absoluteUrl("/sobre-nosotros"),
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+		description:
+			"Más de 25 años de experiencia en comunicación gráfica e impresión. Imprenta en Madrid (Pinto, sur de Madrid) con asesoramiento y acabados de calidad.",
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Sobre Dinaprint" }],
 	},
 	twitter: {
 		title: "Sobre nosotros: imprenta con experiencia en Madrid",

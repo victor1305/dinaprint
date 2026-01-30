@@ -11,9 +11,12 @@ export const metadata: Metadata = {
 		canonical: "/contacto",
 	},
 	openGraph: {
+		type: "website",
 		title: "Contacto: imprenta en Pinto (Madrid)",
 		url: absoluteUrl("/contacto"),
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+		description:
+			"Contacta con nuestra imprenta en Pinto (Madrid, sur de Madrid) para presupuestos de impresión digital y offset, papelería corporativa, folletos, carteles y packaging.",
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Contacto Dinaprint" }],
 	},
 	twitter: {
 		title: "Contacto: imprenta en Pinto (Madrid)",

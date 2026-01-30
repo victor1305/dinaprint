@@ -12,9 +12,12 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/papeleria-corporativa",
 	},
 	openGraph: {
+		type: "website",
 		title: "Papelería corporativa: tarjetas, carpetas y material de empresa",
 		url: absoluteUrl("/catalogo/papeleria-corporativa"),
-		images: [{ url: absoluteUrl("/papeleria-corporativa-01.jpg") }],
+		description:
+			"Papelería corporativa en Madrid (Pinto): tarjetas de visita, carpetas, cartas, catálogos y folletos con acabados profesionales.",
+		images: [{ url: absoluteUrl("/papeleria-corporativa-01.jpg"), width: 1200, height: 630, alt: "Papelería corporativa - Dinaprint" }],
 	},
 	twitter: {
 		title: "Papelería corporativa: tarjetas, carpetas y material de empresa",

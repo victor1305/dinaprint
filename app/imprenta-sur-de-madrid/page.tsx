@@ -14,9 +14,11 @@ export const metadata: Metadata = {
 		canonical: "/imprenta-sur-de-madrid",
 	},
 	openGraph: {
+		type: "website",
 		title: "Imprenta sur de Madrid",
 		url: absoluteUrl("/imprenta-sur-de-madrid"),
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+		description: "Imprenta en la zona sur de Madrid: servicio rápido y envíos a toda la península.",
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Imprenta sur de Madrid - Dinaprint" }],
 	},
 	twitter: {
 		title: "Imprenta sur de Madrid",

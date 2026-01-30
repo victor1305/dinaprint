@@ -12,9 +12,11 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/roll-up",
 	},
 	openGraph: {
+		type: "website",
 		title: "Roll up: impresión y montaje para ferias y eventos",
 		url: absoluteUrl("/catalogo/roll-up"),
-		images: [{ url: absoluteUrl("/rollup-001.jpg") }],
+		description: "Roll up en Madrid (Pinto): impresión a todo color, varios tamaños y acabados. Ideal para ferias, exposiciones y eventos.",
+		images: [{ url: absoluteUrl("/rollup-001.jpg"), width: 1200, height: 630, alt: "Roll up - Dinaprint" }],
 	},
 	twitter: {
 		title: "Roll up: impresión y montaje para ferias y eventos",

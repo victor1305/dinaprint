@@ -12,9 +12,11 @@ export const metadata: Metadata = {
 		follow: true,
 	},
 	openGraph: {
+		type: "website",
 		title: "Política de cookies",
 		url: absoluteUrl("/politica-de-cookies"),
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+		description: "Política de cookies de Dinaprint.S.L.",
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Política de cookies - Dinaprint" }],
 	},
 	twitter: {
 		title: "Política de cookies",

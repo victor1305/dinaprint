@@ -12,12 +12,15 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/carteles",
 	},
 	openGraph: {
+		type: "website",
 		title: "Impresión de carteles",
 		url: absoluteUrl("/catalogo/carteles"),
-		images: [{ url: absoluteUrl("/carteles-01.jpg") }],
+		description: "Impresión de carteles en papel, rígidos y lonas con acabados profesionales.",
+		images: [{ url: absoluteUrl("/carteles-01.jpg"), width: 1200, height: 630, alt: "Impresión de carteles - Dinaprint" }],
 	},
 	twitter: {
 		title: "Impresión de carteles",
+		description: "Impresión de carteles en papel, rígidos y lonas con acabados profesionales.",
 		images: [absoluteUrl("/carteles-01.jpg")],
 	},
 	keywords: [

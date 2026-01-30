@@ -12,9 +12,11 @@ export const metadata: Metadata = {
 		follow: true,
 	},
 	openGraph: {
+		type: "website",
 		title: "Política de privacidad",
 		url: absoluteUrl("/politica-de-privacidad"),
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+		description: "Política de privacidad de Dinaprint.S.L.",
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Política de privacidad - Dinaprint" }],
 	},
 	twitter: {
 		title: "Política de privacidad",

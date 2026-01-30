@@ -13,9 +13,11 @@ export const metadata: Metadata = {
 		canonical: "/imprenta-madrid",
 	},
 	openGraph: {
+		type: "website",
 		title: "Imprenta en Madrid",
 		url: absoluteUrl("/imprenta-madrid"),
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+		description: "Imprenta en Madrid especializada en impresión digital y offset. Papelería corporativa, folletos, carteles, packaging y más.",
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Imprenta Dinaprint - Madrid" }],
 	},
 	twitter: {
 		title: "Imprenta en Madrid",

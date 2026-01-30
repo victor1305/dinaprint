@@ -12,9 +12,11 @@ export const metadata: Metadata = {
 		follow: true,
 	},
 	openGraph: {
+		type: "website",
 		title: "Aviso legal",
 		url: absoluteUrl("/aviso-legal"),
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+		description: "Aviso legal de Dinaprint S.L.",
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Aviso legal - Dinaprint" }],
 	},
 	twitter: {
 		title: "Aviso legal",

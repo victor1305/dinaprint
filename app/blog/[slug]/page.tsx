@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 			type: "article",
 			title: post.title,
 			description: post.description,
-			images: [{ url: post.image }],
+			images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
 			publishedTime: post.publishedAt,
 			modifiedTime: post.updatedAt || post.publishedAt,
 			authors: [post.author],

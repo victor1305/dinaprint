@@ -11,9 +11,12 @@ export const metadata: Metadata = {
 		canonical: "/catalogo",
 	},
 	openGraph: {
+		type: "website",
 		title: "Catálogo de productos de imprenta",
 		url: absoluteUrl("/catalogo"),
-		images: [{ url: absoluteUrl("/calendar-1.jpg") }],
+		description:
+			"Catálogo de productos de imprenta: papelería corporativa, folletos y revistas, carteles, packaging, expositores, roll up, calendarios y regalo promocional.",
+		images: [{ url: absoluteUrl("/calendar-1.jpg"), width: 1200, height: 630, alt: "Catálogo Dinaprint" }],
 	},
 	twitter: {
 		title: "Catálogo de productos de imprenta",

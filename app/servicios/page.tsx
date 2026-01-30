@@ -11,9 +11,11 @@ export const metadata: Metadata = {
 		canonical: "/servicios",
 	},
 	openGraph: {
+		type: "website",
 		title: "Servicios de imprenta: impresión digital, offset y acabados",
 		url: absoluteUrl("/servicios"),
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+		description: "Servicios: asesoramiento, preimpresión, impresión digital y offset, acabados y distribución.",
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Servicios Dinaprint" }],
 	},
 	twitter: {
 		title: "Servicios de imprenta: impresión digital, offset y acabados",

@@ -14,9 +14,12 @@ export const metadata: Metadata = {
 		canonical: "/imprenta-pinto",
 	},
 	openGraph: {
+		type: "website",
 		title: "Imprenta en Pinto (Madrid)",
 		url: absoluteUrl("/imprenta-pinto"),
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+		description:
+			"Imprenta en Pinto (Madrid) con impresión digital y offset. Papelería corporativa, folletos, carteles, packaging y acabados. Servicio para el sur de Madrid.",
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Imprenta Dinaprint - Pinto" }],
 	},
 	twitter: {
 		title: "Imprenta en Pinto (Madrid)",

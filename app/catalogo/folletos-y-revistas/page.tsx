@@ -12,9 +12,11 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/folletos-y-revistas",
 	},
 	openGraph: {
+		type: "website",
 		title: "Impresión de folletos y revistas",
 		url: absoluteUrl("/catalogo/folletos-y-revistas"),
-		images: [{ url: absoluteUrl("/Folletos-y-revistas-001.jpg") }],
+		description: "Impresión de folletos y revistas con encuadernación wire-o, hilo, cola PUR, plastificados y troquelados.",
+		images: [{ url: absoluteUrl("/Folletos-y-revistas-001.jpg"), width: 1200, height: 630, alt: "Folletos y revistas - Dinaprint" }],
 	},
 	twitter: {
 		title: "Impresión de folletos y revistas",

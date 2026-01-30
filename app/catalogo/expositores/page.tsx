@@ -12,9 +12,12 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/expositores",
 	},
 	openGraph: {
+		type: "website",
 		title: "Expositores para punto de venta",
 		url: absoluteUrl("/catalogo/expositores"),
-		images: [{ url: absoluteUrl("/stand-001.jpg") }],
+		description:
+			"Expositores personalizados para retail, ferias y puntos de venta. Múltiples materiales y acabados.",
+		images: [{ url: absoluteUrl("/stand-001.jpg"), width: 1200, height: 630, alt: "Expositores - Dinaprint" }],
 	},
 	twitter: {
 		title: "Expositores para punto de venta",

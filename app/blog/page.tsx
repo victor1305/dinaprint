@@ -16,9 +16,12 @@ export const metadata: Metadata = {
 		canonical: "/blog",
 	},
 	openGraph: {
+		type: "website",
 		title: "Blog de imprenta: guías, consejos y tendencias",
 		url: absoluteUrl("/blog"),
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg") }],
+		description:
+			"Blog sobre impresión, diseño gráfico y artes gráficas. Guías para preparar archivos, elegir papel, acabados de impresión y tendencias de packaging.",
+		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Blog Dinaprint" }],
 	},
 	twitter: {
 		title: "Blog de imprenta: guías, consejos y tendencias",

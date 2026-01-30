@@ -12,12 +12,17 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/calendarios",
 	},
 	openGraph: {
+		type: "website",
 		title: "Impresión de calendarios personalizados",
 		url: absoluteUrl("/catalogo/calendarios"),
-		images: [{ url: absoluteUrl("/calendar-1.jpg") }],
+		description:
+			"Impresión de calendarios personalizados en Madrid (Pinto): de pared, mesa o bolsillo, en cualquier cantidad, medida y soporte.",
+		images: [{ url: absoluteUrl("/calendar-1.jpg"), width: 1200, height: 630, alt: "Calendarios personalizados - Dinaprint" }],
 	},
 	twitter: {
 		title: "Impresión de calendarios personalizados",
+		description:
+			"Impresión de calendarios personalizados en Madrid (Pinto): de pared, mesa o bolsillo, en cualquier cantidad, medida y soporte.",
 		images: [absoluteUrl("/calendar-1.jpg")],
 	},
 	keywords: [

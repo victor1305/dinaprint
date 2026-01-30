@@ -12,9 +12,11 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/cajas-y-packaging",
 	},
 	openGraph: {
+		type: "website",
 		title: "Cajas y packaging personalizados",
 		url: absoluteUrl("/catalogo/cajas-y-packaging"),
-		images: [{ url: absoluteUrl("/packing-01.jpg") }],
+		description: "Packaging personalizado: cajas, estuches y envoltorios con acabados premium.",
+		images: [{ url: absoluteUrl("/packing-01.jpg"), width: 1200, height: 630, alt: "Cajas y packaging - Dinaprint" }],
 	},
 	twitter: {
 		title: "Cajas y packaging personalizados",

@@ -12,9 +12,11 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/regalo-promocional",
 	},
 	openGraph: {
+		type: "website",
 		title: "Regalo promocional personalizado",
 		url: absoluteUrl("/catalogo/regalo-promocional"),
-		images: [{ url: absoluteUrl("/regalo-promocional-01.jpg") }],
+		description: "Merchandising y regalos promocionales personalizados para empresas y eventos.",
+		images: [{ url: absoluteUrl("/regalo-promocional-01.jpg"), width: 1200, height: 630, alt: "Regalo promocional - Dinaprint" }],
 	},
 	twitter: {
 		title: "Regalo promocional personalizado",
