@@ -20,3 +20,38 @@ export function getSiteUrl() {
 export function absoluteUrl(pathname: string) {
 	return new URL(pathname, getSiteUrl()).toString();
 }
+
+export function buildServiceSchema({
+	name,
+	description,
+	slug,
+	imagePath,
+}: {
+	name: string;
+	description: string;
+	slug: string;
+	imagePath: string;
+}) {
+	const url = absoluteUrl(slug);
+
+	return {
+		"@context": "https://schema.org",
+		"@type": "Service",
+		name,
+		description,
+		serviceType: name,
+		provider: {
+			"@type": "LocalBusiness",
+			"@id": `${SITE_URL}#provider`,
+			name: SITE_NAME,
+			image: absoluteUrl(OG_IMAGE_PATH),
+			url: SITE_URL,
+		},
+		areaServed: [
+			{ "@type": "AdministrativeArea", name: "Madrid" },
+			{ "@type": "AdministrativeArea", name: "Sur de Madrid" },
+		],
+		image: absoluteUrl(imagePath),
+		url,
+	};
+}

@@ -1,5 +1,6 @@
 import { FAQ } from "@/components/atoms";
 import { Product } from "@/components/organisms";
+import { buildServiceSchema } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -42,25 +43,12 @@ const faqItems = [
 	},
 ];
 
-const productSchema = {
-	"@context": "https://schema.org",
-	"@type": "Product",
+const serviceSchema = buildServiceSchema({
 	name: "Regalo promocional personalizado",
 	description: "Merchandising y regalos promocionales personalizados para empresas y eventos.",
-	brand: {
-		"@type": "Brand",
-		name: "Dinaprint",
-	},
-	offers: {
-		"@type": "Offer",
-		priceCurrency: "EUR",
-		availability: "https://schema.org/InStock",
-		seller: {
-			"@type": "Organization",
-			name: "Dinaprint",
-		},
-	},
-};
+	slug: "/catalogo/regalo-promocional",
+	imagePath: "/regalo-promocional-01.jpg",
+});
 
 export default async function Page() {
 	const data = {
@@ -77,7 +65,7 @@ export default async function Page() {
 	return (
 		<main>
 			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(productSchema)}
+				{JSON.stringify(serviceSchema)}
 			</script>
 			<Product {...data} />
 			<section className="px-5 pb-10 mx-auto max-w-[1200px]">
