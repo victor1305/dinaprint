@@ -1,5 +1,5 @@
 import { AboutUs } from "@/components/organisms";
-import { absoluteUrl } from "@/lib/seo";
+import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -34,6 +34,9 @@ export const metadata: Metadata = {
 export default async function Page() {
 	return (
 		<main>
+			<script type="application/ld+json" suppressHydrationWarning>
+				{JSON.stringify(getLocalBusinessSchema())}
+			</script>
 			<AboutUs />
 		</main>
 	);

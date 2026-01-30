@@ -1,6 +1,6 @@
 import { FAQ } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema, absoluteUrl } from "@/lib/seo";
+import { buildServiceSchema, absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -77,9 +77,16 @@ export default async function Page() {
 	};
 	return (
 		<main>
+			{/* Schema del negocio */}
+			<script type="application/ld+json" suppressHydrationWarning>
+				{JSON.stringify(getLocalBusinessSchema())}
+			</script>
+			
+			{/* Schema del servicio */}
 			<script type="application/ld+json" suppressHydrationWarning>
 				{JSON.stringify(serviceSchema)}
 			</script>
+			
 			<Product {...data} />
 			<section className="px-5 pb-10 mx-auto max-w-[1200px]">
 				<FAQ items={faqItems} />

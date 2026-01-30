@@ -55,3 +55,30 @@ export function buildServiceSchema({
 		url,
 	};
 }
+
+export function getLocalBusinessSchema() {
+	return {
+		"@context": "https://schema.org",
+		"@type": "PrintShop",
+		name: SITE_NAME,
+		url: getSiteUrl(),
+		image: absoluteUrl(OG_IMAGE_PATH),
+		logo: absoluteUrl("/logo-dinaprint-final-02.png"),
+		email: "dinaprint@dinaprint.com",
+		telephone: "+34 678 519 403",
+		address: {
+			"@type": "PostalAddress",
+			streetAddress: "C/ Coto de Doñana, 9 Área Empresarial Andalucía",
+			addressLocality: "Pinto",
+			addressRegion: "Madrid",
+			postalCode: "28320",
+			addressCountry: "ES",
+		},
+		areaServed: [
+			{ "@type": "AdministrativeArea", name: "Madrid" },
+			{ "@type": "AdministrativeArea", name: "Sur de Madrid" },
+		],
+		description: SITE_DESCRIPTION,
+		priceRange: "€€",
+	};
+}

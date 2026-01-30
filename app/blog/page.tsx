@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { BLOG_CATEGORIES, getAllPosts } from "@/lib/blog";
-import { absoluteUrl } from "@/lib/seo";
+import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
 
 import { Breadcrumbs, SectionPrincipalBanner } from "@/components/atoms";
 
@@ -58,6 +58,9 @@ export default function BlogPage() {
 
 	return (
 		<main>
+			<script type="application/ld+json" suppressHydrationWarning>
+				{JSON.stringify(getLocalBusinessSchema())}
+			</script>
 			<script type="application/ld+json" suppressHydrationWarning>
 				{JSON.stringify(blogListSchema)}
 			</script>

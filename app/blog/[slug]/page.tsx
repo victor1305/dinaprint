@@ -3,14 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { getAllPosts, getArticleSchema, getPostBySlug, getRelatedPosts } from "@/lib/blog";
-import { absoluteUrl } from "@/lib/seo";
+import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
 
 import { Breadcrumbs } from "@/components/atoms";
 
 import type { Metadata } from "next";
 
 interface PageProps {
-	params: Promise<{ slug: string }>;
+	params: { slug: string };
 }
 
 export async function generateStaticParams() {
@@ -37,7 +37,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 			type: "article",
 			title: post.title,
 			description: post.description,
-			images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
+			url: absoluteUrl(`/blog/${slug}`),
+			images: [{ url: absoluteUrl(post.image), width: 1200, height: 630, alt: post.title }],
 			publishedTime: post.publishedAt,
 			modifiedTime: post.updatedAt || post.publishedAt,
 			authors: [post.author],
@@ -46,13 +47,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 			card: "summary_large_image",
 			title: post.title,
 			description: post.description,
-			images: [post.image],
+			images: [absoluteUrl(post.image)],
 		},
 	};
 }
 
-export default async function BlogPostPage({ params }: PageProps) {
-	const { slug } = await params;
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+	const { slug } = params;
 	const post = getPostBySlug(slug);
 
 	if (!post) {
@@ -64,6 +65,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 
 	return (
 		<main className="bg-gray-50">
+			<script type="application/ld+json" suppressHydrationWarning>
+				{JSON.stringify(getLocalBusinessSchema())}
+			</script>
 			<script type="application/ld+json" suppressHydrationWarning>
 				{JSON.stringify(articleSchema)}
 			</script>

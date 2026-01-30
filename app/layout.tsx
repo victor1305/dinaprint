@@ -57,36 +57,7 @@ export const metadata: Metadata = {
 	},
 };
 
-const localBusinessSchema = {
-	"@context": "https://schema.org",
-	"@type": "PrintShop",
-	name: SITE_NAME,
-	url: getSiteUrl(),
-	image: new URL(OG_IMAGE_PATH, getSiteUrl()).toString(),
-	logo: new URL("/logo-dinaprint-final-02.png", getSiteUrl()).toString(),
-	email: "dinaprint@dinaprint.com",
-	telephone: "+34 678 519 403",
-	address: {
-		"@type": "PostalAddress",
-		streetAddress: "C/ Coto de Doñana, 9 Área Empresarial Andalucía",
-		addressLocality: "Pinto",
-		addressRegion: "Madrid",
-		postalCode: "28320",
-		addressCountry: "ES",
-	},
-	areaServed: [
-		{
-			"@type": "AdministrativeArea",
-			name: "Madrid",
-		},
-		{
-			"@type": "AdministrativeArea",
-			name: "Sur de Madrid",
-		},
-	],
-	description: SITE_DESCRIPTION,
-	priceRange: "€€",
-};
+// localBusiness schema moved to `lib/seo.ts` via `getLocalBusinessSchema()`
 
 export default function RootLayout({
 	children,
@@ -103,9 +74,7 @@ export default function RootLayout({
 				/>
 			</head>
 			<body className={`${montserrat.className} text-font-primary`}>
-				<script id="local-business-schema" type="application/ld+json" suppressHydrationWarning>
-					{JSON.stringify(localBusinessSchema)}
-				</script>
+				{/* localBusiness schema moved to pages to avoid duplicate JSON-LD concatenation by crawlers */}
 				<Header />
 				<div>{children}</div>
 				<Footer />
