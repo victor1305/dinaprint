@@ -21,10 +21,7 @@ const routes = [
 	"/catalogo/carteles",
 	"/servicios",
 	"/sobre-nosotros",
-	"/contacto",
-	"/aviso-legal",
-	"/politica-de-privacidad",
-	"/politica-de-cookies",
+	"/contacto"
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -37,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		else if (pathname.startsWith("/catalogo/")) priority = 0.85;
 		else if (pathname.startsWith("/blog")) priority = 0.9;
 		else if (pathname.startsWith("/imprenta-")) priority = 0.9;
-		else if (pathname.startsWith("/aviso") || pathname.startsWith("/politica")) priority = 0.3;
+		// mantenemos prioridades por sección, no aplicamos prioridad especial a páginas legales
 
 		return {
 			url: absoluteUrl(pathname),
