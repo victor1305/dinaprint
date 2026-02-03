@@ -11,11 +11,15 @@
 	},
 	"dependencies": {
 		"@emailjs/browser": "^3.11.0",
+		"@tailwindcss/typography": "^0.5.19",
 		"email-js": "^2.0.2",
+		"gray-matter": "^4.0.3",
 		"next": "14.0.0",
 		"react": "^18",
 		"react-dom": "^18",
 		"react-icons": "^4.11.0",
+		"react-markdown": "^10.1.0",
+		"remark-gfm": "^4.0.1",
 		"swiper": "^11.0.3"
 	},
 	"devDependencies": {

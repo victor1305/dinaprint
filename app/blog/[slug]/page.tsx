@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import { getAllPosts, getArticleSchema, getPostBySlug, getRelatedPosts } from "@/lib/blog";
 import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
@@ -141,72 +143,46 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 				</div>
 
 				{/* Contenido del artículo */}
-				<div className="prose prose-lg max-w-none">
-					{post.content.map((block) => {
-						const contentKey = `${block.type}-${block.text || block.src || block.items?.join("-") || "content"}`;
-						switch (block.type) {
-							case "paragraph":
-								return (
-									<p key={contentKey} className="text-gray-700 leading-relaxed mb-6">
-										{block.text}
-									</p>
-								);
-							case "heading": {
-								const level = block.level || 2;
-								if (level === 3) {
-									return (
-										<h3 key={contentKey} className="font-bold text-gray-900 mt-10 mb-4 text-xl">
-											{block.text}
-										</h3>
-									);
-								}
-								return (
-									<h2 key={contentKey} className="font-bold text-gray-900 mt-10 mb-4 text-2xl">
-										{block.text}
-									</h2>
-								);
-							}
-							case "list":
-								return (
-									<ul
-										key={contentKey}
-										className="list-disc list-inside space-y-2 mb-6 text-gray-700"
-									>
-										{block.items?.map((item) => (
-											<li key={item}>{item}</li>
-										))}
-									</ul>
-								);
-							case "quote":
-								return (
-									<blockquote
-										key={contentKey}
-										className="border-l-4 border-primary pl-6 py-4 my-8 bg-primary/5 rounded-r-lg italic text-gray-700"
-									>
-										{block.text}
-									</blockquote>
-								);
-							case "image":
-								return (
-									<figure key={contentKey} className="my-8">
-										<Image
-											src={block.src || ""}
-											alt={block.alt || ""}
-											width={800}
-											height={450}
-											className="rounded-lg"
-										/>
-										{block.alt && (
-											<figcaption className="text-center text-sm text-gray-500 mt-2">
-												{block.alt}
-											</figcaption>
-										)}
-									</figure>
-								);
-							default:
-								return null;
-						}
-					})}
+				<div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-li:text-gray-700 prose-blockquote:border-primary prose-blockquote:bg-primary/5 prose-blockquote:py-1 prose-blockquote:rounded-r-lg">
+					<ReactMarkdown
+						remarkPlugins={[remarkGfm]}
+						components={{
+							h2: ({ node, ...props }) => (
+								<h2 className="font-bold text-gray-900 mt-10 mb-4 text-2xl" {...props} />
+							),
+							h3: ({ node, ...props }) => (
+								<h3 className="font-bold text-gray-900 mt-10 mb-4 text-xl" {...props} />
+							),
+							p: ({ node, ...props }) => <p className="text-gray-700 leading-relaxed mb-6" {...props} />,
+							ul: ({ node, ...props }) => (
+								<ul className="list-disc list-inside space-y-2 mb-6 text-gray-700" {...props} />
+							),
+							blockquote: ({ node, ...props }) => (
+								<blockquote
+									className="border-l-4 border-primary pl-6 py-4 my-8 bg-primary/5 rounded-r-lg italic text-gray-700"
+									{...props}
+								/>
+							),
+							img: ({ node, ...props }) => (
+								<figure className="my-8">
+									<Image
+										src={props.src || ""}
+										alt={props.alt || ""}
+										width={800}
+										height={450}
+										className="rounded-lg"
+									/>
+									{props.alt && (
+										<figcaption className="text-center text-sm text-gray-500 mt-2">
+											{props.alt}
+										</figcaption>
+									)}
+								</figure>
+							),
+						}}
+					>
+						{post.content}
+					</ReactMarkdown>
 				</div>
 
 				{/* Tags */}
