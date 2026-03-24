@@ -1,6 +1,7 @@
 "use client";
 
 import emailjs from "@emailjs/browser";
+import Link from "next/link";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
 
@@ -10,6 +11,7 @@ const ContactForm: React.FC = () => {
 	const [firstNumber, setFirstNumber] = useState(0);
 	const [secondNumber, setSecondNumber] = useState(0);
 	const [formSent, setFormSent] = useState(false);
+	const [privacyAccepted, setPrivacyAccepted] = useState(false);
 	const [form, setForm] = useState({
 		name: "",
 		email: "",
@@ -22,6 +24,7 @@ const ContactForm: React.FC = () => {
 		email: false,
 		phone: false,
 		message: false,
+		privacy: false,
 	});
 
 	const formRef = useRef<HTMLFormElement>(null);
@@ -32,9 +35,16 @@ const ContactForm: React.FC = () => {
 			email: !form.email.trim().length,
 			phone: !form.phone.trim().length,
 			message: !form.message.trim().length,
+			privacy: !privacyAccepted,
 		});
 
-		return form.name.length && form.email.length && form.phone.length && form.message.length;
+		return (
+			form.name.length &&
+			form.email.length &&
+			form.phone.length &&
+			form.message.length &&
+			privacyAccepted
+		);
 	};
 
 	const resetForm = () => {
@@ -49,7 +59,9 @@ const ContactForm: React.FC = () => {
 			email: false,
 			phone: false,
 			message: false,
+			privacy: false,
 		});
+		setPrivacyAccepted(false);
 		setFirstNumber(Math.floor(Math.random() * 10));
 		setSecondNumber(Math.floor(Math.random() * 10));
 		setValidationError(false);
@@ -124,6 +136,34 @@ const ContactForm: React.FC = () => {
 				{formErrors.message && (
 					<p className="text-sm text-red-600 px-4 pb-2.5">Nos falta el mensaje</p>
 				)}
+				<div className="m-2.5 px-1">
+					<label className="flex items-start gap-2 text-sm text-[#262626]">
+						<input
+							type="checkbox"
+							name="privacy"
+							className="mt-1"
+							checked={privacyAccepted}
+							onChange={(e) => {
+								setPrivacyAccepted(e.target.checked);
+								if (e.target.checked) {
+									setFormErrors((prev) => ({ ...prev, privacy: false }));
+								}
+							}}
+						/>
+						<span>
+							He leido y acepto la{" "}
+							<Link
+								href="/politica-de-privacidad"
+								className="text-primary underline hover:no-underline"
+							>
+								politica de privacidad
+							</Link>
+						</span>
+					</label>
+					{formErrors.privacy && (
+						<p className="text-sm text-red-600 pt-2">Debes aceptar la politica de privacidad</p>
+					)}
+				</div>
 				{!formSent ? (
 					<>
 						<div className="m-2.5 flex flex-col min-[375px]:flex-row w-full items-center justify-between mx-auto">
