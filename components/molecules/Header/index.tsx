@@ -56,7 +56,7 @@ const Header: React.FC = () => {
 							src="/logo-dinaprint-final-02.png"
 							layout="fill"
 							objectFit="cover"
-							alt="logo Dinaprint"
+							alt="Dinaprint - Imprenta en Madrid"
 						/>
 					</Link>
 				</div>
