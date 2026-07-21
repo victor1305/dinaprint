@@ -1,5 +1,6 @@
 import { absoluteUrl } from "@/lib/seo";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
 	title: "Política de privacidad",
@@ -78,7 +79,48 @@ export default async function Page() {
 				estará regulada por el consentimiento del afectado y por el interés legítimo del
 				responsable. Los datos proporcionados se conservarán hasta para dar soporte a su solicitud,
 				la revocación del consentimiento o durante los años necesarios para cumplir con las
-				obligaciones legales. La DINAPRINT S.L no cederá datos salvo obligación legal.
+				obligaciones legales. DINAPRINT S.L no cederá datos a terceros salvo obligación legal, sin
+				perjuicio del acceso a los mismos por parte de los prestadores de servicios que actúan como
+				encargados del tratamiento y que se detallan en el apartado siguiente.
+			</p>
+			<p className="pb-4 font-medium">Encargados del tratamiento</p>
+			<p className="pb-4">
+				Para poder prestar sus servicios, DINAPRINT S.L cuenta con proveedores que acceden a datos
+				personales por cuenta del responsable. Estos proveedores actúan como encargados del
+				tratamiento en los términos del artículo 28 del RGPD, en virtud del correspondiente contrato
+				de encargo, y únicamente tratan los datos conforme a nuestras instrucciones:
+			</p>
+			<p className="pb-4">
+				- <b>EmailJS:</b> servicio de envío del formulario de contacto. Tiene acceso a los datos que
+				usted introduce en dicho formulario (nombre, correo electrónico, teléfono y contenido del
+				mensaje) con la única finalidad de hacérnoslos llegar por correo electrónico. Este proveedor
+				puede tratar los datos en servidores situados fuera del Espacio Económico Europeo, en cuyo
+				caso la transferencia internacional se ampara en las cláusulas contractuales tipo aprobadas
+				por la Comisión Europea u otra garantía adecuada prevista en el capítulo V del RGPD.
+			</p>
+			<p className="pb-4">
+				- <b>Cloudflare:</b> red de distribución de contenidos y protección del sitio web. Trata
+				datos técnicos de conexión (como la dirección IP) con la finalidad de servir el sitio y
+				garantizar su seguridad y disponibilidad.
+			</p>
+			<p className="pb-8">
+				- <b>Contabo GmbH:</b> proveedor de alojamiento (hosting) del sitio web y de la herramienta
+				de analítica. Los servidores se encuentran ubicados en la Unión Europea. Da soporte a la
+				infraestructura del sitio y almacena los datos técnicos y las comunicaciones alojadas en él.
+			</p>
+			<p className="pb-4 font-medium">Analítica web</p>
+			<p className="pb-8">
+				Este sitio web utiliza Plausible Analytics, una herramienta de medición alojada en
+				servidores propios ubicados en la Unión Europea, con el fin de conocer de forma agregada el
+				número de visitas y las páginas más consultadas. Plausible no instala cookies ni ningún otro
+				identificador en su dispositivo, no almacena su dirección IP, no elabora perfiles y no
+				rastrea a los usuarios entre distintos sitios web ni entre visitas. La información obtenida
+				es anónima y agregada, por lo que no permite identificarle. Puede consultar más detalles en
+				nuestra{" "}
+				<Link href="/politica-de-cookies" className="underline">
+					Política de cookies
+				</Link>
+				.
 			</p>
 			<p className="pb-4">
 				Si lo desea puede dirigirse a DINAPRINT S.L, domiciliada en calle Bahamas 37, 28340 de
