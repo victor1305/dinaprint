@@ -25,9 +25,10 @@ const Header: React.FC = () => {
 			name: "CATÁLOGO",
 			path: "/catalogo",
 			subsection: [
+				{ name: "CATÁLOGOS", path: "catalogos" },
 				{ name: "PAPELERÍA CORPORATIVA", path: "papeleria-corporativa" },
 				{ name: "FLYERS Y DESPLEGABLES", path: "flyers-y-desplegables" },
-				{ name: "FOLLETOS Y RESVISTAS", path: "folletos-y-revistas" },
+				{ name: "FOLLETOS Y REVISTAS", path: "folletos-y-revistas" },
 				{ name: "CALENDARIOS", path: "calendarios" },
 				{ name: "ROLL UP", path: "roll-up" },
 				{ name: "EXPOSITORES", path: "expositores" },
@@ -54,8 +55,9 @@ const Header: React.FC = () => {
 					<Link href={"/"}>
 						<Image
 							src="/logo-dinaprint-final-02.png"
-							layout="fill"
-							objectFit="cover"
+							fill
+							sizes="240px"
+							className="object-contain"
 							alt="Dinaprint - Imprenta en Madrid"
 						/>
 					</Link>

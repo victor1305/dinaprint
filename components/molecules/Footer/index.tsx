@@ -10,7 +10,7 @@ const Footer = () => (
 						<Image
 							src="/logo-dinaprint-final-02.png"
 							className="cursor-pointer"
-							alt="logo Dinaprint"
+							alt="Dinaprint - imprenta en Pinto, Madrid"
 							width={240}
 							height={58}
 						/>
@@ -27,6 +27,12 @@ const Footer = () => (
 						<p className="pt-1 pb-1.5">
 							<Link href="/catalogo" className="text-footer-li hover:text-primary">
 								Productos
+							</Link>
+						</p>
+						<hr />
+						<p className="pt-1 pb-1.5">
+							<Link href="/catalogo/catalogos" className="text-footer-li hover:text-primary">
+								Catálogos
 							</Link>
 						</p>
 						<hr />
@@ -153,8 +159,12 @@ const Footer = () => (
 						<p className="text-footer-li pb-3 hover:text-primary">
 							<a href="mailto:dinaprint@dinaprint.com">dinaprint@dinaprint.com</a>
 						</p>
-						<p className="text-footer-li hover:text-primary">678 519 403</p>
-						<p className="text-footer-li hover:text-primary">678 519 404</p>
+						<p className="text-footer-li hover:text-primary">
+							<a href="tel:+34678519403">678 519 403</a>
+						</p>
+						<p className="text-footer-li hover:text-primary">
+							<a href="tel:+34678519404">678 519 404</a>
+						</p>
 					</div>
 				</div>
 			</div>

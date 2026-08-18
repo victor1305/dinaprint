@@ -1,6 +1,6 @@
-import { FAQ } from "@/components/atoms";
+import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema, absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { absoluteUrl, buildServiceSchema, getLocalBusinessSchema } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -15,8 +15,11 @@ export const metadata: Metadata = {
 		type: "website",
 		title: "Roll up: impresión y montaje para ferias y eventos",
 		url: absoluteUrl("/catalogo/roll-up"),
-		description: "Roll up en Madrid (Pinto): impresión a todo color, varios tamaños y acabados. Ideal para ferias, exposiciones y eventos.",
-		images: [{ url: absoluteUrl("/rollup-001.jpg"), width: 1200, height: 630, alt: "Roll up - Dinaprint" }],
+		description:
+			"Roll up en Madrid (Pinto): impresión a todo color, varios tamaños y acabados. Ideal para ferias, exposiciones y eventos.",
+		images: [
+			{ url: absoluteUrl("/rollup-001.jpg"), width: 1200, height: 630, alt: "Roll up - Dinaprint" },
+		],
 	},
 	twitter: {
 		title: "Roll up: impresión y montaje para ferias y eventos",
@@ -65,6 +68,7 @@ const serviceSchema = buildServiceSchema({
 export default async function Page() {
 	const data = {
 		title: "Roll up",
+		h1: "Impresión de roll ups para ferias y eventos",
 		product: "Roll up",
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/rollup-001.jpg",
@@ -77,15 +81,11 @@ export default async function Page() {
 	return (
 		<main>
 			{/* Schema del negocio */}
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(getLocalBusinessSchema())}
-			</script>
-			
+			<JsonLd data={getLocalBusinessSchema()} />
+
 			{/* Schema del servicio */}
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(serviceSchema)}
-			</script>
-			
+			<JsonLd data={serviceSchema} />
+
 			<Product {...data} />
 			<section className="px-5 pb-10 mx-auto max-w-[1200px]">
 				<FAQ items={faqItems} />

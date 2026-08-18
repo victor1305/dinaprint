@@ -9,9 +9,10 @@ const MainSecond: React.FC = () => (
 				<Image
 					src={"/primer-bloque.jpg"}
 					className="!static"
-					layout="fill"
-					objectFit="cover"
-					alt="about us image"
+					fill
+					sizes="(max-width: 1024px) 100vw, 643px"
+					style={{ objectFit: "cover" }}
+					alt="Taller de artes gráficas de Dinaprint"
 				/>
 			</div>
 			<div className="absolute border-4 z-[-2] border-r-0 border-primary bg-trasnparent h-[290px] -top-6 right-0 w-[290px] min-[550px]:w-[350px] min-[550px]:h-[340px] sm:border-r-4 sm:right-1/2 sm:left-1/2 lg:w-[500px]" />
@@ -41,9 +42,10 @@ const MainSecond: React.FC = () => (
 				<Image
 					src={"/primer-bloque.jpg"}
 					className="!static"
-					layout="fill"
-					objectFit="cover"
-					alt="about us image"
+					fill
+					sizes="(max-width: 1024px) 100vw, 643px"
+					style={{ objectFit: "cover" }}
+					alt="Instalaciones de Dinaprint en Pinto, sur de Madrid"
 				/>
 			</div>
 			<div className="pl-[180px] pr-7 pt-7 absolute border-4 z-[-2] border-r-0 border-primary bg-trasnparent -top-6 right-0 sm:border-r-4 sm:right-1/2 sm:left-1/2 w-[500px] h-[600px]">

@@ -7,6 +7,7 @@ import CatalogOption from "./CatalogOption";
 import ContactMain from "./ContactMain";
 import FAQ from "./FAQ";
 import FindBox from "./FindBox";
+import JsonLd from "./JsonLd";
 import KnowMore from "./KnowMore";
 import MainLast from "./MainLast";
 import MainPrincipal from "./MainPrincipal";
@@ -17,6 +18,7 @@ import MainWhy from "./MainWhy";
 import SectionPrincipalBanner from "./SectionPrincipalBanner";
 import Service from "./Service";
 import ServicesPrincipal from "./ServicesPrincipal";
+import SpecTable from "./SpecTable";
 
 export {
 	AboutEnviromental,
@@ -28,6 +30,7 @@ export {
 	ContactMain,
 	FAQ,
 	FindBox,
+	JsonLd,
 	KnowMore,
 	MainLast,
 	MainPrincipal,
@@ -37,5 +40,6 @@ export {
 	MainWhy,
 	SectionPrincipalBanner,
 	Service,
+	SpecTable,
 	ServicesPrincipal,
 };

@@ -1,6 +1,6 @@
-import { FAQ } from "@/components/atoms";
+import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema, absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { absoluteUrl, buildServiceSchema, getLocalBusinessSchema } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -15,8 +15,16 @@ export const metadata: Metadata = {
 		type: "website",
 		title: "Impresión de folletos y revistas",
 		url: absoluteUrl("/catalogo/folletos-y-revistas"),
-		description: "Impresión de folletos y revistas con encuadernación wire-o, hilo, cola PUR, plastificados y troquelados.",
-		images: [{ url: absoluteUrl("/Folletos-y-revistas-001.jpg"), width: 1200, height: 630, alt: "Folletos y revistas - Dinaprint" }],
+		description:
+			"Impresión de folletos y revistas con encuadernación wire-o, hilo, cola PUR, plastificados y troquelados.",
+		images: [
+			{
+				url: absoluteUrl("/Folletos-y-revistas-001.jpg"),
+				width: 1200,
+				height: 630,
+				alt: "Folletos y revistas - Dinaprint",
+			},
+		],
 	},
 	twitter: {
 		title: "Impresión de folletos y revistas",
@@ -65,6 +73,7 @@ const serviceSchema = buildServiceSchema({
 export default async function Page() {
 	const data = {
 		title: "Folletos y revistas",
+		h1: "Impresión de folletos y revistas en Madrid",
 		product: "Folletos y revistas",
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/Folletos-y-revistas-001.jpg",
@@ -83,15 +92,11 @@ export default async function Page() {
 	return (
 		<main>
 			{/* Schema del negocio */}
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(getLocalBusinessSchema())}
-			</script>
-			
+			<JsonLd data={getLocalBusinessSchema()} />
+
 			{/* Schema del servicio */}
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(serviceSchema)}
-			</script>
-			
+			<JsonLd data={serviceSchema} />
+
 			<Product {...data} />
 			<section className="px-5 pb-10 mx-auto max-w-[1200px]">
 				<FAQ items={faqItems} />

@@ -22,6 +22,8 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 
+import { SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/seo";
+
 export interface BlogPost {
 	slug: string;
 	title: string;
@@ -38,7 +40,51 @@ export interface BlogPost {
 
 export const BLOG_CATEGORIES = ["Guías", "Consejos", "Tendencias", "Casos de éxito"] as const;
 
+/** Slug de URL para cada categoría, sin tildes ni espacios. */
+export const CATEGORY_SLUGS: Record<string, string> = {
+	Guías: "guias",
+	Consejos: "consejos",
+	Tendencias: "tendencias",
+	"Casos de éxito": "casos-de-exito",
+};
+
+export function getCategorySlug(category: string): string {
+	return (
+		CATEGORY_SLUGS[category] ??
+		category
+			.normalize("NFD")
+			.replace(/\p{Diacritic}/gu, "")
+			.toLowerCase()
+			.replace(/[^a-z0-9]+/g, "-")
+			.replace(/(^-|-$)/g, "")
+	);
+}
+
+export function getCategoryBySlug(slug: string): string | undefined {
+	return BLOG_CATEGORIES.find((category) => getCategorySlug(category) === slug);
+}
+
 const postsDirectory = path.join(process.cwd(), "content/posts");
+
+/** Velocidad de lectura media en castellano. */
+const WORDS_PER_MINUTE = 200;
+
+/**
+ * Calcula el tiempo de lectura a partir del contenido real.
+ *
+ * No usar el `readingTime` del frontmatter: venía inflado (artículos de 177
+ * palabras anunciando 8 minutos). Prometer al usuario más de lo que hay es
+ * justo el patrón que penaliza el sistema de contenido útil.
+ */
+function calculateReadingTime(content: string): number {
+	const words = content
+		.replace(/```[\s\S]*?```/g, "")
+		.replace(/[#*_>`\[\]()]/g, " ")
+		.split(/\s+/)
+		.filter(Boolean).length;
+
+	return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
+}
 
 /**
  * Obtiene todos los posts ordenados por fecha (más recientes primero)
@@ -61,6 +107,7 @@ export function getAllPosts(): BlogPost[] {
 				slug,
 				content,
 				...(data as Omit<BlogPost, "slug" | "content">),
+				readingTime: calculateReadingTime(content),
 			} as BlogPost;
 		});
 
@@ -82,6 +129,7 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
 			slug,
 			content,
 			...(data as Omit<BlogPost, "slug" | "content">),
+			readingTime: calculateReadingTime(content),
 		} as BlogPost;
 	} catch (error) {
 		return undefined;
@@ -120,26 +168,34 @@ export function getAllPostSlugs(): string[] {
  * Genera el schema Article para un post
  */
 export function getArticleSchema(post: BlogPost, url: string) {
+	// Si el artículo lo firma una persona (y no la marca), se emite como Person:
+	// para contenido de asesoramiento técnico, Google valora la experiencia
+	// demostrable de alguien concreto. Basta con poner el nombre real en el
+	// frontmatter `author` para que se active.
+	const author =
+		post.author && post.author !== SITE_NAME
+			? { "@type": "Person", name: post.author }
+			: { "@type": "Organization", "@id": `${SITE_URL}#organization`, name: SITE_NAME };
+
 	return {
 		"@context": "https://schema.org",
 		"@type": "Article",
 		headline: post.title,
 		description: post.description,
-		image: `https://dinaprint.com${post.image}`,
-		author: {
-			"@type": "Organization",
-			name: post.author,
-		},
+		image: absoluteUrl(post.image),
+		author,
 		publisher: {
 			"@type": "Organization",
-			name: "Dinaprint",
+			"@id": `${SITE_URL}#organization`,
+			name: SITE_NAME,
 			logo: {
 				"@type": "ImageObject",
-				url: "https://dinaprint.com/logo-dinaprint-final-02.png",
+				url: absoluteUrl("/logo-dinaprint-final-02.png"),
 			},
 		},
 		datePublished: post.publishedAt,
 		dateModified: post.updatedAt || post.publishedAt,
+		inLanguage: "es-ES",
 		mainEntityOfPage: {
 			"@type": "WebPage",
 			"@id": url,

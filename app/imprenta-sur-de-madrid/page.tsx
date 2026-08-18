@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { FAQ, KnowMore, SectionPrincipalBanner } from "@/components/atoms";
+import { FAQ, JsonLd, KnowMore, SectionPrincipalBanner } from "@/components/atoms";
 
 import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
 
@@ -18,7 +18,14 @@ export const metadata: Metadata = {
 		title: "Imprenta sur de Madrid",
 		url: absoluteUrl("/imprenta-sur-de-madrid"),
 		description: "Imprenta en la zona sur de Madrid: servicio rápido y envíos a toda la península.",
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Imprenta sur de Madrid - Dinaprint" }],
+		images: [
+			{
+				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
+				width: 1200,
+				height: 630,
+				alt: "Imprenta sur de Madrid - Dinaprint",
+			},
+		],
 	},
 	twitter: {
 		title: "Imprenta sur de Madrid",
@@ -66,9 +73,7 @@ const faqItems = [
 export default async function Page() {
 	return (
 		<main>
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(getLocalBusinessSchema())}
-			</script>
+			<JsonLd data={getLocalBusinessSchema()} />
 			<SectionPrincipalBanner
 				title="Imprenta en el sur de Madrid"
 				subtitle="Pinto, Valdemoro, Getafe y alrededores"

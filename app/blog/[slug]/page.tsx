@@ -4,10 +4,16 @@ import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-import { getAllPosts, getArticleSchema, getPostBySlug, getRelatedPosts } from "@/lib/blog";
+import {
+	getAllPosts,
+	getArticleSchema,
+	getCategorySlug,
+	getPostBySlug,
+	getRelatedPosts,
+} from "@/lib/blog";
 import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
 
-import { Breadcrumbs } from "@/components/atoms";
+import { Breadcrumbs, JsonLd } from "@/components/atoms";
 
 import type { Metadata } from "next";
 
@@ -67,21 +73,27 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
 	return (
 		<main className="bg-gray-50">
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(getLocalBusinessSchema())}
-			</script>
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(articleSchema)}
-			</script>
+			<JsonLd data={getLocalBusinessSchema()} />
+			<JsonLd data={articleSchema} />
 
 			{/* Hero del artículo */}
 			<div className="relative h-[300px] md:h-[400px] w-full">
-				<Image src={post.image} alt={post.title} fill className="object-cover" priority />
+				<Image
+					src={post.image}
+					alt={post.title}
+					fill
+					sizes="100vw"
+					className="object-cover"
+					priority
+				/>
 				<div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/20" />
 				<div className="absolute bottom-0 left-0 right-0 p-5 md:p-10 max-w-[900px] mx-auto">
-					<span className="inline-block px-3 py-1 bg-primary text-white text-sm font-medium rounded-full mb-4">
+					<Link
+						href={`/blog/categoria/${getCategorySlug(post.category)}`}
+						className="inline-block px-3 py-1 bg-primary text-white text-sm font-medium rounded-full mb-4 hover:bg-primary/90 transition-colors"
+					>
 						{post.category}
-					</span>
+					</Link>
 					<h1 className="text-2xl md:text-4xl font-bold text-white leading-tight">{post.title}</h1>
 				</div>
 			</div>
@@ -153,7 +165,30 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 							h3: ({ node, ...props }) => (
 								<h3 className="font-bold text-gray-900 mt-10 mb-4 text-xl" {...props} />
 							),
-							p: ({ node, ...props }) => <p className="text-gray-700 leading-relaxed mb-6" {...props} />,
+							p: ({ node, ...props }) => (
+								<p className="text-gray-700 leading-relaxed mb-6" {...props} />
+							),
+							a: ({ node, href, children, ...props }) => {
+								const isInternal = href?.startsWith("/");
+								const className =
+									"text-primary underline underline-offset-2 hover:text-primary/80 transition-colors";
+
+								return isInternal ? (
+									<Link href={href as string} className={className}>
+										{children}
+									</Link>
+								) : (
+									<a
+										href={href}
+										className={className}
+										rel="noopener noreferrer"
+										target="_blank"
+										{...props}
+									>
+										{children}
+									</a>
+								);
+							},
 							ul: ({ node, ...props }) => (
 								<ul className="list-disc list-inside space-y-2 mb-6 text-gray-700" {...props} />
 							),
@@ -228,6 +263,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 												src={relatedPost.image}
 												alt={relatedPost.title}
 												fill
+												sizes="(max-width: 768px) 100vw, 33vw"
 												className="object-cover"
 											/>
 										</div>

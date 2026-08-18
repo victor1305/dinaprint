@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { FAQ, KnowMore, SectionPrincipalBanner } from "@/components/atoms";
+import { FAQ, JsonLd, KnowMore, SectionPrincipalBanner } from "@/components/atoms";
 import { FindUs } from "@/components/molecules";
 import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
 
@@ -19,7 +19,14 @@ export const metadata: Metadata = {
 		url: absoluteUrl("/imprenta-pinto"),
 		description:
 			"Imprenta en Pinto (Madrid) con impresión digital y offset. Papelería corporativa, folletos, carteles, packaging y acabados. Servicio para el sur de Madrid.",
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Imprenta Dinaprint - Pinto" }],
+		images: [
+			{
+				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
+				width: 1200,
+				height: 630,
+				alt: "Imprenta Dinaprint - Pinto",
+			},
+		],
 	},
 	twitter: {
 		title: "Imprenta en Pinto (Madrid)",
@@ -68,9 +75,7 @@ const faqItems = [
 export default async function Page() {
 	return (
 		<main>
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(getLocalBusinessSchema())}
-			</script>
+			<JsonLd data={getLocalBusinessSchema()} />
 			<SectionPrincipalBanner
 				title="Imprenta en Pinto (Madrid)"
 				subtitle="Atención cercana · Producción y acabados profesionales"

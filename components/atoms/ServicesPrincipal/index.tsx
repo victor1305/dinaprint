@@ -7,9 +7,9 @@ const ServicesPrincipal: React.FC = () => (
 			<Image
 				src={"/negocio-01.jpg"}
 				className="!static"
-				layout="fill"
-				objectFit="cover"
-				alt="servicios"
+				fill
+				sizes="(max-width: 768px) 100vw, 50vw"
+				alt="Servicios de impresión digital y offset de Dinaprint"
 			/>
 		</div>
 		<div className="p-5 pt-10 md:pt-5 md:w-1/2">

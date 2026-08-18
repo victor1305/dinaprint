@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
+import JsonLd from "../JsonLd";
 
 export interface FAQItem {
 	question: string;
@@ -36,9 +37,7 @@ const FAQ: React.FC<FAQProps> = ({ title = "Preguntas frecuentes", items }) => {
 
 	return (
 		<section className="py-10">
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(faqSchema)}
-			</script>
+			<JsonLd data={faqSchema} />
 			<h2 className="text-2xl lg:text-3xl font-semibold text-secondary pb-6">{title}</h2>
 			<div className="space-y-3">
 				{items.map((item, index) => (

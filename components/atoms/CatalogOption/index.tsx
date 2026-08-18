@@ -18,11 +18,10 @@ const CatalogOption: React.FC<CatalogOptionProps> = ({
 			<div className="overflow-hidden h-[85%] hover:brightness-50 transition-all duration-700 ease-in-out delay-0">
 				<Image
 					src={image}
-					className="!static"
-					layout="fill"
-					objectFit="cover"
-					fill={true}
-					alt="Opcion catálogo"
+					className="!static object-cover"
+					fill
+					sizes="(max-width: 480px) 100vw, (max-width: 800px) 50vw, 33vw"
+					alt={`${title} - imprenta Dinaprint`}
 				/>
 			</div>
 		</Link>

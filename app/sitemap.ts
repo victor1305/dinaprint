@@ -1,56 +1,57 @@
-import { getAllPosts } from "@/lib/blog";
+import { BLOG_CATEGORIES, getAllPosts, getCategorySlug } from "@/lib/blog";
 import { absoluteUrl } from "@/lib/seo";
 
 import type { MetadataRoute } from "next";
 
-const routes = [
-	"/",
-	"/imprenta-madrid",
-	"/imprenta-sur-de-madrid",
-	"/imprenta-pinto",
-	"/blog",
-	"/catalogo",
-	"/catalogo/papeleria-corporativa",
-	"/catalogo/flyers-y-desplegables",
-	"/catalogo/folletos-y-revistas",
-	"/catalogo/calendarios",
-	"/catalogo/roll-up",
-	"/catalogo/expositores",
-	"/catalogo/cajas-y-packaging",
-	"/catalogo/regalo-promocional",
-	"/catalogo/carteles",
-	"/servicios",
-	"/sobre-nosotros",
-	"/contacto"
-];
+/**
+ * Fecha real de última edición de cada página estática (YYYY-MM-DD).
+ *
+ * No usar `new Date()`: si todas las páginas dicen haberse modificado en cada
+ * despliegue, Google detecta el patrón y deja de fiarse del `lastmod` de todo
+ * el sitio, incluido el de los artículos, que sí es correcto.
+ *
+ * Al editar una página de verdad, actualiza aquí su fecha.
+ */
+const ROUTE_LAST_MODIFIED: Record<string, string> = {
+	"/": "2026-08-18",
+	"/imprenta-madrid": "2026-08-18",
+	"/imprenta-sur-de-madrid": "2026-08-18",
+	"/imprenta-pinto": "2026-08-18",
+	"/blog": "2026-08-18",
+	"/catalogo": "2026-08-18",
+	"/catalogo/catalogos": "2026-08-18",
+	"/catalogo/papeleria-corporativa": "2026-08-18",
+	"/catalogo/flyers-y-desplegables": "2026-08-18",
+	"/catalogo/folletos-y-revistas": "2026-08-18",
+	"/catalogo/calendarios": "2026-08-18",
+	"/catalogo/roll-up": "2026-08-18",
+	"/catalogo/expositores": "2026-08-18",
+	"/catalogo/cajas-y-packaging": "2026-08-18",
+	"/catalogo/regalo-promocional": "2026-08-18",
+	"/catalogo/carteles": "2026-08-18",
+	"/servicios": "2026-08-18",
+	"/sobre-nosotros": "2026-01-27",
+	"/contacto": "2026-01-27",
+};
 
 export default function sitemap(): MetadataRoute.Sitemap {
-	const lastModified = new Date();
+	// Páginas estáticas. Sin `changeFrequency` ni `priority`: Google los ignora.
+	const staticPages = Object.entries(ROUTE_LAST_MODIFIED).map(([pathname, lastModified]) => ({
+		url: absoluteUrl(pathname),
+		lastModified: new Date(lastModified),
+	}));
 
-	// Páginas estáticas
-	const staticPages = routes.map((pathname) => {
-		let priority = 0.8;
-		if (pathname === "/") priority = 1;
-		else if (pathname.startsWith("/catalogo/")) priority = 0.85;
-		else if (pathname.startsWith("/blog")) priority = 0.9;
-		else if (pathname.startsWith("/imprenta-")) priority = 0.9;
-		// mantenemos prioridades por sección, no aplicamos prioridad especial a páginas legales
+	// Categorías del blog
+	const categories = BLOG_CATEGORIES.map((category) => ({
+		url: absoluteUrl(`/blog/categoria/${getCategorySlug(category)}`),
+		lastModified: new Date("2026-08-18"),
+	}));
 
-		return {
-			url: absoluteUrl(pathname),
-			lastModified,
-			changeFrequency: "weekly" as const,
-			priority,
-		};
-	});
-
-	// Páginas del blog
+	// Artículos del blog
 	const blogPosts = getAllPosts().map((post) => ({
 		url: absoluteUrl(`/blog/${post.slug}`),
 		lastModified: new Date(post.updatedAt || post.publishedAt),
-		changeFrequency: "monthly" as const,
-		priority: 0.7,
 	}));
 
-	return [...staticPages, ...blogPosts];
+	return [...staticPages, ...categories, ...blogPosts];
 }

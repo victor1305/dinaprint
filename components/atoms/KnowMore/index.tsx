@@ -49,11 +49,10 @@ const KnowMore = ({ path, copy }: KnowMoreProps) => (
 			<div className="p-5 md:w-1/2 lg:mt-[-10%] lg:absolute lg:w-[500px] min-[1100px]:w-[600px] lg:h-[418px] lg:right-[50%] lg:left-[50%] lg:bottom-[20px]">
 				<Image
 					src={"/impresion.jpg"}
-					className="!static !rounded-r-[100px] rounded-l-[300px] !rounded-b-[100px] "
-					layout="fill"
-					objectFit="cover"
-					fill={true}
-					alt="Opcion catálogo"
+					className="!static !rounded-r-[100px] rounded-l-[300px] !rounded-b-[100px] object-cover"
+					fill
+					sizes="(max-width: 768px) 100vw, 600px"
+					alt="Máquina de impresión en el taller de Dinaprint en Pinto"
 				/>
 			</div>
 		</div>

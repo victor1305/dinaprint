@@ -4,6 +4,7 @@ import { CatalogDetail, KnowMore, SectionPrincipalBanner } from "@/components/at
 
 interface ProductProps {
 	title: string;
+	h1?: string;
 	subtitle: string;
 	product: string;
 	text: string[];
@@ -13,6 +14,7 @@ interface ProductProps {
 
 const Product: React.FC<ProductProps> = ({
 	title,
+	h1,
 	product,
 	subtitle,
 	text,
@@ -20,7 +22,7 @@ const Product: React.FC<ProductProps> = ({
 	list,
 }: ProductProps) => (
 	<div>
-		<SectionPrincipalBanner {...{ title, subtitle }} />
+		<SectionPrincipalBanner {...{ title, subtitle, h1 }} />
 		<div className="pt-10">
 			<CatalogDetail {...{ product, text, image, list }} />
 		</div>

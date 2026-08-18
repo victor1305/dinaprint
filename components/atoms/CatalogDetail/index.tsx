@@ -12,11 +12,10 @@ const CatalogDetail = ({ product, text, image, list }: CatalogDetailProps) => (
 		<div className="px-5 pb-5 w-full h-auto md:w-1/2 md:pb-0">
 			<Image
 				src={image}
-				className="!static"
-				layout="fill"
-				objectFit="cover"
-				fill={true}
-				alt="Producto"
+				className="!static object-cover"
+				fill
+				sizes="(max-width: 768px) 100vw, 50vw"
+				alt={`${product} impresos por Dinaprint`}
 			/>
 		</div>
 		<div className="md:w-1/2 px-5">

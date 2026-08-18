@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { BLOG_CATEGORIES, getAllPosts } from "@/lib/blog";
+import { BLOG_CATEGORIES, getAllPosts, getCategorySlug } from "@/lib/blog";
 import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
 
-import { Breadcrumbs, SectionPrincipalBanner } from "@/components/atoms";
+import { Breadcrumbs, JsonLd, SectionPrincipalBanner } from "@/components/atoms";
 
 import type { Metadata } from "next";
 
@@ -21,7 +21,14 @@ export const metadata: Metadata = {
 		url: absoluteUrl("/blog"),
 		description:
 			"Blog sobre impresión, diseño gráfico y artes gráficas. Guías para preparar archivos, elegir papel, acabados de impresión y tendencias de packaging.",
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Blog Dinaprint" }],
+		images: [
+			{
+				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
+				width: 1200,
+				height: 630,
+				alt: "Blog Dinaprint",
+			},
+		],
 	},
 	twitter: {
 		title: "Blog de imprenta: guías, consejos y tendencias",
@@ -42,13 +49,13 @@ const blogListSchema = {
 	"@type": "Blog",
 	name: "Blog de Dinaprint",
 	description: "Artículos sobre impresión, diseño gráfico y artes gráficas.",
-	url: "https://dinaprint.com/blog",
+	url: absoluteUrl("/blog"),
 	publisher: {
 		"@type": "Organization",
 		name: "Dinaprint",
 		logo: {
 			"@type": "ImageObject",
-			url: "https://dinaprint.com/logo-dinaprint-final-02.png",
+			url: absoluteUrl("/logo-dinaprint-final-02.png"),
 		},
 	},
 };
@@ -58,12 +65,8 @@ export default function BlogPage() {
 
 	return (
 		<main>
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(getLocalBusinessSchema())}
-			</script>
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(blogListSchema)}
-			</script>
+			<JsonLd data={getLocalBusinessSchema()} />
+			<JsonLd data={blogListSchema} />
 
 			<SectionPrincipalBanner title="Blog" subtitle="Guías, consejos y tendencias" />
 
@@ -86,12 +89,13 @@ export default function BlogPage() {
 						Todos
 					</Link>
 					{BLOG_CATEGORIES.map((category) => (
-						<span
+						<Link
 							key={category}
-							className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
+							href={`/blog/categoria/${getCategorySlug(category)}`}
+							className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors"
 						>
 							{category}
-						</span>
+						</Link>
 					))}
 				</div>
 
@@ -104,7 +108,13 @@ export default function BlogPage() {
 						>
 							<Link href={`/blog/${post.slug}`} className="block">
 								<div className="relative h-48 w-full">
-									<Image src={post.image} alt={post.title} fill className="object-cover" />
+									<Image
+										src={post.image}
+										alt={post.title}
+										fill
+										sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+										className="object-cover"
+									/>
 								</div>
 								<div className="p-5">
 									<span className="inline-block px-3 py-1 bg-secondary/10 text-secondary text-xs font-medium rounded-full mb-3">

@@ -136,6 +136,11 @@ export const servicesTypes = [
 
 export const catalogOptions = [
 	{
+		image: "/impresion-dinaprint-revista.jpg",
+		title: "Catálogos",
+		path: "/catalogo/catalogos",
+	},
+	{
 		image: "/papeleria-corporativa-01.jpg",
 		title: "Papelería corporativa",
 		path: "/catalogo/papeleria-corporativa",

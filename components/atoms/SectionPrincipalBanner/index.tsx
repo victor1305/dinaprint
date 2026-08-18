@@ -1,9 +1,17 @@
 interface SectionPrincipalBannerProps {
 	title: string;
 	subtitle: string;
+	/**
+	 * Texto del H1. Si no se indica, se usa `title`.
+	 *
+	 * El H1 es la señal de relevancia más fuerte después del <title>, así que en
+	 * las fichas conviene un enunciado completo ("Impresión de roll ups en Madrid")
+	 * en lugar del nombre corto del producto ("Roll up").
+	 */
+	h1?: string;
 }
 
-const SectionPrincipalBanner = ({ title, subtitle }: SectionPrincipalBannerProps) => (
+const SectionPrincipalBanner = ({ title, subtitle, h1 }: SectionPrincipalBannerProps) => (
 	<div
 		className="relative bg-transparent"
 		style={{
@@ -32,7 +40,9 @@ const SectionPrincipalBanner = ({ title, subtitle }: SectionPrincipalBannerProps
 			</svg>
 		</div>
 		<div className="relative mx-auto flex flex-col items-center justify-center min-h-[280px] lg:min-h-[500px] max-w-[1200px]">
-			<h1 className="font-bold text-[30px] lg:text-[60px] text-center text-white">{title}</h1>
+			<h1 className="font-bold text-[30px] lg:text-[52px] text-center text-white text-balance px-5">
+				{h1 ?? title}
+			</h1>
 			<p className="font-semibold text-xl lg:text-2xl text-center text-white">{subtitle}</p>
 		</div>
 	</div>

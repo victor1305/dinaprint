@@ -60,12 +60,13 @@ export function getLocalBusinessSchema() {
 	return {
 		"@context": "https://schema.org",
 		"@type": "PrintShop",
+		"@id": `${SITE_URL}#localbusiness`,
 		name: SITE_NAME,
 		url: getSiteUrl(),
 		image: absoluteUrl(OG_IMAGE_PATH),
 		logo: absoluteUrl("/logo-dinaprint-final-02.png"),
 		email: "dinaprint@dinaprint.com",
-		telephone: "+34 678 519 403",
+		telephone: "+34678519403",
 		address: {
 			"@type": "PostalAddress",
 			streetAddress: "C/ Coto de Doñana, 9 Área Empresarial Andalucía",
@@ -78,7 +79,96 @@ export function getLocalBusinessSchema() {
 			{ "@type": "AdministrativeArea", name: "Madrid" },
 			{ "@type": "AdministrativeArea", name: "Sur de Madrid" },
 		],
+		geo: {
+			"@type": "GeoCoordinates",
+			latitude: 40.2483,
+			longitude: -3.6997,
+		},
+		openingHoursSpecification: [
+			{
+				"@type": "OpeningHoursSpecification",
+				dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+				opens: "09:00",
+				closes: "18:00",
+			},
+		],
 		description: SITE_DESCRIPTION,
 		priceRange: "€€",
+	};
+}
+
+export function buildProductSchema({
+	name,
+	description,
+	slug,
+	imagePath,
+	lowPrice,
+	highPrice,
+}: {
+	name: string;
+	description: string;
+	slug: string;
+	imagePath: string;
+	lowPrice?: number;
+	highPrice?: number;
+}) {
+	const url = absoluteUrl(slug);
+
+	return {
+		"@context": "https://schema.org",
+		"@type": "Product",
+		name,
+		description,
+		image: absoluteUrl(imagePath),
+		url,
+		brand: { "@type": "Brand", name: SITE_NAME },
+		manufacturer: { "@type": "Organization", "@id": `${SITE_URL}#organization` },
+		...(lowPrice
+			? {
+					offers: {
+						"@type": "AggregateOffer",
+						priceCurrency: "EUR",
+						lowPrice,
+						...(highPrice ? { highPrice } : {}),
+						availability: "https://schema.org/InStock",
+						seller: { "@type": "Organization", "@id": `${SITE_URL}#organization` },
+						areaServed: { "@type": "Country", name: "ES" },
+					},
+				}
+			: {}),
+	};
+}
+
+export function getOrganizationSchema() {
+	return {
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"@id": `${SITE_URL}#organization`,
+		name: SITE_NAME,
+		legalName: "Dinaprint S.L.",
+		url: getSiteUrl(),
+		logo: absoluteUrl("/logo-dinaprint-final-02.png"),
+		email: "dinaprint@dinaprint.com",
+		telephone: "+34678519403",
+		address: {
+			"@type": "PostalAddress",
+			streetAddress: "C/ Coto de Doñana, 9 Área Empresarial Andalucía",
+			addressLocality: "Pinto",
+			addressRegion: "Madrid",
+			postalCode: "28320",
+			addressCountry: "ES",
+		},
+	};
+}
+
+export function getWebSiteSchema() {
+	return {
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		"@id": `${SITE_URL}#website`,
+		name: SITE_NAME,
+		url: getSiteUrl(),
+		inLanguage: "es-ES",
+		publisher: { "@id": `${SITE_URL}#organization` },
 	};
 }

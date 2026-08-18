@@ -16,7 +16,14 @@ export const metadata: Metadata = {
 		title: "Aviso legal",
 		url: absoluteUrl("/aviso-legal"),
 		description: "Aviso legal de Dinaprint S.L.",
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Aviso legal - Dinaprint" }],
+		images: [
+			{
+				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
+				width: 1200,
+				height: 630,
+				alt: "Aviso legal - Dinaprint",
+			},
+		],
 	},
 	twitter: {
 		title: "Aviso legal",

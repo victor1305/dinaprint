@@ -1,6 +1,6 @@
-import { FAQ } from "@/components/atoms";
+import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema, absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { absoluteUrl, buildServiceSchema, getLocalBusinessSchema } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -17,7 +17,14 @@ export const metadata: Metadata = {
 		url: absoluteUrl("/catalogo/expositores"),
 		description:
 			"Expositores personalizados para retail, ferias y puntos de venta. Múltiples materiales y acabados.",
-		images: [{ url: absoluteUrl("/stand-001.jpg"), width: 1200, height: 630, alt: "Expositores - Dinaprint" }],
+		images: [
+			{
+				url: absoluteUrl("/stand-001.jpg"),
+				width: 1200,
+				height: 630,
+				alt: "Expositores - Dinaprint",
+			},
+		],
 	},
 	twitter: {
 		title: "Expositores para punto de venta",
@@ -66,6 +73,7 @@ const serviceSchema = buildServiceSchema({
 export default async function Page() {
 	const data = {
 		title: "Expositores",
+		h1: "Expositores de cartón para punto de venta",
 		product: "Expositores",
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/stand-001.jpg",
@@ -78,15 +86,11 @@ export default async function Page() {
 	return (
 		<main>
 			{/* Schema del negocio */}
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(getLocalBusinessSchema())}
-			</script>
-			
+			<JsonLd data={getLocalBusinessSchema()} />
+
 			{/* Schema del servicio */}
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(serviceSchema)}
-			</script>
-			
+			<JsonLd data={serviceSchema} />
+
 			<Product {...data} />
 			<section className="px-5 pb-10 mx-auto max-w-[1200px]">
 				<FAQ items={faqItems} />

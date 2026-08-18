@@ -1,11 +1,11 @@
-import { FAQ } from "@/components/atoms";
+import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema, absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { absoluteUrl, buildServiceSchema, getLocalBusinessSchema } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Papelería corporativa: tarjetas, carpetas y material de empresa",
+	title: "Papelería corporativa en Madrid: tarjetas y carpetas",
 	description:
 		"Papelería corporativa en Madrid (Pinto): tarjetas de visita, carpetas, cartas, catálogos y folletos con acabados profesionales.",
 	alternates: {
@@ -13,14 +13,21 @@ export const metadata: Metadata = {
 	},
 	openGraph: {
 		type: "website",
-		title: "Papelería corporativa: tarjetas, carpetas y material de empresa",
+		title: "Papelería corporativa en Madrid: tarjetas y carpetas",
 		url: absoluteUrl("/catalogo/papeleria-corporativa"),
 		description:
 			"Papelería corporativa en Madrid (Pinto): tarjetas de visita, carpetas, cartas, catálogos y folletos con acabados profesionales.",
-		images: [{ url: absoluteUrl("/papeleria-corporativa-01.jpg"), width: 1200, height: 630, alt: "Papelería corporativa - Dinaprint" }],
+		images: [
+			{
+				url: absoluteUrl("/papeleria-corporativa-01.jpg"),
+				width: 1200,
+				height: 630,
+				alt: "Papelería corporativa - Dinaprint",
+			},
+		],
 	},
 	twitter: {
-		title: "Papelería corporativa: tarjetas, carpetas y material de empresa",
+		title: "Papelería corporativa en Madrid: tarjetas y carpetas",
 		images: [absoluteUrl("/papeleria-corporativa-01.jpg")],
 	},
 	keywords: [
@@ -66,6 +73,7 @@ const serviceSchema = buildServiceSchema({
 export default async function Page() {
 	const data = {
 		title: "Papelería corporativa",
+		h1: "Papelería corporativa para empresas en Madrid",
 		product: "Papelería corporativa",
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/papeleria-corporativa-01.jpg",
@@ -79,15 +87,11 @@ export default async function Page() {
 	return (
 		<main>
 			{/* Schema del negocio */}
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(getLocalBusinessSchema())}
-			</script>
-			
+			<JsonLd data={getLocalBusinessSchema()} />
+
 			{/* Schema del servicio */}
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(serviceSchema)}
-			</script>
-			
+			<JsonLd data={serviceSchema} />
+
 			<Product {...data} />
 			<section className="px-5 pb-10 mx-auto max-w-[1200px]">
 				<FAQ items={faqItems} />

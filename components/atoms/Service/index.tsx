@@ -16,7 +16,7 @@ const Service: React.FC<ServiceProps> = ({ title, image, icon, text, imageLeft }
 			style={{ backgroundImage: `url(${image})` }}
 		/>
 		<div className="p-10 text-center w-full md:w-1/2">
-			<Image src={icon} width={70} height={70} alt="icono servicio" className="mx-auto mb-5" />
+			<Image src={icon} width={70} height={70} alt="" aria-hidden="true" className="mx-auto mb-5" />
 			<h4 className="text-2xl text-secondary pb-5 font-semibold">{title}</h4>
 			<p>{text}</p>
 		</div>

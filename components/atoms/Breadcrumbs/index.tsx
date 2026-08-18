@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { absoluteUrl } from "@/lib/seo";
+import JsonLd from "../JsonLd";
+
 interface BreadcrumbItem {
 	name: string;
 	href: string;
@@ -33,7 +36,7 @@ export function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
 			"@type": "ListItem",
 			position: index + 1,
 			name: item.name,
-			item: `https://dinaprint.com${item.href}`,
+			item: absoluteUrl(item.href),
 		})),
 	};
 
@@ -41,9 +44,7 @@ export function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
 
 	return (
 		<>
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(breadcrumbSchema)}
-			</script>
+			<JsonLd data={breadcrumbSchema} />
 			<nav aria-label="Breadcrumb" className={`text-sm text-gray-500 ${className}`}>
 				<ol className="flex flex-wrap items-center gap-1">
 					{breadcrumbs.map((item, index) => (

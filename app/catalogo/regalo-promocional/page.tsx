@@ -1,6 +1,6 @@
-import { FAQ } from "@/components/atoms";
+import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema, absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { absoluteUrl, buildServiceSchema, getLocalBusinessSchema } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -16,7 +16,14 @@ export const metadata: Metadata = {
 		title: "Regalo promocional personalizado",
 		url: absoluteUrl("/catalogo/regalo-promocional"),
 		description: "Merchandising y regalos promocionales personalizados para empresas y eventos.",
-		images: [{ url: absoluteUrl("/regalo-promocional-01.jpg"), width: 1200, height: 630, alt: "Regalo promocional - Dinaprint" }],
+		images: [
+			{
+				url: absoluteUrl("/regalo-promocional-01.jpg"),
+				width: 1200,
+				height: 630,
+				alt: "Regalo promocional - Dinaprint",
+			},
+		],
 	},
 	twitter: {
 		title: "Regalo promocional personalizado",
@@ -64,6 +71,7 @@ const serviceSchema = buildServiceSchema({
 export default async function Page() {
 	const data = {
 		title: "Regalo promocional",
+		h1: "Regalo promocional y merchandising para empresas",
 		product: "Regalo promocional",
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/regalo-promocional-01.jpg",
@@ -76,15 +84,11 @@ export default async function Page() {
 	return (
 		<main>
 			{/* Schema del negocio */}
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(getLocalBusinessSchema())}
-			</script>
-			
+			<JsonLd data={getLocalBusinessSchema()} />
+
 			{/* Schema del servicio */}
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(serviceSchema)}
-			</script>
-			
+			<JsonLd data={serviceSchema} />
+
 			<Product {...data} />
 			<section className="px-5 pb-10 mx-auto max-w-[1200px]">
 				<FAQ items={faqItems} />

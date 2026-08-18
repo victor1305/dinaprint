@@ -9,7 +9,7 @@ const AboutVersatility: React.FC = () => (
 				className="!static max-h-[414px]"
 				layout="fill"
 				objectFit="cover"
-				alt="team"
+				alt="Equipo de Dinaprint trabajando en la imprenta"
 			/>
 		</div>
 		<div className="p-10 pt-0 md:pt-10 md:w-1/2">

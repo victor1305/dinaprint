@@ -1,6 +1,7 @@
 import { AboutUs } from "@/components/organisms";
 import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
 
+import { JsonLd } from "@/components/atoms";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,7 +17,14 @@ export const metadata: Metadata = {
 		url: absoluteUrl("/sobre-nosotros"),
 		description:
 			"Más de 25 años de experiencia en comunicación gráfica e impresión. Imprenta en Madrid (Pinto, sur de Madrid) con asesoramiento y acabados de calidad.",
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Sobre Dinaprint" }],
+		images: [
+			{
+				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
+				width: 1200,
+				height: 630,
+				alt: "Sobre Dinaprint",
+			},
+		],
 	},
 	twitter: {
 		title: "Sobre nosotros: imprenta con experiencia en Madrid",
@@ -34,9 +42,7 @@ export const metadata: Metadata = {
 export default async function Page() {
 	return (
 		<main>
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(getLocalBusinessSchema())}
-			</script>
+			<JsonLd data={getLocalBusinessSchema()} />
 			<AboutUs />
 		</main>
 	);

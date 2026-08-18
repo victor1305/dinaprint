@@ -17,7 +17,14 @@ export const metadata: Metadata = {
 		title: "Política de cookies",
 		url: absoluteUrl("/politica-de-cookies"),
 		description: "Política de cookies de Dinaprint.S.L.",
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Política de cookies - Dinaprint" }],
+		images: [
+			{
+				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
+				width: 1200,
+				height: 630,
+				alt: "Política de cookies - Dinaprint",
+			},
+		],
 	},
 	twitter: {
 		title: "Política de cookies",

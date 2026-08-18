@@ -1,6 +1,6 @@
-import { FAQ } from "@/components/atoms";
+import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { buildServiceSchema, absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { absoluteUrl, buildServiceSchema, getLocalBusinessSchema } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -17,7 +17,14 @@ export const metadata: Metadata = {
 		url: absoluteUrl("/catalogo/calendarios"),
 		description:
 			"Impresión de calendarios personalizados en Madrid (Pinto): de pared, mesa o bolsillo, en cualquier cantidad, medida y soporte.",
-		images: [{ url: absoluteUrl("/calendar-1.jpg"), width: 1200, height: 630, alt: "Calendarios personalizados - Dinaprint" }],
+		images: [
+			{
+				url: absoluteUrl("/calendar-1.jpg"),
+				width: 1200,
+				height: 630,
+				alt: "Calendarios personalizados - Dinaprint",
+			},
+		],
 	},
 	twitter: {
 		title: "Impresión de calendarios personalizados",
@@ -68,6 +75,7 @@ const serviceSchema = buildServiceSchema({
 export default async function Page() {
 	const data = {
 		title: "Calendarios",
+		h1: "Impresión de calendarios personalizados",
 		product: "Calendarios",
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/calendar-1.jpg",
@@ -80,15 +88,11 @@ export default async function Page() {
 	return (
 		<main>
 			{/* Schema del negocio */}
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(getLocalBusinessSchema())}
-			</script>
-			
+			<JsonLd data={getLocalBusinessSchema()} />
+
 			{/* Schema del servicio */}
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(serviceSchema)}
-			</script>
-			
+			<JsonLd data={serviceSchema} />
+
 			<Product {...data} />
 			<section className="px-5 pb-10 mx-auto max-w-[1200px]">
 				<FAQ items={faqItems} />

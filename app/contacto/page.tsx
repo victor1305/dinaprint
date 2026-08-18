@@ -1,6 +1,7 @@
 import { Contact } from "@/components/organisms";
 import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
 
+import { JsonLd } from "@/components/atoms";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,7 +17,14 @@ export const metadata: Metadata = {
 		url: absoluteUrl("/contacto"),
 		description:
 			"Contacta con nuestra imprenta en Pinto (Madrid, sur de Madrid) para presupuestos de impresión digital y offset, papelería corporativa, folletos, carteles y packaging.",
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Contacto Dinaprint" }],
+		images: [
+			{
+				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
+				width: 1200,
+				height: 630,
+				alt: "Contacto Dinaprint",
+			},
+		],
 	},
 	twitter: {
 		title: "Contacto: imprenta en Pinto (Madrid)",
@@ -35,9 +43,7 @@ export const metadata: Metadata = {
 export default async function Page() {
 	return (
 		<main>
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(getLocalBusinessSchema())}
-			</script>
+			<JsonLd data={getLocalBusinessSchema()} />
 			<Contact />
 		</main>
 	);

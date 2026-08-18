@@ -1,10 +1,11 @@
 import { Services } from "@/components/organisms";
 import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
 
+import { JsonLd } from "@/components/atoms";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Servicios de imprenta: impresión digital, offset y acabados",
+	title: "Servicios de imprenta: digital, offset y acabados",
 	description:
 		"Servicios de imprenta en Madrid (Pinto, sur de Madrid): preimpresión, impresión offset y digital, acabados y manipulados, distribución y envíos.",
 	alternates: {
@@ -12,13 +13,21 @@ export const metadata: Metadata = {
 	},
 	openGraph: {
 		type: "website",
-		title: "Servicios de imprenta: impresión digital, offset y acabados",
+		title: "Servicios de imprenta: digital, offset y acabados",
 		url: absoluteUrl("/servicios"),
-		description: "Servicios: asesoramiento, preimpresión, impresión digital y offset, acabados y distribución.",
-		images: [{ url: absoluteUrl("/slider-principal-dinaprint.jpg"), width: 1200, height: 630, alt: "Servicios Dinaprint" }],
+		description:
+			"Servicios: asesoramiento, preimpresión, impresión digital y offset, acabados y distribución.",
+		images: [
+			{
+				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
+				width: 1200,
+				height: 630,
+				alt: "Servicios Dinaprint",
+			},
+		],
 	},
 	twitter: {
-		title: "Servicios de imprenta: impresión digital, offset y acabados",
+		title: "Servicios de imprenta: digital, offset y acabados",
 		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
@@ -35,9 +44,7 @@ export const metadata: Metadata = {
 export default async function Page() {
 	return (
 		<main>
-			<script type="application/ld+json" suppressHydrationWarning>
-				{JSON.stringify(getLocalBusinessSchema())}
-			</script>
+			<JsonLd data={getLocalBusinessSchema()} />
 			<Services />
 		</main>
 	);
