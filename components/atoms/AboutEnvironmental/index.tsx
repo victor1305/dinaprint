@@ -1,7 +1,16 @@
+import Image from "next/image";
 import type React from "react";
 
 const AboutEnviromental: React.FC = () => (
-	<div className="relative w-full md:min-h-[336px] flex justify-center items-center bg-[url('/nosotros-imagen-medioambiente.jpg')] bg-[bottom_center]">
+	<div className="relative w-full md:min-h-[336px] flex justify-center items-center">
+		<Image
+			src="/nosotros-imagen-medioambiente.jpg"
+			alt=""
+			aria-hidden="true"
+			fill
+			sizes="100vw"
+			className="object-cover object-bottom -z-10"
+		/>
 		<div className="absolute w-full h-full opacity-50 left-0 top-0 bg-[#111111]" />
 		<div className="relative w-full max-w-[825px] max-auto p-5">
 			<h2 className="text-3xl text-center text-white font-semibold pt-5 pb-5">

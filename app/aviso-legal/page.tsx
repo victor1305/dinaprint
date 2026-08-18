@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 export default async function Page() {
 	return (
 		<main className="px-5 py-10 mx-auto max-w-[1200px]">
-			<h2 className="text-3xl font-medium pb-5">Aviso legal</h2>
+			<h1 className="text-3xl font-medium pb-5">Aviso legal</h1>
 			<p className="pb-4 font-medium">Datos generales</p>
 			<p className="pb-4">
 				DINAPRINT S.L, (en adelante DINAPRINT S.L) como titular del sitio web y de acuerdo con el

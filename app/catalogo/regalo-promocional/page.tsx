@@ -38,6 +38,47 @@ export const metadata: Metadata = {
 	],
 };
 
+const specRows = [
+	{
+		label: "Textil",
+		value:
+			"Camisetas, polos, sudaderas, gorras y bolsas de algodón. Serigrafía, DTF, DTG y bordado.",
+	},
+	{
+		label: "Escritura y oficina",
+		value: "Bolígrafos, libretas, blocs de notas, carpetas y sets de escritorio.",
+	},
+	{
+		label: "Tecnología",
+		value: "Memorias USB, power banks, altavoces y soportes de móvil, con láser o tampografía.",
+	},
+	{
+		label: "Bebida",
+		value: "Botellas reutilizables, termos y tazas, con grabado láser o impresión en circularidad.",
+	},
+	{
+		label: "Ecológicos",
+		value: "Bambú, corcho, algodón orgánico, plástico reciclado y semillas plantables.",
+	},
+	{
+		label: "Técnicas de marcaje",
+		value: "Serigrafía, tampografía, grabado láser, bordado, transfer digital y doming.",
+	},
+	{
+		label: "Tirada mínima",
+		value:
+			"Depende del artículo: desde 25 unidades en textil y desde 100 en artículos de importación.",
+	},
+	{
+		label: "Plazo de entrega",
+		value: "De 7 a 15 días laborables. En campaña de Navidad conviene cerrar en octubre.",
+	},
+	{
+		label: "Archivos",
+		value: "Logotipo vectorial en AI, EPS o PDF, con los colores Pantone definidos.",
+	},
+];
+
 const faqItems = [
 	{
 		question: "¿Qué tipo de regalos promocionales podéis personalizar?",
@@ -59,6 +100,21 @@ const faqItems = [
 		answer:
 			"Sí, preparamos kits personalizados con varios productos, cajas de regalo y embalaje a medida para eventos, bienvenidas de empleados o campañas especiales.",
 	},
+	{
+		question: "¿Cuál es el pedido mínimo en regalo promocional?",
+		answer:
+			"Depende del artículo. En textil y artículos de stock nacional arrancamos en 25-50 unidades. En artículos de importación o con personalización especial, a partir de 100.",
+	},
+	{
+		question: "¿Qué técnica de marcaje conviene para mi logotipo?",
+		answer:
+			"Con pocos colores planos y tiradas grandes, serigrafía o tampografía. Con logotipo a todo color o degradados, transfer digital o DTF. Sobre metal y bambú, grabado láser.",
+	},
+	{
+		question: "¿Podéis enviar una muestra antes del pedido?",
+		answer:
+			"Sí. En pedidos de cierto volumen preparamos una muestra marcada con tu logotipo para que valides el color y la posición antes de producir el resto.",
+	},
 ];
 
 const serviceSchema = buildServiceSchema({
@@ -75,6 +131,9 @@ export default async function Page() {
 		product: "Regalo promocional",
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/regalo-promocional-01.jpg",
+		specs: specRows,
+		specsCaption:
+			"Familias de producto y técnicas de marcaje habituales. El mínimo y el plazo varían mucho según el artículo.",
 		text: [
 			"El regalo promocional es una excelente forma de crear empatía con el cliente. Un detalle bien elegido refuerza la imagen de marca y fideliza.",
 			"Ofrecemos un amplio catálogo de productos: bolígrafos, libretas, textil, tecnología, bolsas ecológicas, artículos de oficina y mucho más.",

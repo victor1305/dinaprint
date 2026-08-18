@@ -39,6 +39,46 @@ export const metadata: Metadata = {
 	],
 };
 
+const specRows = [
+	{
+		label: "Tarjetas de visita",
+		value: "85×55 mm estándar. También 90×50 mm, cuadradas 55×55 mm y formatos a medida.",
+	},
+	{
+		label: "Papeles de tarjeta",
+		value: "Estucado de 300 a 400 g, cartulinas texturadas, reciclados y papeles de algodón.",
+	},
+	{
+		label: "Hojas de carta",
+		value: "A4 en offset ahuesado o estucado de 90 a 120 g, con o sin membrete impreso.",
+	},
+	{
+		label: "Sobres",
+		value: "Americano 110×220 mm (DL), C5 y C4, con y sin ventana, impresos a 1, 2 o 4 tintas.",
+	},
+	{
+		label: "Carpetas",
+		value: "A4 con solapas, lomo de 3 a 15 mm, ranura para tarjeta y troquel a medida.",
+	},
+	{
+		label: "Acabados",
+		value:
+			"Plastificado mate, brillo o soft-touch, barniz UVI selectivo, stamping en oro y plata, y golpe en seco.",
+	},
+	{
+		label: "Tirada mínima",
+		value: "50 unidades en digital. El offset compensa a partir de unas 1.000.",
+	},
+	{
+		label: "Plazo de entrega",
+		value: "48-72 h en digital. De 4 a 6 días laborables con acabados especiales.",
+	},
+	{
+		label: "Archivos",
+		value: "PDF en CMYK con 3 mm de sangre, 300 ppp y tipografías incrustadas o trazadas.",
+	},
+];
+
 const faqItems = [
 	{
 		question: "¿Qué gramaje recomendáis para tarjetas de visita?",
@@ -60,6 +100,21 @@ const faqItems = [
 		answer:
 			"Sí, fabricamos carpetas corporativas con uno o dos bolsillos, con o sin ranura para tarjeta. Personalizamos medidas, solapas y acabados según tus necesidades.",
 	},
+	{
+		question: "¿Cuál es el gramaje ideal para una tarjeta de visita?",
+		answer:
+			"A partir de 300 g. Por debajo, la tarjeta se percibe endeble y se dobla en el bolsillo. Si buscas una sensación premium, 350-400 g con plastificado soft-touch marca una diferencia clara al tacto.",
+	},
+	{
+		question: "¿Podéis imprimir con datos variables?",
+		answer:
+			"Sí. Con impresión digital producimos tarjetas con el nombre y el cargo de cada persona en una sola tirada, sin coste añadido por versión. Solo necesitamos la lista en una hoja de cálculo.",
+	},
+	{
+		question: "¿Hacéis sobres impresos a juego con las cartas?",
+		answer:
+			"Sí, imprimimos sobres americanos, C5 y C4, con o sin ventana, a juego con el resto de la papelería. Se pueden imprimir a una tinta para abaratar o a todo color.",
+	},
 ];
 
 const serviceSchema = buildServiceSchema({
@@ -77,6 +132,9 @@ export default async function Page() {
 		product: "Papelería corporativa",
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/papeleria-corporativa-01.jpg",
+		specs: specRows,
+		specsCaption:
+			"Estas son las combinaciones que producimos habitualmente. Si necesitas un formato o acabado que no aparece, consúltanos.",
 		text: [
 			"La comunicación impresa de cualquier negocio o empresa transmite su identidad y provoca sensaciones y opiniones. Para ello se utilizan tanto tarjetas como carpetas, cartas, catálogos, folletos y sobres.",
 			"Todos los elementos deben transmitir uniformidad y el mismo estilo gráfico, creando una sensación de seguridad y profesionalidad. Una imagen corporativa coherente genera confianza en clientes y colaboradores.",

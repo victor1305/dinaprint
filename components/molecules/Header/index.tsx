@@ -26,6 +26,7 @@ const Header: React.FC = () => {
 			path: "/catalogo",
 			subsection: [
 				{ name: "CATÁLOGOS", path: "catalogos" },
+				{ name: "CARTAS Y MENÚS", path: "cartas-y-menus" },
 				{ name: "PAPELERÍA CORPORATIVA", path: "papeleria-corporativa" },
 				{ name: "FLYERS Y DESPLEGABLES", path: "flyers-y-desplegables" },
 				{ name: "FOLLETOS Y REVISTAS", path: "folletos-y-revistas" },

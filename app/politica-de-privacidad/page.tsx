@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export default async function Page() {
 	return (
 		<main className="px-5 py-10 mx-auto max-w-[1200px]">
-			<h2 className="text-3xl font-medium pb-5">Política de privacidad</h2>
+			<h1 className="text-3xl font-medium pb-5">Política de privacidad</h1>
 			<p className="pb-4">
 				DINAPRINT S.L es la responsable del tratamiento y de conformidad con lo establecido en el
 				Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016 y la

@@ -1,4 +1,4 @@
-import { BLOG_CATEGORIES, getAllPosts, getCategorySlug } from "@/lib/blog";
+import { BLOG_CATEGORIES, POSTS_PER_PAGE, getAllPosts, getCategorySlug } from "@/lib/blog";
 import { absoluteUrl } from "@/lib/seo";
 
 import type { MetadataRoute } from "next";
@@ -20,6 +20,7 @@ const ROUTE_LAST_MODIFIED: Record<string, string> = {
 	"/blog": "2026-08-18",
 	"/catalogo": "2026-08-18",
 	"/catalogo/catalogos": "2026-08-18",
+	"/catalogo/cartas-y-menus": "2026-08-18",
 	"/catalogo/papeleria-corporativa": "2026-08-18",
 	"/catalogo/flyers-y-desplegables": "2026-08-18",
 	"/catalogo/folletos-y-revistas": "2026-08-18",
@@ -41,6 +42,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		lastModified: new Date(lastModified),
 	}));
 
+	// Páginas 2..N del listado del blog
+	const postCount = getAllPosts().length;
+	const blogPages = Array.from(
+		{ length: Math.max(0, Math.ceil(postCount / POSTS_PER_PAGE) - 1) },
+		(_, i) => ({
+			url: absoluteUrl(`/blog/pagina/${i + 2}`),
+			lastModified: new Date("2026-08-18"),
+		}),
+	);
+
 	// Categorías del blog
 	const categories = BLOG_CATEGORIES.map((category) => ({
 		url: absoluteUrl(`/blog/categoria/${getCategorySlug(category)}`),
@@ -53,5 +64,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		lastModified: new Date(post.updatedAt || post.publishedAt),
 	}));
 
-	return [...staticPages, ...categories, ...blogPosts];
+	return [...staticPages, ...blogPages, ...categories, ...blogPosts];
 }

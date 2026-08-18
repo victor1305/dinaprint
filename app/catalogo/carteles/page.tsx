@@ -39,6 +39,47 @@ export const metadata: Metadata = {
 	],
 };
 
+const specRows = [
+	{
+		label: "Formatos en papel",
+		value: "A3, A2, A1, A0 y 70×100 cm. Otros tamaños a medida sin coste de troquel.",
+	},
+	{
+		label: "Papeles",
+		value: "Estucado de 135 a 250 g para interior. Papel fotográfico y blueback para mupi y valla.",
+	},
+	{
+		label: "Soportes rígidos",
+		value: "Cartón pluma de 5 y 10 mm, PVC espumado de 3 a 10 mm, Dibond y metacrilato.",
+	},
+	{
+		label: "Lonas",
+		value:
+			"Frontlit de 440 a 510 g con ojales y refuerzo perimetral. Mesh microperforada para viento.",
+	},
+	{
+		label: "Acabados",
+		value:
+			"Plastificado antirreflectante, laminado UV para exterior, corte a forma y ojales metálicos.",
+	},
+	{
+		label: "Resolución",
+		value: "150 ppp a tamaño real en formatos grandes. 300 ppp en A3 y A2 de visión cercana.",
+	},
+	{
+		label: "Tirada mínima",
+		value: "1 unidad. La impresión de gran formato no requiere tirada mínima.",
+	},
+	{
+		label: "Plazo de entrega",
+		value: "24-48 h en papel y soportes rígidos estándar. 3-5 días con corte a forma.",
+	},
+	{
+		label: "Archivos",
+		value: "PDF en CMYK con 10 mm de sangre en gran formato y textos convertidos a curvas.",
+	},
+];
+
 const faqItems = [
 	{
 		question: "¿En qué materiales podéis imprimir carteles?",
@@ -60,6 +101,21 @@ const faqItems = [
 		answer:
 			"Sí, contamos con servicio de instalación de cartelería en Madrid. Consúltanos disponibilidad y presupuesto para tu ubicación.",
 	},
+	{
+		question: "¿Qué material aguanta en el exterior?",
+		answer:
+			"Para exterior recomendamos lona frontlit con ojales, PVC espumado o vinilo con laminado UV. El papel estucado sin protección se deteriora con la primera lluvia.",
+	},
+	{
+		question: "¿A qué resolución tengo que preparar un cartel grande?",
+		answer:
+			"En formatos de A1 en adelante, 150 ppp a tamaño real es suficiente porque se ven a distancia. En A3 y A2, que se leen de cerca, sube a 300 ppp.",
+	},
+	{
+		question: "¿Podéis cortar el cartel con una forma concreta?",
+		answer:
+			"Sí, hacemos corte a forma en soportes rígidos y en vinilo. Envíanos el contorno en una capa vectorial aparte, marcada como línea de corte.",
+	},
 ];
 
 const serviceSchema = buildServiceSchema({
@@ -76,6 +132,9 @@ export default async function Page() {
 		product: "Carteles",
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/carteles-01.jpg",
+		specs: specRows,
+		specsCaption:
+			"Materiales y formatos de producción habitual, tanto para interior como para exterior.",
 		text: [
 			"Los carteles difunden información, anuncian eventos o promocionan productos. Su éxito depende del diseño y de la calidad de impresión. Podemos enriquecer cualquier cartel con acabados como troquelados, barnices UVI, laminados y más.",
 			"Imprimimos en diferentes soportes: desde papel fotográfico hasta materiales rígidos como foam, PVC o Dibond. Cualquier medida y cantidad, adaptándonos a tus necesidades.",

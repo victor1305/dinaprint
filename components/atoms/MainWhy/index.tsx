@@ -18,9 +18,9 @@ const MainWhy = () => (
 				>
 					<div className="flex flex-col justify-center items-center md:h-[160px] md:justify-between">
 						<Image src={elm.icon} alt="" aria-hidden="true" width={100} height={100} />
-						<h4 className="pt-5 text-lg text-white font-semibold md:pt-0">
+						<h3 className="pt-5 text-lg text-white font-semibold md:pt-0">
 							{elm.name.toUpperCase()}
-						</h4>
+						</h3>
 					</div>
 				</div>
 			))}

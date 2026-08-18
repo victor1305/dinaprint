@@ -66,6 +66,9 @@ export function getCategoryBySlug(slug: string): string | undefined {
 
 const postsDirectory = path.join(process.cwd(), "content/posts");
 
+/** Artículos por página en el listado del blog. */
+export const POSTS_PER_PAGE = 12;
+
 /** Velocidad de lectura media en castellano. */
 const WORDS_PER_MINUTE = 200;
 

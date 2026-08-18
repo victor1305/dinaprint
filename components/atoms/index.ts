@@ -15,6 +15,7 @@ import MainSecond from "./MainSecond";
 import MainSwiperImages from "./MainSwiperImages";
 import MainSwiperText from "./MainSwiperText";
 import MainWhy from "./MainWhy";
+import Pagination from "./Pagination";
 import SectionPrincipalBanner from "./SectionPrincipalBanner";
 import Service from "./Service";
 import ServicesPrincipal from "./ServicesPrincipal";
@@ -38,6 +39,7 @@ export {
 	MainSwiperImages,
 	MainSwiperText,
 	MainWhy,
+	Pagination,
 	SectionPrincipalBanner,
 	Service,
 	SpecTable,

@@ -1,10 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 
-import { BLOG_CATEGORIES, getAllPosts, getCategorySlug } from "@/lib/blog";
+import { BLOG_CATEGORIES, POSTS_PER_PAGE, getAllPosts, getCategorySlug } from "@/lib/blog";
 import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
 
-import { Breadcrumbs, JsonLd, SectionPrincipalBanner } from "@/components/atoms";
+import { Breadcrumbs, JsonLd, Pagination, SectionPrincipalBanner } from "@/components/atoms";
+import { PostGrid } from "@/components/molecules";
 
 import type { Metadata } from "next";
 
@@ -50,6 +50,7 @@ const blogListSchema = {
 	name: "Blog de Dinaprint",
 	description: "Artículos sobre impresión, diseño gráfico y artes gráficas.",
 	url: absoluteUrl("/blog"),
+	inLanguage: "es-ES",
 	publisher: {
 		"@type": "Organization",
 		name: "Dinaprint",
@@ -62,13 +63,18 @@ const blogListSchema = {
 
 export default function BlogPage() {
 	const posts = getAllPosts();
+	const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
 
 	return (
 		<main>
 			<JsonLd data={getLocalBusinessSchema()} />
 			<JsonLd data={blogListSchema} />
 
-			<SectionPrincipalBanner title="Blog" subtitle="Guías, consejos y tendencias" />
+			<SectionPrincipalBanner
+				title="Blog"
+				h1="Blog de imprenta: guías y consejos de impresión"
+				subtitle="Guías, consejos y tendencias"
+			/>
 
 			<section className="px-5 py-10 mx-auto max-w-[1200px]">
 				<Breadcrumbs className="mb-8" />
@@ -80,14 +86,10 @@ export default function BlogPage() {
 					</p>
 				</div>
 
-				{/* Categorías */}
 				<div className="flex flex-wrap gap-3 mb-10">
-					<Link
-						href="/blog"
-						className="px-4 py-2 bg-primary text-white rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
-					>
+					<span className="px-4 py-2 bg-primary text-white rounded-full text-sm font-medium">
 						Todos
-					</Link>
+					</span>
 					{BLOG_CATEGORIES.map((category) => (
 						<Link
 							key={category}
@@ -99,48 +101,12 @@ export default function BlogPage() {
 					))}
 				</div>
 
-				{/* Grid de artículos */}
-				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-					{posts.map((post) => (
-						<article
-							key={post.slug}
-							className="bg-white rounded-xl shadow-findBox overflow-hidden hover:shadow-lg transition-shadow"
-						>
-							<Link href={`/blog/${post.slug}`} className="block">
-								<div className="relative h-48 w-full">
-									<Image
-										src={post.image}
-										alt={post.title}
-										fill
-										sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-										className="object-cover"
-									/>
-								</div>
-								<div className="p-5">
-									<span className="inline-block px-3 py-1 bg-secondary/10 text-secondary text-xs font-medium rounded-full mb-3">
-										{post.category}
-									</span>
-									<h2 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 hover:text-primary transition-colors">
-										{post.title}
-									</h2>
-									<p className="text-gray-600 text-sm line-clamp-3 mb-4">{post.description}</p>
-									<div className="flex items-center justify-between text-xs text-gray-500">
-										<span>{post.readingTime} min de lectura</span>
-										<time dateTime={post.publishedAt}>
-											{new Date(post.publishedAt).toLocaleDateString("es-ES", {
-												day: "numeric",
-												month: "short",
-												year: "numeric",
-											})}
-										</time>
-									</div>
-								</div>
-							</Link>
-						</article>
-					))}
-				</div>
-
-				{posts.length === 0 && (
+				{posts.length > 0 ? (
+					<>
+						<PostGrid posts={posts.slice(0, POSTS_PER_PAGE)} />
+						<Pagination currentPage={1} totalPages={totalPages} basePath="/blog" />
+					</>
+				) : (
 					<div className="text-center py-20">
 						<p className="text-gray-500 text-lg">
 							Próximamente publicaremos artículos en nuestro blog.

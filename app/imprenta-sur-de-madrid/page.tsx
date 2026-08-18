@@ -217,6 +217,72 @@ export default async function Page() {
 					</Link>
 				</div>
 
+				{/* Municipios */}
+				<h3 className="text-xl lg:text-2xl font-semibold text-secondary pt-10">
+					Municipios a los que damos servicio
+				</h3>
+				<p className="pt-4 text-base lg:text-lg">
+					Nuestro taller está en Pinto, en pleno corredor de la A-4, lo que nos deja a pocos minutos
+					de la mayor parte del área industrial y comercial del sur de la Comunidad de Madrid. Estas
+					son las zonas donde trabajamos a diario:
+				</p>
+				<div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+					<div className="p-5 rounded-xl shadow-findBox bg-white">
+						<h4 className="text-xl font-semibold">Corredor de la A-4</h4>
+						<p className="pt-2">
+							Pinto, Valdemoro, Ciempozuelos, San Martín de la Vega, Titulcia y Aranjuez.
+						</p>
+					</div>
+					<div className="p-5 rounded-xl shadow-findBox bg-white">
+						<h4 className="text-xl font-semibold">Área metropolitana sur</h4>
+						<p className="pt-2">
+							Getafe, Leganés, Parla, Fuenlabrada, Alcorcón, Móstoles y Humanes de Madrid.
+						</p>
+					</div>
+					<div className="p-5 rounded-xl shadow-findBox bg-white">
+						<h4 className="text-xl font-semibold">Madrid capital</h4>
+						<p className="pt-2">
+							Villaverde, Usera, Carabanchel, Arganzuela y el resto de la ciudad por la A-4 y la
+							M-40.
+						</p>
+					</div>
+				</div>
+
+				{/* Por qué una imprenta de zona */}
+				<h3 className="text-xl lg:text-2xl font-semibold text-secondary pt-10">
+					Por qué elegir una imprenta de la zona
+				</h3>
+				<p className="pt-4 text-base lg:text-lg">
+					El sur de Madrid concentra buena parte del tejido industrial y logístico de la comunidad:
+					polígonos con empresas que necesitan catálogos de producto, packaging, señalética y
+					material de punto de venta con plazos ajustados. Tener la imprenta a veinte minutos evita
+					el problema clásico de la imprenta online: cuando algo sale mal en producción, no hay
+					nadie al otro lado con quien resolverlo esa misma mañana.
+				</p>
+				<ul className="list-disc pl-5 pt-4 space-y-2">
+					<li>
+						<strong>Muestras físicas</strong> antes de cerrar el pedido, no simulaciones en
+						pantalla.
+					</li>
+					<li>
+						<strong>Prueba de color impresa</strong> sobre el papel definitivo.
+					</li>
+					<li>
+						<strong>Un interlocutor</strong> que conoce tu trabajo y tus repeticiones.
+					</li>
+					<li>
+						<strong>Urgencias reales:</strong> recogida en taller el mismo día si el plazo aprieta.
+					</li>
+				</ul>
+				<p className="pt-4 text-base lg:text-lg">
+					Si estás justo en Pinto, tienes el detalle de cómo llegar y los horarios en nuestra página
+					de{" "}
+					<Link href="/imprenta-pinto" className="text-primary underline">
+						imprenta en Pinto
+					</Link>
+					.
+				</p>
+
 				{/* FAQ */}
 				<div className="pt-6">
 					<FAQ items={faqItems} />

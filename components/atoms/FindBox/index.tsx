@@ -13,7 +13,7 @@ const FindBox: React.FC<FindBoxProps> = ({ title, subtitle }: FindBoxProps) => (
 			{title === "Email" && <FaRegEnvelope />}
 			{title === "Ubicación" && <FaMapMarkerAlt />}
 		</div>
-		<h4 className="pb-2.5">{title}</h4>
+		<h3 className="pb-2.5">{title}</h3>
 		<p>{subtitle}</p>
 	</div>
 );

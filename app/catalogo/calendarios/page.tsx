@@ -41,6 +41,48 @@ export const metadata: Metadata = {
 	],
 };
 
+const specRows = [
+	{
+		label: "Calendario de pared",
+		value: "A3 y A4, de 7, 13 o 14 hojas, con wire-o y colgador troquelado.",
+	},
+	{
+		label: "Calendario de sobremesa",
+		value: "Formatos 21×15 cm y 15×21 cm, con caballete de cartón y wire-o superior.",
+	},
+	{
+		label: "Faldillas y de bolsillo",
+		value: "Faldilla con cabecera impresa y taco mensual. Bolsillo en 85×55 mm plastificado.",
+	},
+	{
+		label: "Papeles",
+		value:
+			"Estucado mate o brillo de 150 a 250 g en interiores. Cartulina de 300 a 350 g en cabeceras y caballetes.",
+	},
+	{
+		label: "Encuadernación",
+		value: "Wire-o metálico en blanco, negro o plata. También grapa y espiral de plástico.",
+	},
+	{
+		label: "Personalización",
+		value:
+			"Logotipo, datos de contacto, fotografías propias y marcado de fechas señaladas de tu sector.",
+	},
+	{
+		label: "Tirada mínima",
+		value: "25 unidades en digital, ideal para regalo de empresa personalizado.",
+	},
+	{
+		label: "Plazo de entrega",
+		value: "De 5 a 7 días laborables. En campaña de Navidad conviene cerrar el pedido en octubre.",
+	},
+	{
+		label: "Archivos",
+		value:
+			"PDF en CMYK con 3 mm de sangre. Cuidado con los textos cerca de la perforación del wire-o.",
+	},
+];
+
 const faqItems = [
 	{
 		question: "¿Qué tipos de calendarios podéis imprimir?",
@@ -62,6 +104,21 @@ const faqItems = [
 		answer:
 			"No hay cantidad mínima. Puedes encargar desde 1 unidad, aunque a partir de 50-100 unidades el precio por unidad baja notablemente.",
 	},
+	{
+		question: "¿Cuándo hay que encargar los calendarios de empresa?",
+		answer:
+			"Lo recomendable es cerrar el pedido en octubre. En noviembre y diciembre los plazos se alargan porque toda la producción del sector se concentra en esas semanas.",
+	},
+	{
+		question: "¿Podéis marcar fechas propias de mi sector?",
+		answer:
+			"Sí. Además de festivos nacionales y locales, podemos destacar ferias, campañas, aniversarios de la empresa o cualquier fecha que quieras resaltar en el calendario.",
+	},
+	{
+		question: "¿Qué diferencia hay entre wire-o y espiral?",
+		answer:
+			"El wire-o es metálico, de doble bucle, más rígido y con mejor acabado; es lo habitual en calendarios de empresa. La espiral de plástico es más económica pero se deforma con el uso.",
+	},
 ];
 
 const serviceSchema = buildServiceSchema({
@@ -79,6 +136,9 @@ export default async function Page() {
 		product: "Calendarios",
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/calendar-1.jpg",
+		specs: specRows,
+		specsCaption:
+			"Formatos y acabados de producción habitual. Los calendarios de empresa se cierran en octubre para llegar a la campaña de Navidad.",
 		text: [
 			"El calendario es una de las mejores herramientas de marketing. Siempre está a la vista en cualquier mesa, estante u oficina, recordando tu marca durante todo el año.",
 			"Ofrecemos infinitas posibilidades, formatos y diseños: de pared con espiral, de sobremesa, de bolsillo, marcapáginas, magnéticos y más. Cualquier cantidad, medida y soporte.",

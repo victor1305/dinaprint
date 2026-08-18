@@ -39,6 +39,49 @@ export const metadata: Metadata = {
 	],
 };
 
+const specRows = [
+	{
+		label: "Formatos de flyer",
+		value: "A6 (105×148 mm), A5 (148×210 mm), A4 y 10×21 cm para expositor de mostrador.",
+	},
+	{
+		label: "Desplegables",
+		value:
+			"Díptico, tríptico con plegado en carta o en acordeón, y cuatro cuerpos en ventana o en zigzag.",
+	},
+	{
+		label: "Papeles",
+		value: "Estucado mate o brillo de 135 a 350 g. Offset de 90 a 120 g para buzoneo masivo.",
+	},
+	{
+		label: "Gramaje recomendado",
+		value: "170 g para reparto en mano, 135 g para buzoneo y 300 g o más para punto de venta.",
+	},
+	{
+		label: "Acabados",
+		value:
+			"Plastificado mate o brillo, barniz UVI selectivo, hendido para que el plegado no rompa la tinta.",
+	},
+	{
+		label: "Hendido",
+		value:
+			"Obligatorio a partir de 170 g: sin él la fibra del papel se quiebra y la tinta salta en el pliegue.",
+	},
+	{
+		label: "Tirada mínima",
+		value: "100 unidades en digital, sin coste de preparación.",
+	},
+	{
+		label: "Plazo de entrega",
+		value: "48-72 h en digital. De 4 a 6 días laborables en offset con plegado.",
+	},
+	{
+		label: "Archivos",
+		value:
+			"PDF en CMYK con 3 mm de sangre. En desplegables, marca las líneas de plegado en una capa aparte.",
+	},
+];
+
 const faqItems = [
 	{
 		question: "¿Qué tamaños de flyers son los más habituales?",
@@ -60,6 +103,21 @@ const faqItems = [
 		answer:
 			"Sí, con impresión digital no hay cantidad mínima. Puedes pedir desde 50 o 100 unidades para probar una campaña antes de hacer tiradas mayores.",
 	},
+	{
+		question: "¿Qué gramaje elijo para buzoneo?",
+		answer:
+			"135 g es el equilibrio habitual entre coste y percepción. Para reparto en mano sube a 170 g, que aguanta mejor el manoseo. En punto de venta, 300 g o más.",
+	},
+	{
+		question: "¿Por qué se agrieta la tinta en el pliegue?",
+		answer:
+			"Porque falta el hendido. A partir de 170 g hay que marcar el pliegue con una hendedora antes de plegar; si se pliega en seco, la fibra se quiebra y la tinta salta, sobre todo en fondos oscuros.",
+	},
+	{
+		question: "¿Qué tipos de plegado hacéis?",
+		answer:
+			"Díptico, tríptico en carta o en acordeón, cuatro cuerpos en ventana o en zigzag, y plegado cruzado para planos y mapas. Si tienes dudas, te preparamos una maqueta en blanco.",
+	},
 ];
 
 const serviceSchema = buildServiceSchema({
@@ -76,6 +134,8 @@ export default async function Page() {
 		product: "Flyers y desplegables",
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/flyer-001.jpg",
+		specs: specRows,
+		specsCaption: "Formatos, gramajes y plegados de producción habitual.",
 		text: [
 			"Los flyers y desplegables son una herramienta de marketing directa y económica. Se utilizan para comunicar las principales características de un producto, servicio o evento.",
 			"Dependiendo del mensaje, puedes elegir entre distintos tamaños, número de caras, tipos de papel y acabados. Desde un flyer sencillo a un desplegable con múltiples pliegues y acabados especiales.",

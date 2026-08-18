@@ -19,7 +19,7 @@ const CatalogDetail = ({ product, text, image, list }: CatalogDetailProps) => (
 			/>
 		</div>
 		<div className="md:w-1/2 px-5">
-			<h3 className="text-2xl font-regular md:text-3xl pb-5">{product}</h3>
+			<h2 className="text-2xl font-regular md:text-3xl pb-5">{product}</h2>
 			{text.map((elm) => (
 				<p
 					key={`${product}-${elm}`}

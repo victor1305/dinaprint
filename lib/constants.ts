@@ -141,6 +141,11 @@ export const catalogOptions = [
 		path: "/catalogo/catalogos",
 	},
 	{
+		image: "/folletos.jpg",
+		title: "Cartas y menús",
+		path: "/catalogo/cartas-y-menus",
+	},
+	{
 		image: "/papeleria-corporativa-01.jpg",
 		title: "Papelería corporativa",
 		path: "/catalogo/papeleria-corporativa",
@@ -198,6 +203,10 @@ export const findBoxes = [
 	},
 	{
 		title: "Ubicación",
-		subtitle: "C/ Coto de Doñana, 9 Area Empresarial Andalucía 28320, Pinto, Madrid",
+		subtitle: "C/ Coto de Doñana, 9 Área Empresarial Andalucía 28320, Pinto, Madrid",
+	},
+	{
+		title: "Horario",
+		subtitle: "Lunes a jueves de 9:00 a 18:00 · Viernes de 9:00 a 15:00",
 	},
 ];

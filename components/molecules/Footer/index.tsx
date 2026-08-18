@@ -23,7 +23,7 @@ const Footer = () => (
 						pequeño.
 					</p>
 					<div className="p-2.5 pb-0 lg:pb-2.5 lg:w-1/5">
-						<h4 className="text-base font-semibold">CATÁLOGO</h4>
+						<h2 className="text-base font-semibold">CATÁLOGO</h2>
 						<p className="pt-1 pb-1.5">
 							<Link href="/catalogo" className="text-footer-li hover:text-primary">
 								Productos
@@ -33,6 +33,12 @@ const Footer = () => (
 						<p className="pt-1 pb-1.5">
 							<Link href="/catalogo/catalogos" className="text-footer-li hover:text-primary">
 								Catálogos
+							</Link>
+						</p>
+						<hr />
+						<p className="pt-1 pb-1.5">
+							<Link href="/catalogo/cartas-y-menus" className="text-footer-li hover:text-primary">
+								Cartas y menús
 							</Link>
 						</p>
 						<hr />
@@ -108,7 +114,7 @@ const Footer = () => (
 						</p>
 					</div>
 					<div className="p-2.5 lg:w-1/5">
-						<h4 className="text-base font-semibold">NOSOTROS</h4>
+						<h2 className="text-base font-semibold">NOSOTROS</h2>
 						<p className="pt-1 pb-1.5">
 							<Link href="/sobre-nosotros" className="text-footer-li hover:text-primary">
 								Quiénes somos
@@ -152,9 +158,14 @@ const Footer = () => (
 						</p>
 					</div>
 					<div className="p-2.5 lg:w-1/5">
-						<h4 className="text-base font-semibold">INFORMACIÓN</h4>
+						<h2 className="text-base font-semibold">INFORMACIÓN</h2>
 						<p className="pt-1 pb-3">
-							C/ Coto De Doñana, 9 Area Empresarial Andalucia 28320, Pinto, Madrid
+							C/ Coto de Doñana, 9 Área Empresarial Andalucía 28320, Pinto, Madrid
+						</p>
+						<p className="pb-3">
+							Lunes a jueves de 9:00 a 18:00
+							<br />
+							Viernes de 9:00 a 15:00
 						</p>
 						<p className="text-footer-li pb-3 hover:text-primary">
 							<a href="mailto:dinaprint@dinaprint.com">dinaprint@dinaprint.com</a>

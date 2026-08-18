@@ -204,6 +204,60 @@ export default async function Page() {
 					</li>
 				</ul>
 
+				{/* Cómo llegar */}
+				<h3 className="text-xl lg:text-2xl font-semibold text-secondary pt-10">
+					Dónde estamos y cómo llegar
+				</h3>
+				<p className="pt-4 text-base lg:text-lg">
+					Estamos en la calle Coto de Doñana, 9, dentro del Área Empresarial Andalucía de Pinto, uno
+					de los polígonos con mejor acceso del corredor sur. Se llega directamente desde la{" "}
+					<strong>A-4 (autovía de Andalucía)</strong>, y desde la M-506 y la M-408 si vienes de
+					Getafe o Valdemoro. Hay aparcamiento en la puerta, así que recoger un pedido voluminoso no
+					es problema.
+				</p>
+				<p className="pt-4 text-base lg:text-lg">
+					Si te mueves en transporte público, la línea <strong>C-3 de Cercanías</strong> para en
+					Pinto. Y si prefieres no desplazarte, enviamos a toda la península sin coste en la mayoría
+					de pedidos.
+				</p>
+
+				{/* Recogida y entrega */}
+				<h3 className="text-xl lg:text-2xl font-semibold text-secondary pt-10">
+					Recogida en taller y entrega en la zona sur
+				</h3>
+				<p className="pt-4 text-base lg:text-lg">
+					Trabajar con una imprenta que tienes al lado cambia bastante las cosas. Puedes venir a ver
+					y tocar muestras de papel antes de decidir, revisar una prueba de color impresa en vez de
+					fiarte de una pantalla, y recoger el pedido el mismo día que sale de máquina cuando vas
+					justo de plazo.
+				</p>
+				<ul className="list-disc pl-5 pt-4 space-y-2">
+					<li>
+						<strong>Recogida en taller:</strong> sin coste y sin esperar al transporte.
+					</li>
+					<li>
+						<strong>Entrega en el corredor sur:</strong> Valdemoro, Getafe, Parla, San Martín de la
+						Vega, Ciempozuelos, Fuenlabrada y Leganés.
+					</li>
+					<li>
+						<strong>Madrid capital:</strong> a unos 20 km por la A-4.
+					</li>
+					<li>
+						<strong>Resto de la península:</strong> envío incluido en la mayoría de pedidos.
+					</li>
+				</ul>
+				<p className="pt-4 text-base lg:text-lg">
+					¿Buscas cobertura más amplia? Mira también nuestras páginas de{" "}
+					<Link href="/imprenta-sur-de-madrid" className="text-primary underline">
+						imprenta en el sur de Madrid
+					</Link>{" "}
+					e{" "}
+					<Link href="/imprenta-madrid" className="text-primary underline">
+						imprenta en Madrid
+					</Link>
+					.
+				</p>
+
 				{/* FAQ */}
 				<div className="pt-6">
 					<FAQ items={faqItems} />

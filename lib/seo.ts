@@ -8,6 +8,12 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? `https://${SITE_DOM
 	"",
 );
 
+/** MID del Knowledge Graph de Google del perfil de empresa "Dinaprint SL". */
+export const GOOGLE_KG_MID = "/g/11j79bn2w8";
+
+/** Ficha de empresa en Google, construida a partir del MID. */
+export const GOOGLE_BUSINESS_PROFILE_URL = `https://www.google.com/search?kgmid=${GOOGLE_KG_MID}`;
+
 export const OG_IMAGE_PATH = "/slider-principal-dinaprint.jpg";
 
 export const SITE_DESCRIPTION =
@@ -81,19 +87,30 @@ export function getLocalBusinessSchema() {
 		],
 		geo: {
 			"@type": "GeoCoordinates",
-			latitude: 40.2483,
-			longitude: -3.6997,
+			latitude: 40.26497,
+			longitude: -3.69852,
 		},
+		// Horario confirmado con el perfil de empresa de Google.
 		openingHoursSpecification: [
 			{
 				"@type": "OpeningHoursSpecification",
-				dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+				dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
 				opens: "09:00",
 				closes: "18:00",
+			},
+			{
+				"@type": "OpeningHoursSpecification",
+				dayOfWeek: "Friday",
+				opens: "09:00",
+				closes: "15:00",
 			},
 		],
 		description: SITE_DESCRIPTION,
 		priceRange: "€€",
+		// MID del Knowledge Graph de Google para "Dinaprint SL".
+		identifier: GOOGLE_KG_MID,
+		hasMap: GOOGLE_BUSINESS_PROFILE_URL,
+		sameAs: [GOOGLE_BUSINESS_PROFILE_URL],
 	};
 }
 
@@ -146,6 +163,8 @@ export function getOrganizationSchema() {
 		"@id": `${SITE_URL}#organization`,
 		name: SITE_NAME,
 		legalName: "Dinaprint S.L.",
+		identifier: GOOGLE_KG_MID,
+		sameAs: [GOOGLE_BUSINESS_PROFILE_URL],
 		url: getSiteUrl(),
 		logo: absoluteUrl("/logo-dinaprint-final-02.png"),
 		email: "dinaprint@dinaprint.com",

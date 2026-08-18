@@ -11,13 +11,18 @@ interface ServiceProps {
 
 const Service: React.FC<ServiceProps> = ({ title, image, icon, text, imageLeft }: ServiceProps) => (
 	<div className={`md:flex ${imageLeft ? "flex-row" : "flex-row-reverse"} md:items-center`}>
-		<div
-			className="w-full h-[320px] md:h-[414px] bg-center bg-cover md:w-1/2"
-			style={{ backgroundImage: `url(${image})` }}
-		/>
+		<div className="relative w-full h-[320px] md:h-[414px] md:w-1/2">
+			<Image
+				src={image}
+				alt={`${title} - Dinaprint`}
+				fill
+				sizes="(max-width: 768px) 100vw, 50vw"
+				className="object-cover object-center"
+			/>
+		</div>
 		<div className="p-10 text-center w-full md:w-1/2">
 			<Image src={icon} width={70} height={70} alt="" aria-hidden="true" className="mx-auto mb-5" />
-			<h4 className="text-2xl text-secondary pb-5 font-semibold">{title}</h4>
+			<h3 className="text-2xl text-secondary pb-5 font-semibold">{title}</h3>
 			<p>{text}</p>
 		</div>
 	</div>

@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export default async function Page() {
 	return (
 		<main className="px-5 py-10 mx-auto max-w-[1200px]">
-			<h2 className="text-3xl font-medium pb-5">Política de cookies</h2>
+			<h1 className="text-3xl font-medium pb-5">Política de cookies</h1>
 			<p className="pb-8">
 				<b>
 					Este sitio web no utiliza cookies, ni propias ni de terceros, y tampoco emplea ningún otro

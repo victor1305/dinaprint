@@ -37,9 +37,17 @@ const MainSwiperImages = ({ slides }: SlidesProps) => (
 	>
 		{slides.map((slide) => (
 			<SwiperSlide key={slide.title}>
-				<div style={{ backgroundImage: `url(${slide.backImage})` }} className="h-[464px] bg-center">
+				<div className="relative h-[464px]">
+					<Image
+						src={slide.backImage}
+						alt=""
+						aria-hidden="true"
+						fill
+						sizes="(max-width: 768px) 100vw, 33vw"
+						className="object-cover object-center -z-10"
+					/>
 					<div className="!animate-swip-main p-8 h-full mx-auto lg:max-w-[360px] flex justify-center flex-col items-center">
-						<h4 className="text-[35px] font-bold text-white pb-4 text-center">{slide.title}</h4>
+						<h3 className="text-[35px] font-bold text-white pb-4 text-center">{slide.title}</h3>
 						<Image src={slide.image} width={100} height={120} alt={slide.title} />
 						<Link
 							href={slide.url}

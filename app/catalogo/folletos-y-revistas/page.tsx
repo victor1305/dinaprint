@@ -39,6 +39,48 @@ export const metadata: Metadata = {
 	],
 };
 
+const specRows = [
+	{
+		label: "Formatos",
+		value: "A4, A5, cuadrado 21×21 cm y 24×24 cm. Apaisados y formatos a medida bajo pedido.",
+	},
+	{
+		label: "Número de páginas",
+		value:
+			"Desde 8. Con grapa, múltiplos de 4 hasta unas 64 páginas. Con cola PUR o cosido, sin límite práctico.",
+	},
+	{
+		label: "Encuadernaciones",
+		value: "Grapa a caballete, wire-o, espiral, fresado con cola PUR y cosido con hilo vegetal.",
+	},
+	{
+		label: "Papeles de interior",
+		value: "Estucado mate o brillo de 115 a 170 g. Offset ahuesado y reciclados certificados FSC.",
+	},
+	{
+		label: "Papeles de cubierta",
+		value: "Estucado de 250 a 350 g, con o sin plastificado, y cartulinas texturadas.",
+	},
+	{
+		label: "Acabados",
+		value:
+			"Plastificado mate, brillo o soft-touch, barniz UVI selectivo, stamping, troquelado y golpe en seco.",
+	},
+	{
+		label: "Tirada mínima",
+		value: "25 unidades en digital. El offset compensa a partir de unas 500.",
+	},
+	{
+		label: "Plazo de entrega",
+		value: "48-72 h en digital. De 5 a 7 días laborables en offset con acabados especiales.",
+	},
+	{
+		label: "Archivos",
+		value:
+			"PDF en CMYK, páginas sueltas y en orden, 3 mm de sangre y 300 ppp. Del pliego nos encargamos nosotros.",
+	},
+];
+
 const faqItems = [
 	{
 		question: "¿Qué tipos de encuadernación ofrecéis?",
@@ -60,6 +102,21 @@ const faqItems = [
 		answer:
 			"Depende de la cantidad y el tipo de encuadernación. Para tiradas digitales pequeñas, podemos entregar en 3-5 días laborables. Trabajos offset o con acabados especiales suelen requerir 7-10 días.",
 	},
+	{
+		question: "¿Cuántas páginas puede tener un folleto grapado?",
+		answer:
+			"Hasta unas 64 páginas, siempre en múltiplos de 4. Por encima de eso el lomo abulta y las hojas centrales sobresalen: ahí conviene pasar a cola PUR.",
+	},
+	{
+		question: "¿Qué es el desplazamiento de páginas y por qué me afecta?",
+		answer:
+			"En un cuadernillo grapado, las hojas interiores sobresalen unos milímetros y se recortan al guillotinar. Lo compensamos en el montaje, pero conviene no acercar textos ni folios a menos de 8 mm del corte.",
+	},
+	{
+		question: "¿Puedo imprimir una revista con periodicidad fija?",
+		answer:
+			"Sí, y en ese caso dejamos el trabajo preparado en máquina para que cada número salga más rápido y con el color consistente entre ediciones.",
+	},
 ];
 
 const serviceSchema = buildServiceSchema({
@@ -77,6 +134,9 @@ export default async function Page() {
 		product: "Folletos y revistas",
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/Folletos-y-revistas-001.jpg",
+		specs: specRows,
+		specsCaption:
+			"Combinaciones de producción habitual. Si necesitas un formato o una encuadernación que no aparece, consúltanos.",
 		text: [
 			"Impresos a todo color en varios tipos de encuadernaciones: grapado, wire-o, hilo y cola PUR. Ofrecemos una amplia variedad de papeles en diferentes gramajes y acabados como plastificados de todo tipo y troquelados.",
 			"Cada proyecto es diferente: desde un folleto informativo de 8 páginas hasta una revista corporativa de 100 páginas. Te asesoramos para elegir el formato, papel y encuadernación más adecuados.",

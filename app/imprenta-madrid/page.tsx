@@ -212,6 +212,33 @@ export default async function Page() {
 					toda España sin coste adicional en la mayoría de pedidos.
 				</p>
 
+				{/* Entrega en Madrid capital */}
+				<h3 className="text-xl lg:text-2xl font-semibold text-secondary pt-10">
+					Producción en Pinto, entrega en Madrid capital
+				</h3>
+				<p className="pt-4 text-base lg:text-lg">
+					Nuestro taller está en el Área Empresarial Andalucía de Pinto, a unos 20 km del centro de
+					Madrid por la A-4. Es una ventaja práctica: producimos con costes de polígono, no de local
+					en el centro, y seguimos estando lo bastante cerca como para que puedas venir a ver una
+					prueba de color o recoger un pedido urgente el mismo día.
+				</p>
+				<p className="pt-4 text-base lg:text-lg">
+					Trabajamos con estudios de diseño, agencias, comercios y empresas de toda la ciudad, con
+					entrega habitual en los distritos del sur y el centro —Villaverde, Usera, Carabanchel,
+					Arganzuela, Retiro y Salamanca— y en el resto de Madrid por la M-40 y la M-30.
+				</p>
+				<p className="pt-4 text-base lg:text-lg">
+					Si estás en el corredor sur, te interesan también nuestras páginas de{" "}
+					<Link href="/imprenta-sur-de-madrid" className="text-primary underline">
+						imprenta en el sur de Madrid
+					</Link>{" "}
+					e{" "}
+					<Link href="/imprenta-pinto" className="text-primary underline">
+						imprenta en Pinto
+					</Link>
+					.
+				</p>
+
 				{/* FAQ */}
 				<div className="pt-6">
 					<FAQ items={faqItems} />
