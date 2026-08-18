@@ -1,3 +1,5 @@
+import { formatBusinessHours } from "@/lib/hours";
+
 export const mainAnswers = [
 	{
 		icon: "/calidad.png",
@@ -101,7 +103,7 @@ export const servicesTypes = [
 		title: "Preimpresión",
 		icon: "/text-lines.png",
 		text: "Chequeamos todos los archivos, asegurándonos que son óptimos para su impresión. Si encontramos cualquier anomalía lo comunicamos al cliente y procedemos a encontrar la solución más adecuada.",
-		image: "preimpresion-01.jpg",
+		image: "/preimpresion-01.jpg",
 		imageLeft: true,
 	},
 	{
@@ -207,6 +209,6 @@ export const findBoxes = [
 	},
 	{
 		title: "Horario",
-		subtitle: "Lunes a jueves de 9:00 a 18:00 · Viernes de 9:00 a 15:00",
+		subtitle: formatBusinessHours(),
 	},
 ];

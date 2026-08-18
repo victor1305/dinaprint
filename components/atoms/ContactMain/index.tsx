@@ -1,3 +1,5 @@
+import { formatBusinessHours } from "@/lib/hours";
+
 import type React from "react";
 
 const ContactMain: React.FC = () => (
@@ -9,8 +11,7 @@ const ContactMain: React.FC = () => (
 			ponte en contacto con nosotros hoy mismo a través del siguiente formulario, llámanos o si lo
 			prefieres te llamamos nosotros. Estaremos encantados de atenderte.
 		</p>
-		<p className="font-medium text-[#3d4459] pb-1">Lunes a jueves: 9:00 a 18:00</p>
-		<p className="font-medium text-[#3d4459]">Viernes: 9:00 a 15:00</p>
+		<p className="font-medium text-[#3d4459]">{formatBusinessHours(" · ")}</p>
 	</div>
 );
 

@@ -2,6 +2,7 @@ import { Montserrat } from "next/font/google";
 
 import { OG_IMAGE_PATH, SITE_DESCRIPTION, SITE_NAME, getSiteUrl } from "@/lib/seo";
 
+import { WhatsAppButton } from "@/components/atoms";
 import { Footer, Header } from "@/components/molecules";
 
 import type { Metadata } from "next";
@@ -73,6 +74,7 @@ export default function RootLayout({
 				<Header />
 				<div>{children}</div>
 				<Footer />
+				<WhatsAppButton />
 			</body>
 		</html>
 	);

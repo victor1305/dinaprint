@@ -20,6 +20,7 @@ import SectionPrincipalBanner from "./SectionPrincipalBanner";
 import Service from "./Service";
 import ServicesPrincipal from "./ServicesPrincipal";
 import SpecTable from "./SpecTable";
+import WhatsAppButton from "./WhatsAppButton";
 
 export {
 	AboutEnviromental,
@@ -44,4 +45,5 @@ export {
 	Service,
 	SpecTable,
 	ServicesPrincipal,
+	WhatsAppButton,
 };

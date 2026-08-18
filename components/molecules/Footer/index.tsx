@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { formatBusinessHours } from "@/lib/hours";
+
 const Footer = () => (
 	<footer>
 		<div className="bg-footer-bg px-2.5 py-5">
@@ -162,11 +164,7 @@ const Footer = () => (
 						<p className="pt-1 pb-3">
 							C/ Coto de Doñana, 9 Área Empresarial Andalucía 28320, Pinto, Madrid
 						</p>
-						<p className="pb-3">
-							Lunes a jueves de 9:00 a 18:00
-							<br />
-							Viernes de 9:00 a 15:00
-						</p>
+						<p className="pb-3">{formatBusinessHours(" · ")}</p>
 						<p className="text-footer-li pb-3 hover:text-primary">
 							<a href="mailto:dinaprint@dinaprint.com">dinaprint@dinaprint.com</a>
 						</p>

@@ -1,3 +1,5 @@
+import { getOpeningHoursSchema } from "@/lib/hours";
+
 export const SITE_NAME = "Dinaprint";
 export const SITE_DOMAIN = "dinaprint.com";
 
@@ -90,21 +92,8 @@ export function getLocalBusinessSchema() {
 			latitude: 40.26497,
 			longitude: -3.69852,
 		},
-		// Horario confirmado con el perfil de empresa de Google.
-		openingHoursSpecification: [
-			{
-				"@type": "OpeningHoursSpecification",
-				dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
-				opens: "09:00",
-				closes: "18:00",
-			},
-			{
-				"@type": "OpeningHoursSpecification",
-				dayOfWeek: "Friday",
-				opens: "09:00",
-				closes: "15:00",
-			},
-		],
+		// Horario desde la fuente única en lib/hours.ts
+		openingHoursSpecification: getOpeningHoursSchema(),
 		description: SITE_DESCRIPTION,
 		priceRange: "€€",
 		// MID del Knowledge Graph de Google para "Dinaprint SL".
