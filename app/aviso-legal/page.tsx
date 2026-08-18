@@ -1,4 +1,4 @@
-import { absoluteUrl } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, ogImage, ogImageUrl } from "@/lib/seo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,22 +12,16 @@ export const metadata: Metadata = {
 		follow: true,
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Aviso legal",
 		url: absoluteUrl("/aviso-legal"),
 		description: "Aviso legal de Dinaprint S.L.",
-		images: [
-			{
-				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Aviso legal - Dinaprint",
-			},
-		],
+		images: [ogImage("/slider-principal-dinaprint.jpg", "Aviso legal - Dinaprint")],
 	},
 	twitter: {
 		title: "Aviso legal",
-		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
+		images: [ogImageUrl("/slider-principal-dinaprint.jpg")],
 	},
 };
 

@@ -18,6 +18,43 @@ export const GOOGLE_BUSINESS_PROFILE_URL = `https://www.google.com/search?kgmid=
 
 export const OG_IMAGE_PATH = "/slider-principal-dinaprint.jpg";
 
+/** Medida real de los recortes que genera `scripts/generate-og.mjs`. */
+export const OG_IMAGE_WIDTH = 1200;
+export const OG_IMAGE_HEIGHT = 630;
+
+export const OG_LOCALE = "es_ES";
+
+/**
+ * Next.js sustituye entero el bloque `openGraph` del layout cuando una página
+ * declara el suyo: no hace merge profundo. Sin esparcir estos valores, todas las
+ * páginas salen sin `og:site_name` ni `og:locale`.
+ */
+export const OG_DEFAULTS = {
+	locale: OG_LOCALE,
+	siteName: SITE_NAME,
+} as const;
+
+/** Ruta del recorte 1200x630 de una imagen de /public: /foo.jpg → /og/foo.jpg */
+export function ogImagePath(path: string) {
+	const file = path.split("/").pop() ?? "";
+	return `/og/${file.replace(/\.[^.]+$/, "")}.jpg`;
+}
+
+/** Imagen lista para `openGraph.images`, con las medidas que de verdad tiene. */
+export function ogImage(path: string, alt: string) {
+	return {
+		url: absoluteUrl(ogImagePath(path)),
+		width: OG_IMAGE_WIDTH,
+		height: OG_IMAGE_HEIGHT,
+		alt,
+	};
+}
+
+/** Misma imagen para `twitter.images`, que solo admite la URL. */
+export function ogImageUrl(path: string) {
+	return absoluteUrl(ogImagePath(path));
+}
+
 export const SITE_DESCRIPTION =
 	"Imprenta en Madrid (Pinto, sur de Madrid) especializada en impresión digital y offset, papelería corporativa, folletos, carteles, packaging y regalo promocional.";
 

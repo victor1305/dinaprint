@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { FAQ, JsonLd, KnowMore, SectionPrincipalBanner } from "@/components/atoms";
-import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -13,23 +13,17 @@ export const metadata: Metadata = {
 		canonical: "/imprenta-madrid",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Imprenta en Madrid",
 		url: absoluteUrl("/imprenta-madrid"),
 		description:
 			"Imprenta en Madrid especializada en impresión digital y offset. Papelería corporativa, folletos, carteles, packaging y más.",
-		images: [
-			{
-				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Imprenta Dinaprint - Madrid",
-			},
-		],
+		images: [ogImage("/slider-principal-dinaprint.jpg", "Imprenta Dinaprint - Madrid")],
 	},
 	twitter: {
 		title: "Imprenta en Madrid",
-		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
+		images: [ogImageUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
 		"imprenta madrid",

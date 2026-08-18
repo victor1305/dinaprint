@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { FAQ, JsonLd, KnowMore, SectionPrincipalBanner } from "@/components/atoms";
 
-import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -14,22 +14,16 @@ export const metadata: Metadata = {
 		canonical: "/imprenta-sur-de-madrid",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Imprenta sur de Madrid",
 		url: absoluteUrl("/imprenta-sur-de-madrid"),
 		description: "Imprenta en la zona sur de Madrid: servicio rápido y envíos a toda la península.",
-		images: [
-			{
-				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Imprenta sur de Madrid - Dinaprint",
-			},
-		],
+		images: [ogImage("/slider-principal-dinaprint.jpg", "Imprenta sur de Madrid - Dinaprint")],
 	},
 	twitter: {
 		title: "Imprenta sur de Madrid",
-		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
+		images: [ogImageUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
 		"imprenta sur de madrid",

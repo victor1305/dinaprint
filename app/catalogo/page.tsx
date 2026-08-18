@@ -1,5 +1,5 @@
 import { Catalog } from "@/components/organisms";
-import { absoluteUrl } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, ogImage, ogImageUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -11,18 +11,17 @@ export const metadata: Metadata = {
 		canonical: "/catalogo",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Catálogo de productos de imprenta",
 		url: absoluteUrl("/catalogo"),
 		description:
 			"Catálogo de productos de imprenta: papelería corporativa, folletos y revistas, carteles, packaging, expositores, roll up, calendarios y regalo promocional.",
-		images: [
-			{ url: absoluteUrl("/calendar-1.jpg"), width: 1200, height: 630, alt: "Catálogo Dinaprint" },
-		],
+		images: [ogImage("/calendar-1.jpg", "Catálogo Dinaprint")],
 	},
 	twitter: {
 		title: "Catálogo de productos de imprenta",
-		images: [absoluteUrl("/calendar-1.jpg")],
+		images: [ogImageUrl("/calendar-1.jpg")],
 	},
 	keywords: [
 		"catálogo imprenta",

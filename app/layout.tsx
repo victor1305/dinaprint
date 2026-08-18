@@ -1,11 +1,19 @@
 import { Montserrat } from "next/font/google";
 
-import { OG_IMAGE_PATH, SITE_DESCRIPTION, SITE_NAME, getSiteUrl } from "@/lib/seo";
+import {
+	OG_DEFAULTS,
+	OG_IMAGE_PATH,
+	SITE_DESCRIPTION,
+	SITE_NAME,
+	getSiteUrl,
+	ogImage,
+	ogImageUrl,
+} from "@/lib/seo";
 
 import { WhatsAppButton } from "@/components/atoms";
 import { Footer, Header } from "@/components/molecules";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
 import "./globals.css";
@@ -32,25 +40,23 @@ export const metadata: Metadata = {
 		},
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
-		locale: "es_ES",
-		siteName: SITE_NAME,
 		title: SITE_NAME,
 		url: new URL(getSiteUrl()).toString(),
-		images: [
-			{
-				url: OG_IMAGE_PATH,
-				width: 1200,
-				height: 630,
-				alt: SITE_NAME,
-			},
-		],
+		images: [ogImage(OG_IMAGE_PATH, SITE_NAME)],
 	},
 	twitter: {
 		card: "summary_large_image",
 		title: SITE_NAME,
-		images: [OG_IMAGE_PATH],
+		images: [ogImageUrl(OG_IMAGE_PATH)],
 	},
+};
+
+export const viewport: Viewport = {
+	// Tiñe la barra del navegador en móvil con el naranja de marca.
+	themeColor: "#ff6b00",
+	colorScheme: "light",
 };
 
 // localBusiness schema moved to `lib/seo.ts` via `getLocalBusinessSchema()`

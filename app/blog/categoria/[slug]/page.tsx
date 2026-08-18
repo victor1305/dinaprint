@@ -8,7 +8,7 @@ import {
 	getCategorySlug,
 	getPostsByCategory,
 } from "@/lib/blog";
-import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
 
 import { Breadcrumbs, JsonLd, SectionPrincipalBanner } from "@/components/atoms";
 
@@ -35,6 +35,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
 		description,
 		alternates: { canonical: `/blog/categoria/${params.slug}` },
 		openGraph: {
+			...OG_DEFAULTS,
 			type: "website",
 			title,
 			description,

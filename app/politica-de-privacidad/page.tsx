@@ -1,4 +1,4 @@
-import { absoluteUrl } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, ogImage, ogImageUrl } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -13,22 +13,16 @@ export const metadata: Metadata = {
 		follow: true,
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Política de privacidad",
 		url: absoluteUrl("/politica-de-privacidad"),
 		description: "Política de privacidad de Dinaprint.S.L.",
-		images: [
-			{
-				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Política de privacidad - Dinaprint",
-			},
-		],
+		images: [ogImage("/slider-principal-dinaprint.jpg", "Política de privacidad - Dinaprint")],
 	},
 	twitter: {
 		title: "Política de privacidad",
-		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
+		images: [ogImageUrl("/slider-principal-dinaprint.jpg")],
 	},
 };
 

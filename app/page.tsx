@@ -1,9 +1,12 @@
 import { Main } from "@/components/organisms";
 import {
+	OG_DEFAULTS,
 	absoluteUrl,
 	getLocalBusinessSchema,
 	getOrganizationSchema,
 	getWebSiteSchema,
+	ogImage,
+	ogImageUrl,
 } from "@/lib/seo";
 
 import { JsonLd } from "@/components/atoms";
@@ -17,25 +20,19 @@ export const metadata: Metadata = {
 		canonical: "/",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Imprenta en Madrid (Pinto) | Impresión digital y offset",
 		url: absoluteUrl("/"),
 		description:
 			"Imprenta en Madrid (Pinto, sur de Madrid). Impresión digital y offset, papelería corporativa, folletos, carteles, packaging y regalo promocional.",
-		images: [
-			{
-				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Imprenta Dinaprint",
-			},
-		],
+		images: [ogImage("/slider-principal-dinaprint.jpg", "Imprenta Dinaprint")],
 	},
 	twitter: {
 		title: "Imprenta en Madrid (Pinto) | Impresión digital y offset",
 		description:
 			"Imprenta en Madrid (Pinto, sur de Madrid). Impresión digital y offset, papelería corporativa, folletos, carteles, packaging y regalo promocional.",
-		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
+		images: [ogImageUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
 		"imprenta madrid",

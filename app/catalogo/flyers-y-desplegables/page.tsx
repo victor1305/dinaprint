@@ -1,6 +1,13 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { absoluteUrl, buildServiceSchema, getLocalBusinessSchema } from "@/lib/seo";
+import {
+	OG_DEFAULTS,
+	absoluteUrl,
+	buildServiceSchema,
+	getLocalBusinessSchema,
+	ogImage,
+	ogImageUrl,
+} from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -12,23 +19,17 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/flyers-y-desplegables",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Impresión de flyers y desplegables",
 		url: absoluteUrl("/catalogo/flyers-y-desplegables"),
 		description:
 			"Impresión de flyers y desplegables en Madrid (Pinto): distintos tamaños, papeles y acabados para buzoneo, promociones y puntos de venta.",
-		images: [
-			{
-				url: absoluteUrl("/flyer-001.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Flyers y desplegables - Dinaprint",
-			},
-		],
+		images: [ogImage("/flyer-001.jpg", "Flyers y desplegables - Dinaprint")],
 	},
 	twitter: {
 		title: "Impresión de flyers y desplegables",
-		images: [absoluteUrl("/flyer-001.jpg")],
+		images: [ogImageUrl("/flyer-001.jpg")],
 	},
 	keywords: [
 		"imprimir flyers madrid",

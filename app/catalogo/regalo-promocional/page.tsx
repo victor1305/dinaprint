@@ -1,6 +1,13 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { absoluteUrl, buildServiceSchema, getLocalBusinessSchema } from "@/lib/seo";
+import {
+	OG_DEFAULTS,
+	absoluteUrl,
+	buildServiceSchema,
+	getLocalBusinessSchema,
+	ogImage,
+	ogImageUrl,
+} from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -12,22 +19,16 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/regalo-promocional",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Regalo promocional personalizado",
 		url: absoluteUrl("/catalogo/regalo-promocional"),
 		description: "Merchandising y regalos promocionales personalizados para empresas y eventos.",
-		images: [
-			{
-				url: absoluteUrl("/regalo-promocional-01.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Regalo promocional - Dinaprint",
-			},
-		],
+		images: [ogImage("/regalo-promocional-01.jpg", "Regalo promocional - Dinaprint")],
 	},
 	twitter: {
 		title: "Regalo promocional personalizado",
-		images: [absoluteUrl("/regalo-promocional-01.jpg")],
+		images: [ogImageUrl("/regalo-promocional-01.jpg")],
 	},
 	keywords: [
 		"regalo promocional",

@@ -9,10 +9,13 @@ import {
 	SpecTable,
 } from "@/components/atoms";
 import {
+	OG_DEFAULTS,
 	absoluteUrl,
 	buildProductSchema,
 	buildServiceSchema,
 	getLocalBusinessSchema,
+	ogImage,
+	ogImageUrl,
 } from "@/lib/seo";
 
 import type { Metadata } from "next";
@@ -29,20 +32,14 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/cartas-y-menus",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: TITLE,
 		url: absoluteUrl("/catalogo/cartas-y-menus"),
 		description: DESCRIPTION,
-		images: [
-			{
-				url: absoluteUrl(IMAGE),
-				width: 1200,
-				height: 630,
-				alt: "Impresión de cartas y menús para restaurantes",
-			},
-		],
+		images: [ogImage(IMAGE, "Impresión de cartas y menús para restaurantes")],
 	},
-	twitter: { title: TITLE, description: DESCRIPTION, images: [absoluteUrl(IMAGE)] },
+	twitter: { title: TITLE, description: DESCRIPTION, images: [ogImageUrl(IMAGE)] },
 	keywords: [
 		"imprimir menú restaurante",
 		"impresión de cartas para restaurantes",

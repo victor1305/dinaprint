@@ -9,10 +9,13 @@ import {
 	SpecTable,
 } from "@/components/atoms";
 import {
+	OG_DEFAULTS,
 	absoluteUrl,
 	buildProductSchema,
 	buildServiceSchema,
 	getLocalBusinessSchema,
+	ogImage,
+	ogImageUrl,
 } from "@/lib/seo";
 
 import type { Metadata } from "next";
@@ -29,16 +32,17 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/catalogos",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: TITLE,
 		url: absoluteUrl("/catalogo/catalogos"),
 		description: DESCRIPTION,
-		images: [{ url: absoluteUrl(IMAGE), width: 1200, height: 630, alt: "Impresión de catálogos" }],
+		images: [ogImage(IMAGE, "Impresión de catálogos")],
 	},
 	twitter: {
 		title: TITLE,
 		description: DESCRIPTION,
-		images: [absoluteUrl(IMAGE)],
+		images: [ogImageUrl(IMAGE)],
 	},
 	keywords: [
 		"impresión de catálogos",

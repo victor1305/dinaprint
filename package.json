@@ -4,11 +4,13 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"build": "node scripts/check-images.mjs && next build",
+		"build": "node scripts/check-images.mjs && node scripts/generate-og.mjs && next build",
 		"start": "next start",
 		"lint": "biome check .",
 		"format": "biome format --write .",
-		"check:images": "node scripts/check-images.mjs"
+		"check:images": "node scripts/check-images.mjs",
+		"generate:og": "node scripts/generate-og.mjs",
+		"generate:icons": "node scripts/generate-icons.mjs"
 	},
 	"dependencies": {
 		"@emailjs/browser": "^3.11.0",

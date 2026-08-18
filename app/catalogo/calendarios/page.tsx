@@ -1,6 +1,13 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { absoluteUrl, buildServiceSchema, getLocalBusinessSchema } from "@/lib/seo";
+import {
+	OG_DEFAULTS,
+	absoluteUrl,
+	buildServiceSchema,
+	getLocalBusinessSchema,
+	ogImage,
+	ogImageUrl,
+} from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -12,25 +19,19 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/calendarios",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Impresión de calendarios personalizados",
 		url: absoluteUrl("/catalogo/calendarios"),
 		description:
 			"Impresión de calendarios personalizados en Madrid (Pinto): de pared, mesa o bolsillo, en cualquier cantidad, medida y soporte.",
-		images: [
-			{
-				url: absoluteUrl("/calendar-1.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Calendarios personalizados - Dinaprint",
-			},
-		],
+		images: [ogImage("/calendar-1.jpg", "Calendarios personalizados - Dinaprint")],
 	},
 	twitter: {
 		title: "Impresión de calendarios personalizados",
 		description:
 			"Impresión de calendarios personalizados en Madrid (Pinto): de pared, mesa o bolsillo, en cualquier cantidad, medida y soporte.",
-		images: [absoluteUrl("/calendar-1.jpg")],
+		images: [ogImageUrl("/calendar-1.jpg")],
 	},
 	keywords: [
 		"imprimir calendarios madrid",

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { BLOG_CATEGORIES, POSTS_PER_PAGE, getAllPosts, getCategorySlug } from "@/lib/blog";
-import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
 
 import { Breadcrumbs, JsonLd, Pagination, SectionPrincipalBanner } from "@/components/atoms";
 import { PostGrid } from "@/components/molecules";
@@ -34,7 +34,13 @@ export function generateMetadata({ params }: PageProps): Metadata {
 		description,
 		// Canonical propio: nunca apuntar las paginadas a /blog, se perderían del índice.
 		alternates: { canonical: `/blog/pagina/${page}` },
-		openGraph: { type: "website", title, description, url: absoluteUrl(`/blog/pagina/${page}`) },
+		openGraph: {
+			...OG_DEFAULTS,
+			type: "website",
+			title,
+			description,
+			url: absoluteUrl(`/blog/pagina/${page}`),
+		},
 		twitter: { title, description },
 	};
 }

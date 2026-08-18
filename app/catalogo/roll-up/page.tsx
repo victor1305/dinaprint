@@ -1,6 +1,13 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { absoluteUrl, buildServiceSchema, getLocalBusinessSchema } from "@/lib/seo";
+import {
+	OG_DEFAULTS,
+	absoluteUrl,
+	buildServiceSchema,
+	getLocalBusinessSchema,
+	ogImage,
+	ogImageUrl,
+} from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -12,18 +19,17 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/roll-up",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Roll up: impresión y montaje para ferias y eventos",
 		url: absoluteUrl("/catalogo/roll-up"),
 		description:
 			"Roll up en Madrid (Pinto): impresión a todo color, varios tamaños y acabados. Ideal para ferias, exposiciones y eventos.",
-		images: [
-			{ url: absoluteUrl("/rollup-001.jpg"), width: 1200, height: 630, alt: "Roll up - Dinaprint" },
-		],
+		images: [ogImage("/rollup-001.jpg", "Roll up - Dinaprint")],
 	},
 	twitter: {
 		title: "Roll up: impresión y montaje para ferias y eventos",
-		images: [absoluteUrl("/rollup-001.jpg")],
+		images: [ogImageUrl("/rollup-001.jpg")],
 	},
 	keywords: [
 		"roll up madrid",

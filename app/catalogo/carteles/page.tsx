@@ -1,6 +1,13 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { absoluteUrl, buildServiceSchema, getLocalBusinessSchema } from "@/lib/seo";
+import {
+	OG_DEFAULTS,
+	absoluteUrl,
+	buildServiceSchema,
+	getLocalBusinessSchema,
+	ogImage,
+	ogImageUrl,
+} from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -12,23 +19,17 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/carteles",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Impresión de carteles",
 		url: absoluteUrl("/catalogo/carteles"),
 		description: "Impresión de carteles en papel, rígidos y lonas con acabados profesionales.",
-		images: [
-			{
-				url: absoluteUrl("/carteles-01.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Impresión de carteles - Dinaprint",
-			},
-		],
+		images: [ogImage("/carteles-01.jpg", "Impresión de carteles - Dinaprint")],
 	},
 	twitter: {
 		title: "Impresión de carteles",
 		description: "Impresión de carteles en papel, rígidos y lonas con acabados profesionales.",
-		images: [absoluteUrl("/carteles-01.jpg")],
+		images: [ogImageUrl("/carteles-01.jpg")],
 	},
 	keywords: [
 		"imprimir carteles madrid",

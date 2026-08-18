@@ -11,7 +11,7 @@ import {
 	getPostBySlug,
 	getRelatedPosts,
 } from "@/lib/blog";
-import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
 import { Breadcrumbs, JsonLd } from "@/components/atoms";
 
@@ -42,11 +42,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 		},
 		keywords: post.tags,
 		openGraph: {
+			...OG_DEFAULTS,
 			type: "article",
 			title: post.title,
 			description: post.description,
 			url: absoluteUrl(`/blog/${slug}`),
-			images: [{ url: absoluteUrl(post.image), width: 1200, height: 630, alt: post.title }],
+			images: [ogImage(post.image, post.title)],
 			publishedTime: post.publishedAt,
 			modifiedTime: post.updatedAt || post.publishedAt,
 			authors: [post.author],
@@ -55,7 +56,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 			card: "summary_large_image",
 			title: post.title,
 			description: post.description,
-			images: [absoluteUrl(post.image)],
+			images: [ogImageUrl(post.image)],
 		},
 	};
 }

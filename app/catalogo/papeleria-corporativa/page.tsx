@@ -1,6 +1,13 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { absoluteUrl, buildServiceSchema, getLocalBusinessSchema } from "@/lib/seo";
+import {
+	OG_DEFAULTS,
+	absoluteUrl,
+	buildServiceSchema,
+	getLocalBusinessSchema,
+	ogImage,
+	ogImageUrl,
+} from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -12,23 +19,17 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/papeleria-corporativa",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Papelería corporativa en Madrid: tarjetas y carpetas",
 		url: absoluteUrl("/catalogo/papeleria-corporativa"),
 		description:
 			"Papelería corporativa en Madrid (Pinto): tarjetas de visita, carpetas, cartas, catálogos y folletos con acabados profesionales.",
-		images: [
-			{
-				url: absoluteUrl("/papeleria-corporativa-01.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Papelería corporativa - Dinaprint",
-			},
-		],
+		images: [ogImage("/papeleria-corporativa-01.jpg", "Papelería corporativa - Dinaprint")],
 	},
 	twitter: {
 		title: "Papelería corporativa en Madrid: tarjetas y carpetas",
-		images: [absoluteUrl("/papeleria-corporativa-01.jpg")],
+		images: [ogImageUrl("/papeleria-corporativa-01.jpg")],
 	},
 	keywords: [
 		"papelería corporativa",

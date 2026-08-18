@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { FAQ, JsonLd, KnowMore, SectionPrincipalBanner } from "@/components/atoms";
 import { FindUs } from "@/components/molecules";
-import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -14,23 +14,17 @@ export const metadata: Metadata = {
 		canonical: "/imprenta-pinto",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Imprenta en Pinto (Madrid)",
 		url: absoluteUrl("/imprenta-pinto"),
 		description:
 			"Imprenta en Pinto (Madrid) con impresión digital y offset. Papelería corporativa, folletos, carteles, packaging y acabados. Servicio para el sur de Madrid.",
-		images: [
-			{
-				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Imprenta Dinaprint - Pinto",
-			},
-		],
+		images: [ogImage("/slider-principal-dinaprint.jpg", "Imprenta Dinaprint - Pinto")],
 	},
 	twitter: {
 		title: "Imprenta en Pinto (Madrid)",
-		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
+		images: [ogImageUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
 		"imprenta pinto",

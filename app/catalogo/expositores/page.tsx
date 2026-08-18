@@ -1,6 +1,13 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { absoluteUrl, buildServiceSchema, getLocalBusinessSchema } from "@/lib/seo";
+import {
+	OG_DEFAULTS,
+	absoluteUrl,
+	buildServiceSchema,
+	getLocalBusinessSchema,
+	ogImage,
+	ogImageUrl,
+} from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -12,23 +19,17 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/expositores",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Expositores para punto de venta",
 		url: absoluteUrl("/catalogo/expositores"),
 		description:
 			"Expositores personalizados para retail, ferias y puntos de venta. Múltiples materiales y acabados.",
-		images: [
-			{
-				url: absoluteUrl("/stand-001.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Expositores - Dinaprint",
-			},
-		],
+		images: [ogImage("/stand-001.jpg", "Expositores - Dinaprint")],
 	},
 	twitter: {
 		title: "Expositores para punto de venta",
-		images: [absoluteUrl("/stand-001.jpg")],
+		images: [ogImageUrl("/stand-001.jpg")],
 	},
 	keywords: [
 		"expositores punto de venta",

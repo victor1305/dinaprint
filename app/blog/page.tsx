@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { BLOG_CATEGORIES, POSTS_PER_PAGE, getAllPosts, getCategorySlug } from "@/lib/blog";
-import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
 import { Breadcrumbs, JsonLd, Pagination, SectionPrincipalBanner } from "@/components/atoms";
 import { PostGrid } from "@/components/molecules";
@@ -16,23 +16,17 @@ export const metadata: Metadata = {
 		canonical: "/blog",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Blog de imprenta: guías, consejos y tendencias",
 		url: absoluteUrl("/blog"),
 		description:
 			"Blog sobre impresión, diseño gráfico y artes gráficas. Guías para preparar archivos, elegir papel, acabados de impresión y tendencias de packaging.",
-		images: [
-			{
-				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Blog Dinaprint",
-			},
-		],
+		images: [ogImage("/slider-principal-dinaprint.jpg", "Blog Dinaprint")],
 	},
 	twitter: {
 		title: "Blog de imprenta: guías, consejos y tendencias",
-		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
+		images: [ogImageUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
 		"blog imprenta",

@@ -1,6 +1,13 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import { absoluteUrl, buildServiceSchema, getLocalBusinessSchema } from "@/lib/seo";
+import {
+	OG_DEFAULTS,
+	absoluteUrl,
+	buildServiceSchema,
+	getLocalBusinessSchema,
+	ogImage,
+	ogImageUrl,
+} from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -12,23 +19,17 @@ export const metadata: Metadata = {
 		canonical: "/catalogo/folletos-y-revistas",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Impresión de folletos y revistas",
 		url: absoluteUrl("/catalogo/folletos-y-revistas"),
 		description:
 			"Impresión de folletos y revistas con encuadernación wire-o, hilo, cola PUR, plastificados y troquelados.",
-		images: [
-			{
-				url: absoluteUrl("/Folletos-y-revistas-001.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Folletos y revistas - Dinaprint",
-			},
-		],
+		images: [ogImage("/Folletos-y-revistas-001.jpg", "Folletos y revistas - Dinaprint")],
 	},
 	twitter: {
 		title: "Impresión de folletos y revistas",
-		images: [absoluteUrl("/Folletos-y-revistas-001.jpg")],
+		images: [ogImageUrl("/Folletos-y-revistas-001.jpg")],
 	},
 	keywords: [
 		"imprimir folletos madrid",

@@ -1,5 +1,5 @@
 import { Services } from "@/components/organisms";
-import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
 import { JsonLd } from "@/components/atoms";
 import type { Metadata } from "next";
@@ -12,23 +12,17 @@ export const metadata: Metadata = {
 		canonical: "/servicios",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Servicios de imprenta: digital, offset y acabados",
 		url: absoluteUrl("/servicios"),
 		description:
 			"Servicios: asesoramiento, preimpresión, impresión digital y offset, acabados y distribución.",
-		images: [
-			{
-				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Servicios Dinaprint",
-			},
-		],
+		images: [ogImage("/slider-principal-dinaprint.jpg", "Servicios Dinaprint")],
 	},
 	twitter: {
 		title: "Servicios de imprenta: digital, offset y acabados",
-		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
+		images: [ogImageUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
 		"servicios imprenta",

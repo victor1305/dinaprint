@@ -1,5 +1,5 @@
 import { Contact } from "@/components/organisms";
-import { absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
 import { JsonLd } from "@/components/atoms";
 import type { Metadata } from "next";
@@ -12,23 +12,17 @@ export const metadata: Metadata = {
 		canonical: "/contacto",
 	},
 	openGraph: {
+		...OG_DEFAULTS,
 		type: "website",
 		title: "Contacto: imprenta en Pinto (Madrid)",
 		url: absoluteUrl("/contacto"),
 		description:
 			"Contacta con nuestra imprenta en Pinto (Madrid, sur de Madrid) para presupuestos de impresión digital y offset, papelería corporativa, folletos, carteles y packaging.",
-		images: [
-			{
-				url: absoluteUrl("/slider-principal-dinaprint.jpg"),
-				width: 1200,
-				height: 630,
-				alt: "Contacto Dinaprint",
-			},
-		],
+		images: [ogImage("/slider-principal-dinaprint.jpg", "Contacto Dinaprint")],
 	},
 	twitter: {
 		title: "Contacto: imprenta en Pinto (Madrid)",
-		images: [absoluteUrl("/slider-principal-dinaprint.jpg")],
+		images: [ogImageUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
 		"contacto imprenta",
