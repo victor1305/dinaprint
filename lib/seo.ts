@@ -104,7 +104,11 @@ export function buildServiceSchema({
 export function getLocalBusinessSchema() {
 	return {
 		"@context": "https://schema.org",
-		"@type": "PrintShop",
+		// "PrintShop" no existe en schema.org (es una categoría de Google Business
+		// Profile). El tipo válido es LocalBusiness; el matiz de imprenta se
+		// expresa con additionalType apuntando a la entidad de Wikidata.
+		"@type": "LocalBusiness",
+		additionalType: "https://www.wikidata.org/wiki/Q6500733",
 		"@id": `${SITE_URL}#localbusiness`,
 		name: SITE_NAME,
 		url: getSiteUrl(),
