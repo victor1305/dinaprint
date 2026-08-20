@@ -144,6 +144,10 @@ export function getLocalBusinessSchema() {
 	};
 }
 
+// Product solo es válido para Google si lleva "offers", "review" o "aggregateRating".
+// Sin precios publicados en la página, un Product sin "offers" da error crítico en Search
+// Console y no genera resultado enriquecido: usa buildServiceSchema en su lugar. Esta función
+// solo debe usarse pasando lowPrice (y el precio visible también en el HTML de la página).
 export function buildProductSchema({
 	name,
 	description,

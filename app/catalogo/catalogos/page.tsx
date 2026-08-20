@@ -11,7 +11,6 @@ import {
 import {
 	OG_DEFAULTS,
 	absoluteUrl,
-	buildProductSchema,
 	buildServiceSchema,
 	getLocalBusinessSchema,
 	ogImage,
@@ -145,13 +144,6 @@ const faqItems = [
 	},
 ];
 
-const productSchema = buildProductSchema({
-	name: "Impresión de catálogos",
-	description: DESCRIPTION,
-	slug: "/catalogo/catalogos",
-	imagePath: IMAGE,
-});
-
 const serviceSchema = buildServiceSchema({
 	name: "Impresión de catálogos",
 	description:
@@ -164,7 +156,6 @@ export default async function Page() {
 	return (
 		<main>
 			<JsonLd data={getLocalBusinessSchema()} />
-			<JsonLd data={productSchema} />
 			<JsonLd data={serviceSchema} />
 
 			<SectionPrincipalBanner
