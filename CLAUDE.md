@@ -103,6 +103,19 @@ Tailwind con paleta de marca en `tailwind.config.ts` (`primary` #ff6b00, `second
 `font-primary`, `yellow-main`…). Usar esos tokens en vez de hex sueltos. Tipografía Montserrat vía
 `next/font`. Plugin `@tailwindcss/typography` para el cuerpo de los artículos.
 
+## Despliegue (Docker / Coolify)
+
+El [Dockerfile](Dockerfile) construye en tres etapas y publica la salida `standalone`
+(`output: "standalone"` en [next.config.js](next.config.js)): la imagen final solo lleva
+`server.js`, `.next/static` y `/public`, sin devDependencies ni código fuente. El contenedor
+escucha en **3001** (`PORT`/`HOSTNAME` ya fijados) y arranca con `node server.js`, no con `next start`.
+
+- Las `NEXT_PUBLIC_*` se incrustan en el bundle durante el build: en Coolify hay que marcarlas
+  como variables **de build**, y están declaradas como `ARG` en el Dockerfile. Si falta
+  `NEXT_PUBLIC_SITE_URL`, el sitio se despliega con el dominio por defecto.
+- Healthcheck: [app/api/health/route.ts](app/api/health/route.ts) devuelve `200` con el cuerpo
+  exacto `OK`. Es la ruta que debe apuntar Coolify (`/api/health`, puerto 3001), no `/`.
+
 ## Notas
 
 - Analítica: Plausible self-hosted, script en [app/layout.tsx](app/layout.tsx).
