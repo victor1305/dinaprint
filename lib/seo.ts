@@ -3,12 +3,15 @@ import { getOpeningHoursSchema } from "@/lib/hours";
 export const SITE_NAME = "Dinaprint";
 export const SITE_DOMAIN = "dinaprint.com";
 
-// Fallback to production domain if env var is not set.
+// Fallback al dominio de producción si la variable no está definida.
 // Example: NEXT_PUBLIC_SITE_URL=https://dinaprint.com
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? `https://${SITE_DOMAIN}`).replace(
-	/\/$/,
-	"",
-);
+//
+// Se usa `||` y no `??` a propósito: en un build por Docker la variable puede
+// llegar declarada pero vacía (un `--build-arg` sin valor la define como ""),
+// y `??` dejaría SITE_URL en "" — con lo que `new URL()` revienta el build.
+export const SITE_URL = (
+	process.env.NEXT_PUBLIC_SITE_URL?.trim() || `https://${SITE_DOMAIN}`
+).replace(/\/$/, "");
 
 /** MID del Knowledge Graph de Google del perfil de empresa "Dinaprint SL". */
 export const GOOGLE_KG_MID = "/g/11j79bn2w8";

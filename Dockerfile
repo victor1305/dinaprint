@@ -31,7 +31,10 @@ ARG NEXT_PUBLIC_SITE_URL
 ARG NEXT_PUBLIC_FORM_SERVICE
 ARG NEXT_PUBLIC_FORM_TEMPLATE
 ARG NEXT_PUBLIC_FORM_KEY
-ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL \
+# Ojo con el valor por defecto: Coolify pasa `--build-arg NOMBRE` sin valor para
+# variables que no tiene, y eso define el ENV como cadena vacía. Con el dominio
+# vacío, `new URL()` rompe el build al recolectar las páginas.
+ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://dinaprint.com} \
 	NEXT_PUBLIC_FORM_SERVICE=$NEXT_PUBLIC_FORM_SERVICE \
 	NEXT_PUBLIC_FORM_TEMPLATE=$NEXT_PUBLIC_FORM_TEMPLATE \
 	NEXT_PUBLIC_FORM_KEY=$NEXT_PUBLIC_FORM_KEY
