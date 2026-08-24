@@ -47,3 +47,5 @@ export {
 	ServicesPrincipal,
 	WhatsAppButton,
 };
+
+export type { FAQItem } from "./FAQ";

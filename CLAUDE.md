@@ -41,6 +41,15 @@ tocar una página:
 - El `localBusiness` schema se emite **por página**, no en el layout, para que los rastreadores no
   concatenen JSON-LD duplicado.
 
+### FAQ: el schema lo emite el componente
+
+[components/atoms/FAQ](components/atoms/FAQ/index.tsx) pinta el acordeón **y** su `FAQPage` JSON-LD a
+partir de los mismos `items`. No hay que añadir el schema a mano: basta con renderizar `<FAQ>` con un
+`faqItems` local de la página. Corolario: **un solo `<FAQ>` por página**, o se emiten dos `FAQPage` y
+los rastreadores los concatenan. `Catalog` y `Contact` reciben la FAQ por prop opcional (`faqItems`)
+para poder pintarla antes del CTA final; el resto de páginas la renderizan directamente en el `page.tsx`.
+Llevan FAQ la home, `/servicios`, `/catalogo`, `/contacto`, las tres páginas de zona y las once de catálogo.
+
 ### Horario comercial: `lib/hours.ts`
 
 Fuente única del horario (schema, pie, contacto y bloque de ubicación). Estuvo duplicado en cuatro
@@ -69,6 +78,15 @@ slug. Frontmatter: `title`, `description`, `publishedAt` (YYYY-MM-DD), `image` (
 Deliberadamente **no** usa `new Date()`: si todas las páginas dicen modificarse en cada despliegue,
 Google deja de fiarse del `lastmod` de todo el sitio. **Al editar de verdad una página estática, hay
 que actualizar su fecha en ese mapa.**
+
+### `llms.txt`: índice para modelos de lenguaje
+
+[app/llms.txt/route.ts](app/llms.txt/route.ts) genera `/llms.txt` en el formato de llmstxt.org (H1,
+resumen en cita, listas de enlaces por H2 y sección `Optional` al final). Se construye desde las
+fuentes reales — horario de `lib/hours.ts`, artículos de `lib/blog.ts` — para no quedarse obsoleto al
+publicar. Va con `dynamic = "force-static"`: la imagen de runtime no incluye `content/`, así que
+tiene que resolverse en el build igual que el sitemap. **Al añadir una página estática nueva hay que
+darla de alta también aquí**, no solo en `ROUTE_LAST_MODIFIED`.
 
 ### Guardas del build
 

@@ -1,4 +1,5 @@
 import { Contact } from "@/components/organisms";
+import { formatBusinessHours } from "@/lib/hours";
 import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
 import { JsonLd } from "@/components/atoms";
@@ -34,11 +35,40 @@ export const metadata: Metadata = {
 	],
 };
 
+/** Preguntas logísticas de la página de contacto; `FAQ` emite el `FAQPage`. */
+const faqItems = [
+	{
+		question: "¿Qué información necesitáis para darme un presupuesto?",
+		answer:
+			"Producto, formato o medidas, cantidad, número de páginas si las tiene, tipo de papel si ya lo tienes decidido y los acabados que quieras. Si no lo tienes claro, escríbenos igualmente lo que sepas y te orientamos nosotros.",
+	},
+	{
+		question: "¿Por qué vías puedo contactar?",
+		answer:
+			"Por el formulario de esta página, por teléfono en el 678 519 403 y el 678 519 404, o por correo a dinaprint@dinaprint.com. Contestamos por el mismo canal por el que nos escribas.",
+	},
+	{
+		question: "¿Cuál es el horario de atención?",
+		// Derivado de `lib/hours.ts`: el horario no se escribe a mano en ningún sitio.
+		answer: `${formatBusinessHours(" y ")}. Fuera de ese horario puedes dejar la petición por formulario o correo y la vemos al abrir.`,
+	},
+	{
+		question: "¿Puedo pasar por el taller?",
+		answer:
+			"Sí. Estamos en la calle Coto de Doñana, 9, en el Área Empresarial Andalucía (28320 Pinto, Madrid), con acceso directo desde la A-4. También puedes recoger allí el pedido: te avisamos cuando esté listo.",
+	},
+	{
+		question: "¿Trabajáis con clientes de fuera de Madrid?",
+		answer:
+			"Sí. Buena parte del trabajo se gestiona a distancia y enviamos a toda la península sin coste adicional, así que no hace falta que estés cerca de Pinto para encargar.",
+	},
+];
+
 export default async function Page() {
 	return (
 		<main>
 			<JsonLd data={getLocalBusinessSchema()} />
-			<Contact />
+			<Contact faqItems={faqItems} />
 		</main>
 	);
 }

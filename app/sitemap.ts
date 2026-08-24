@@ -13,12 +13,12 @@ import type { MetadataRoute } from "next";
  * Al editar una página de verdad, actualiza aquí su fecha.
  */
 const ROUTE_LAST_MODIFIED: Record<string, string> = {
-	"/": "2026-08-18",
+	"/": "2026-08-24",
 	"/imprenta-madrid": "2026-08-18",
 	"/imprenta-sur-de-madrid": "2026-08-18",
 	"/imprenta-pinto": "2026-08-18",
 	"/blog": "2026-08-18",
-	"/catalogo": "2026-08-18",
+	"/catalogo": "2026-08-24",
 	"/catalogo/catalogos": "2026-08-18",
 	"/catalogo/cartas-y-menus": "2026-08-18",
 	"/catalogo/papeleria-corporativa": "2026-08-18",
@@ -30,9 +30,9 @@ const ROUTE_LAST_MODIFIED: Record<string, string> = {
 	"/catalogo/cajas-y-packaging": "2026-08-18",
 	"/catalogo/regalo-promocional": "2026-08-18",
 	"/catalogo/carteles": "2026-08-18",
-	"/servicios": "2026-08-18",
+	"/servicios": "2026-08-24",
 	"/sobre-nosotros": "2026-01-27",
-	"/contacto": "2026-01-27",
+	"/contacto": "2026-08-24",
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
