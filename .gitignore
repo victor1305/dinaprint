@@ -36,6 +36,17 @@ yarn-error.log*
 next-env.d.ts
 
 # tooling de agentes (no forma parte de la aplicación)
-.claude/
+# Nota: se usa `.claude/*` y no `.claude/`, porque git no permite reincluir un
+# fichero cuyo directorio padre está excluido. Los hooks del repo sí se versionan.
+.claude/*
+!.claude/settings.json
+!.claude/hooks/
+!.claude/agents/
+.claude/settings.local.json
+# De .claude/skills/ solo se versionan las skills del proyecto; el resto son
+# skills personales de cada quien y no pintan nada en el repo.
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/nuevo-post/
 .agents/
 skills-lock.json

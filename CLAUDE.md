@@ -139,5 +139,42 @@ escucha en **3001** (`PORT`/`HOSTNAME` ya fijados) y arranca con `node server.js
 - Analítica: Plausible self-hosted, script en [app/layout.tsx](app/layout.tsx).
 - `NEXT_PUBLIC_SITE_URL` sobrescribe el dominio; por defecto `https://dinaprint.com`.
 - Conviven `bun.lock` y `package-lock.json`; los scripts documentados van con npm.
-- `.claude/`, `.agents/` y `skills-lock.json` están en `.gitignore`: son tooling de agentes, no parte
-  de la aplicación.
+- `.agents/`, `skills-lock.json` y casi todo `.claude/` están en `.gitignore`: son tooling de
+  agentes, no parte de la aplicación. Las excepciones versionadas son
+  [.claude/settings.json](.claude/settings.json) y [.claude/hooks/](.claude/hooks/), que sí se
+  comparten con el equipo (ver abajo). `.claude/settings.local.json` sigue siendo personal.
+
+## Hooks del repositorio
+
+Dos hooks de `PostToolUse` se ejecutan tras cada edición de fichero, declarados en
+[.claude/settings.json](.claude/settings.json):
+
+- [biome-write.py](.claude/hooks/biome-write.py) pasa `biome check --write` (solo correcciones
+  seguras) por el fichero recién tocado, usando el binario de `node_modules`. Evita descubrir en el
+  build fallos de formato que Biome arregla solo.
+- [sitemap-lastmod.py](.claude/hooks/sitemap-lastmod.py) avisa —no bloquea— cuando se edita un
+  `app/**/page.tsx` cuya fecha en `ROUTE_LAST_MODIFIED` no es la de hoy. No escribe la fecha a
+  propósito: un `lastmod` que se mueve en cada retoque es justo lo que `app/sitemap.ts` documenta
+  como contraproducente, así que la decisión sigue siendo manual. Las rutas dinámicas del blog se
+  ignoran, porque su fecha sale del frontmatter.
+- [check-images.py](.claude/hooks/check-images.py) ejecuta `scripts/check-images.mjs` (0,2 s) al
+  editar cualquier fichero de `app/`, `components/`, `lib/` o `content/`. Adelanta al momento de la
+  edición el guardián que hasta ahora solo corría en el build. Invoca el script real, no una copia
+  de sus regex, para que hook y build no puedan divergir.
+
+Y uno de `PreToolUse`:
+
+- [protect-lockfiles.py](.claude/hooks/protect-lockfiles.py) deniega editar `package-lock.json`,
+  `bun.lock` y compañía a mano. Con dos lockfiles conviviendo, desincronizarlos produce builds que
+  pasan en local y fallan en Docker.
+
+## Subagente y skill del proyecto
+
+- [seo-page-reviewer](.claude/agents/seo-page-reviewer.md): revisa una página contra las convenciones
+  de este fichero (esparcido de `OG_DEFAULTS`, canonical, `ogImage()`, `localBusiness` por página, un
+  solo `<FAQ>`, alta en `ROUTE_LAST_MODIFIED` y en `llms.txt`). Verifica sobre el HTML de
+  `.next/server/app/`, no solo leyendo el JSX. Conviene pasarlo tras crear o tocar un `page.tsx`.
+- [nuevo-post](.claude/skills/nuevo-post/SKILL.md): alta de un artículo del blog. Incluye el paso que
+  más disgustos evita —comprobar solapamiento con lo ya publicado antes de escribir, para no
+  canibalizar— además del frontmatter válido, la verificación de enlaces internos y el criterio de
+  fechas.
