@@ -1,4 +1,4 @@
-import { BLOG_CATEGORIES, POSTS_PER_PAGE, getAllPosts, getCategorySlug } from "@/lib/blog";
+import { POSTS_PER_PAGE, getAllPosts, getCategoriesWithPosts } from "@/lib/blog";
 import { absoluteUrl } from "@/lib/seo";
 
 import type { MetadataRoute } from "next";
@@ -17,7 +17,7 @@ const ROUTE_LAST_MODIFIED: Record<string, string> = {
 	"/imprenta-madrid": "2026-08-18",
 	"/imprenta-sur-de-madrid": "2026-08-18",
 	"/imprenta-pinto": "2026-08-18",
-	"/blog": "2026-08-18",
+	"/blog": "2026-09-07",
 	"/catalogo": "2026-08-24",
 	"/catalogo/catalogos": "2026-08-18",
 	"/catalogo/cartas-y-menus": "2026-08-18",
@@ -48,14 +48,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		{ length: Math.max(0, Math.ceil(postCount / POSTS_PER_PAGE) - 1) },
 		(_, i) => ({
 			url: absoluteUrl(`/blog/pagina/${i + 2}`),
-			lastModified: new Date("2026-08-18"),
+			lastModified: new Date("2026-09-07"),
 		}),
 	);
 
-	// Categorías del blog
-	const categories = BLOG_CATEGORIES.map((category) => ({
-		url: absoluteUrl(`/blog/categoria/${getCategorySlug(category)}`),
-		lastModified: new Date("2026-08-18"),
+	// Categorías del blog. Solo las que tienen artículos: una categoría vacía
+	// responde 404, así que anunciarla aquí solo genera errores de rastreo.
+	const categories = getCategoriesWithPosts().map(({ slug }) => ({
+		url: absoluteUrl(`/blog/categoria/${slug}`),
+		lastModified: new Date("2026-09-07"),
 	}));
 
 	// Artículos del blog

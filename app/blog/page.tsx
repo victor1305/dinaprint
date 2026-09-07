@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { BLOG_CATEGORIES, POSTS_PER_PAGE, getAllPosts, getCategorySlug } from "@/lib/blog";
+import { POSTS_PER_PAGE, getAllPosts, getCategoriesWithPosts } from "@/lib/blog";
 import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
 import { Breadcrumbs, JsonLd, Pagination, SectionPrincipalBanner } from "@/components/atoms";
@@ -84,10 +84,10 @@ export default function BlogPage() {
 					<span className="px-4 py-2 bg-primary text-white rounded-full text-sm font-medium">
 						Todos
 					</span>
-					{BLOG_CATEGORIES.map((category) => (
+					{getCategoriesWithPosts().map(({ category, slug }) => (
 						<Link
 							key={category}
-							href={`/blog/categoria/${getCategorySlug(category)}`}
+							href={`/blog/categoria/${slug}`}
 							className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors"
 						>
 							{category}

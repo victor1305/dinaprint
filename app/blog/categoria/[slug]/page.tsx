@@ -3,12 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import {
-	BLOG_CATEGORIES,
+	CATEGORY_COPY,
+	getCategoriesWithPosts,
 	getCategoryBySlug,
-	getCategorySlug,
 	getPostsByCategory,
 } from "@/lib/blog";
-import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
 import { Breadcrumbs, JsonLd, SectionPrincipalBanner } from "@/components/atoms";
 
@@ -18,8 +18,15 @@ interface PageProps {
 	params: { slug: string };
 }
 
+/**
+ * Solo existen las categorías con artículos. Cualquier otro slug responde 404
+ * en vez de renderizarse bajo demanda: una categoría vacía no tiene contenido
+ * propio que indexar.
+ */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-	return BLOG_CATEGORIES.map((category) => ({ slug: getCategorySlug(category) }));
+	return getCategoriesWithPosts().map(({ slug }) => ({ slug }));
 }
 
 export function generateMetadata({ params }: PageProps): Metadata {
@@ -28,7 +35,9 @@ export function generateMetadata({ params }: PageProps): Metadata {
 	if (!category) return { title: "Categoría no encontrada" };
 
 	const title = `${category} de imprenta e impresión`;
-	const description = `Artículos de la categoría ${category}: impresión digital y offset, papeles, acabados, encuadernación y packaging, explicados por nuestra imprenta en Madrid.`;
+	const description =
+		CATEGORY_COPY[category]?.description ??
+		`Artículos de la categoría ${category}, explicados por nuestra imprenta en Madrid.`;
 
 	return {
 		title,
@@ -40,8 +49,13 @@ export function generateMetadata({ params }: PageProps): Metadata {
 			title,
 			description,
 			url: absoluteUrl(`/blog/categoria/${params.slug}`),
+			images: [ogImage("/slider-principal-dinaprint.jpg", `${category} — blog de Dinaprint`)],
 		},
-		twitter: { title, description },
+		twitter: {
+			title,
+			description,
+			images: [ogImageUrl("/slider-principal-dinaprint.jpg")],
+		},
 	};
 }
 
@@ -51,6 +65,10 @@ export default function CategoryPage({ params }: PageProps) {
 	if (!category) notFound();
 
 	const posts = getPostsByCategory(category);
+
+	// Una categoría sin artículos no llega a publicarse: ni página, ni enlace,
+	// ni entrada en el sitemap.
+	if (posts.length === 0) notFound();
 
 	return (
 		<main>
@@ -79,63 +97,59 @@ export default function CategoryPage({ params }: PageProps) {
 					>
 						Todos
 					</Link>
-					{BLOG_CATEGORIES.map((item) => (
+					{getCategoriesWithPosts().map((item) => (
 						<Link
-							key={item}
-							href={`/blog/categoria/${getCategorySlug(item)}`}
+							key={item.category}
+							href={`/blog/categoria/${item.slug}`}
 							className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-								item === category
+								item.category === category
 									? "bg-primary text-white"
 									: "bg-gray-100 text-gray-700 hover:bg-gray-200"
 							}`}
 						>
-							{item}
+							{item.category}
 						</Link>
 					))}
 				</div>
 
-				{posts.length > 0 ? (
-					<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{posts.map((post) => (
-							<article
-								key={post.slug}
-								className="bg-white rounded-xl shadow-findBox overflow-hidden hover:shadow-lg transition-shadow"
-							>
-								<Link href={`/blog/${post.slug}`} className="block">
-									<div className="relative h-48 w-full">
-										<Image
-											src={post.image}
-											alt={post.title}
-											fill
-											sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-											className="object-cover"
-										/>
+				<p className="text-lg text-gray-600 max-w-3xl mb-10">{CATEGORY_COPY[category]?.intro}</p>
+
+				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+					{posts.map((post) => (
+						<article
+							key={post.slug}
+							className="bg-white rounded-xl shadow-findBox overflow-hidden hover:shadow-lg transition-shadow"
+						>
+							<Link href={`/blog/${post.slug}`} className="block">
+								<div className="relative h-48 w-full">
+									<Image
+										src={post.image}
+										alt={post.title}
+										fill
+										sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+										className="object-cover"
+									/>
+								</div>
+								<div className="p-5">
+									<h2 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 hover:text-primary transition-colors">
+										{post.title}
+									</h2>
+									<p className="text-gray-600 text-sm line-clamp-3 mb-4">{post.description}</p>
+									<div className="flex items-center justify-between text-xs text-gray-500">
+										<span>{post.readingTime} min de lectura</span>
+										<time dateTime={post.publishedAt}>
+											{new Date(post.publishedAt).toLocaleDateString("es-ES", {
+												day: "numeric",
+												month: "short",
+												year: "numeric",
+											})}
+										</time>
 									</div>
-									<div className="p-5">
-										<h2 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 hover:text-primary transition-colors">
-											{post.title}
-										</h2>
-										<p className="text-gray-600 text-sm line-clamp-3 mb-4">{post.description}</p>
-										<div className="flex items-center justify-between text-xs text-gray-500">
-											<span>{post.readingTime} min de lectura</span>
-											<time dateTime={post.publishedAt}>
-												{new Date(post.publishedAt).toLocaleDateString("es-ES", {
-													day: "numeric",
-													month: "short",
-													year: "numeric",
-												})}
-											</time>
-										</div>
-									</div>
-								</Link>
-							</article>
-						))}
-					</div>
-				) : (
-					<p className="text-gray-500 text-lg py-10">
-						Todavía no hay artículos publicados en esta categoría.
-					</p>
-				)}
+								</div>
+							</Link>
+						</article>
+					))}
+				</div>
 			</section>
 		</main>
 	);

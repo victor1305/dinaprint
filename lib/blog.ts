@@ -48,6 +48,43 @@ export const CATEGORY_SLUGS: Record<string, string> = {
 	"Casos de éxito": "casos-de-exito",
 };
 
+/**
+ * Copy propio de cada categoría: meta description y párrafo de entrada.
+ *
+ * Sin esto, una página de categoría es exactamente el mismo listado de tarjetas
+ * que /blog y que las paginadas, y Google las agrupa: Search Console marcó
+ * /blog/categoria/casos-de-exito como "Duplicada: el usuario no ha indicado
+ * ninguna versión canónica" pese a llevar canonical autorreferencial. Este
+ * texto es lo único que distingue una vista del listado de las demás, así que
+ * tiene que hablar de la categoría concreta, no del blog en general.
+ */
+export const CATEGORY_COPY: Record<string, { description: string; intro: string }> = {
+	Guías: {
+		description:
+			"Guías de imprenta paso a paso: qué papel aguanta cada uso, qué acabado compensa según la tirada y cómo preparar el archivo antes de imprimir.",
+		intro:
+			"Guías paso a paso para decidir antes de mandar a imprimir: qué papel aguanta cada uso, qué acabado compensa según la tirada, cómo preparar sangres y perfiles de color, y qué encuadernación soporta el número de páginas de cada proyecto. Están escritas desde el taller, a partir de los errores que vemos llegar cada semana en los archivos de cliente.",
+	},
+	Consejos: {
+		description:
+			"Consejos para sacar partido a tus impresos: planificar el material de marketing del año, elegir merchandising útil y mantener coherente la imagen de marca.",
+		intro:
+			"Consejos prácticos para sacar partido a los impresos una vez resuelta la parte técnica: cómo repartir el material de marketing a lo largo del año, qué merchandising se conserva y cuál acaba en un cajón, y cómo mantener coherente la imagen corporativa entre papelería, packaging y rotulación.",
+	},
+	Tendencias: {
+		description:
+			"Tendencias de artes gráficas que ya se pueden pedir hoy: papeles reciclados, tintas de bajo impacto, packaging reducido y tiradas cortas con datos variables.",
+		intro:
+			"Lo que está cambiando en artes gráficas y ya se puede pedir a una imprenta hoy: papeles reciclados y tintas de bajo impacto, packaging que se reduce en lugar de crecer, y tiradas cortas con datos variables que antes no salían a cuenta.",
+	},
+	"Casos de éxito": {
+		description:
+			"Trabajos reales producidos en nuestro taller de Pinto: el encargo de partida, las decisiones de material y acabado, y cómo quedó el resultado final.",
+		intro:
+			"Trabajos reales producidos en nuestro taller de Pinto: el problema de partida del cliente, las decisiones de material, formato y acabado que tomamos, y cómo quedó el resultado final.",
+	},
+};
+
 export function getCategorySlug(category: string): string {
 	return (
 		CATEGORY_SLUGS[category] ??
@@ -65,6 +102,26 @@ export function getCategoryBySlug(slug: string): string | undefined {
 }
 
 const postsDirectory = path.join(process.cwd(), "content/posts");
+
+/**
+ * Categorías que tienen al menos un artículo publicado, con su recuento.
+ *
+ * Una categoría vacía no tiene contenido propio: es el banner, los chips de
+ * navegación y un "todavía no hay artículos". Como página indexable es un clon
+ * de las demás vistas del listado, así que no se enlaza, no entra en el sitemap
+ * ni en llms.txt, y su URL responde 404 hasta que exista el primer artículo.
+ * La categoría sigue estando en `BLOG_CATEGORIES`, para que un post pueda
+ * declararla y la página aparezca sola.
+ */
+export function getCategoriesWithPosts(): { category: string; slug: string; count: number }[] {
+	const posts = getAllPosts();
+
+	return BLOG_CATEGORIES.map((category) => ({
+		category: category as string,
+		slug: getCategorySlug(category),
+		count: posts.filter((post) => post.category === category).length,
+	})).filter((entry) => entry.count > 0);
+}
 
 /** Artículos por página en el listado del blog. */
 export const POSTS_PER_PAGE = 12;

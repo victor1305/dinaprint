@@ -1,4 +1,4 @@
-import { BLOG_CATEGORIES, type BlogPost, getAllPosts, getCategorySlug } from "@/lib/blog";
+import { type BlogPost, getAllPosts, getCategoriesWithPosts } from "@/lib/blog";
 import { formatBusinessHours } from "@/lib/hours";
 import { SITE_NAME, absoluteUrl } from "@/lib/seo";
 
@@ -92,11 +92,12 @@ export function GET() {
 		"## Blog",
 		"",
 		link("Blog", "/blog", `${posts.length} artículos sobre impresión, papel, acabados y diseño`),
-		...BLOG_CATEGORIES.map((category) =>
+		// Solo las categorías con artículos: las vacías no tienen página.
+		...getCategoriesWithPosts().map(({ category, slug, count }) =>
 			link(
 				`Categoría: ${category}`,
-				`/blog/categoria/${getCategorySlug(category)}`,
-				`artículos de la categoría ${category}`,
+				`/blog/categoria/${slug}`,
+				`${count} ${count === 1 ? "artículo" : "artículos"} de la categoría ${category}`,
 			),
 		),
 		"",

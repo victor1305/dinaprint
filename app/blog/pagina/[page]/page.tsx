@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { BLOG_CATEGORIES, POSTS_PER_PAGE, getAllPosts, getCategorySlug } from "@/lib/blog";
-import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema } from "@/lib/seo";
+import { POSTS_PER_PAGE, getAllPosts, getCategoriesWithPosts } from "@/lib/blog";
+import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
 import { Breadcrumbs, JsonLd, Pagination, SectionPrincipalBanner } from "@/components/atoms";
 import { PostGrid } from "@/components/molecules";
@@ -40,8 +40,13 @@ export function generateMetadata({ params }: PageProps): Metadata {
 			title,
 			description,
 			url: absoluteUrl(`/blog/pagina/${page}`),
+			images: [ogImage("/slider-principal-dinaprint.jpg", `Blog de Dinaprint — página ${page}`)],
 		},
-		twitter: { title, description },
+		twitter: {
+			title,
+			description,
+			images: [ogImageUrl("/slider-principal-dinaprint.jpg")],
+		},
 	};
 }
 
@@ -53,6 +58,7 @@ export default function BlogPaginatedPage({ params }: PageProps) {
 	if (!Number.isInteger(page) || page < 2 || page > total) notFound();
 
 	const start = (page - 1) * POSTS_PER_PAGE;
+	const shown = posts.slice(start, start + POSTS_PER_PAGE);
 
 	return (
 		<main>
@@ -81,10 +87,10 @@ export default function BlogPaginatedPage({ params }: PageProps) {
 					>
 						Todos
 					</Link>
-					{BLOG_CATEGORIES.map((category) => (
+					{getCategoriesWithPosts().map(({ category, slug }) => (
 						<Link
 							key={category}
-							href={`/blog/categoria/${getCategorySlug(category)}`}
+							href={`/blog/categoria/${slug}`}
 							className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors"
 						>
 							{category}
@@ -92,7 +98,15 @@ export default function BlogPaginatedPage({ params }: PageProps) {
 					))}
 				</div>
 
-				<PostGrid posts={posts.slice(start, start + POSTS_PER_PAGE)} />
+				{/* Frase propia de cada paginada: sin ella, la página es el mismo
+				    listado de tarjetas que /blog y que las categorías, y Google
+				    agrupa las tres vistas como duplicadas. */}
+				<p className="text-lg text-gray-600 max-w-3xl mb-10">
+					Artículos del {start + 1} al {start + shown.length} de los {posts.length} publicados en el
+					blog, del más reciente al más antiguo.
+				</p>
+
+				<PostGrid posts={shown} />
 				<Pagination currentPage={page} totalPages={total} basePath="/blog" />
 			</section>
 		</main>
