@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { POSTS_PER_PAGE, getAllPosts, getCategoriesWithPosts } from "@/lib/blog";
-import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, ogImage, ogImageUrl } from "@/lib/seo";
 
 import { Breadcrumbs, JsonLd, Pagination, SectionPrincipalBanner } from "@/components/atoms";
 import { PostGrid } from "@/components/molecules";
@@ -61,7 +61,6 @@ export default function BlogPage() {
 
 	return (
 		<main>
-			<JsonLd data={getLocalBusinessSchema()} />
 			<JsonLd data={blogListSchema} />
 
 			<SectionPrincipalBanner

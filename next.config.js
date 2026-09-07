@@ -12,6 +12,19 @@ const nextConfig = {
 		// AVIF y WebP reducen mucho el peso frente al JPEG original.
 		formats: ["image/avif", "image/webp"],
 	},
+	// El dominio canónico es el apex. Coolify/Cloudflare resolvían `www` con un
+	// 307 temporal, que Search Console trataba como propiedad aparte en lugar de
+	// consolidar señales. Un 308 permanente (`permanent: true`) sí las une.
+	async redirects() {
+		return [
+			{
+				source: "/:path*",
+				has: [{ type: "host", value: "www.dinaprint.com" }],
+				destination: "https://dinaprint.com/:path*",
+				permanent: true,
+			},
+		];
+	},
 };
 
 module.exports = nextConfig;

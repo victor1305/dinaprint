@@ -1,18 +1,12 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import {
-	OG_DEFAULTS,
-	absoluteUrl,
-	buildServiceSchema,
-	getLocalBusinessSchema,
-	ogImage,
-	ogImageUrl,
-} from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, buildServiceSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
+import type { ProductSection } from "@/components/atoms";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Impresión de folletos y revistas",
+	title: "Imprimir folletos y revistas en Madrid",
 	description:
 		"Impresión de folletos y revistas en Madrid (Pinto): encuadernación (wire-o, hilo, cola PUR), plastificados y troquelados. Digital u offset según tirada.",
 	alternates: {
@@ -21,14 +15,14 @@ export const metadata: Metadata = {
 	openGraph: {
 		...OG_DEFAULTS,
 		type: "website",
-		title: "Impresión de folletos y revistas",
+		title: "Imprimir folletos y revistas en Madrid",
 		url: absoluteUrl("/catalogo/folletos-y-revistas"),
 		description:
 			"Impresión de folletos y revistas con encuadernación wire-o, hilo, cola PUR, plastificados y troquelados.",
 		images: [ogImage("/Folletos-y-revistas-001.jpg", "Folletos y revistas - Dinaprint")],
 	},
 	twitter: {
-		title: "Impresión de folletos y revistas",
+		title: "Imprimir folletos y revistas en Madrid",
 		images: [ogImageUrl("/Folletos-y-revistas-001.jpg")],
 	},
 	keywords: [
@@ -120,6 +114,36 @@ const faqItems = [
 	},
 ];
 
+const contentSections: ProductSection[] = [
+	{
+		title: "La encuadernación se elige por número de páginas",
+		body: [
+			"No es una cuestión estética: cada sistema tiene un rango de páginas en el que funciona y fuera del cual da problemas.",
+			"La <strong>grapa a caballete</strong> es la opción hasta unas 48 páginas y obliga a que el total sea múltiplo de 4, porque cada pliego son cuatro páginas. Por encima de ese grosor el cuadernillo empieza a abrirse solo y el corte queda escalonado.",
+			"El <strong>fresado con cola PUR</strong> es lo indicado a partir de 48 páginas: da lomo plano, permite imprimir el título en el canto y aguanta bien la apertura. Por debajo de unas 32 páginas no hay lomo suficiente para encolar.",
+			"El <strong>wire-o y la espiral</strong> tienen la ventaja de abrir en plano a 360°, que es lo que se necesita en manuales, recetarios y catálogos técnicos de consulta. A cambio, no hay lomo donde poner el título.",
+			"El <strong>cosido con hilo</strong> es lo más duradero y lo que se usa en libros y memorias de aniversario, con el coste que corresponde.",
+		],
+	},
+	{
+		title: "Papel de interior y de cubierta",
+		body: [
+			"Un folleto bien producido casi nunca lleva el mismo papel dentro y fuera. El interior busca legibilidad y peso contenido; la cubierta, resistencia.",
+			"En interior, el estucado mate de 115 a 150 g es la combinación más equilibrada para catálogo con fotografía: reproduce bien el color y no pesa tanto que dispare el franqueo. El brillo satura más el color pero refleja bajo luz directa y molesta al leer. Para textos largos, el offset ahuesado se lee mucho mejor y es lo que se usa en libro.",
+			"En cubierta, de 250 a 350 g con plastificado mate. El plastificado no es solo estético: es lo que evita que las esquinas se rocen y que el color de la portada se marque con las huellas.",
+			"Ojo con la transparencia. Por debajo de 115 g, un fondo oscuro se transparenta a la página siguiente. Si el catálogo tiene páginas con masas de color, hay que subir gramaje o elegir un papel con más opacidad.",
+		],
+	},
+	{
+		title: "Digital u offset: dónde está el punto de corte",
+		body: [
+			"Con tiradas cortas, el digital gana siempre: no hay coste de planchas ni de arranque de máquina, y podemos servir desde 25 ejemplares en 48 horas.",
+			"A partir de unos 500 ejemplares el offset empieza a compensar, y de ahí hacia arriba la diferencia se dispara: en offset el coste por ejemplar cae con la tirada, mientras que en digital se mantiene casi plano.",
+			"El offset da además mejor consistencia de color en tiradas largas y permite Pantone reales, papeles especiales y acabados que el digital no alcanza. Tenemos las dos tecnologías en el taller, así que al presupuestar te decimos cuál sale a cuenta para tu caso concreto en vez de empujarte hacia la que nos convenga.",
+		],
+	},
+];
+
 const serviceSchema = buildServiceSchema({
 	name: "Folletos y revistas",
 	description:
@@ -133,6 +157,8 @@ export default async function Page() {
 		title: "Folletos y revistas",
 		h1: "Impresión de folletos y revistas en Madrid",
 		product: "Folletos y revistas",
+		localProduct: "folletos y revistas",
+		sections: contentSections,
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/Folletos-y-revistas-001.jpg",
 		specs: specRows,
@@ -152,9 +178,6 @@ export default async function Page() {
 	};
 	return (
 		<main>
-			{/* Schema del negocio */}
-			<JsonLd data={getLocalBusinessSchema()} />
-
 			{/* Schema del servicio */}
 			<JsonLd data={serviceSchema} />
 

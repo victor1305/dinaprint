@@ -5,21 +5,15 @@ import {
 	FAQ,
 	JsonLd,
 	KnowMore,
+	LocalCoverage,
 	SectionPrincipalBanner,
 	SpecTable,
 } from "@/components/atoms";
-import {
-	OG_DEFAULTS,
-	absoluteUrl,
-	buildServiceSchema,
-	getLocalBusinessSchema,
-	ogImage,
-	ogImageUrl,
-} from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, buildServiceSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
-const TITLE = "Impresión de catálogos en Madrid: corta y larga tirada";
+const TITLE = "Impresión de catálogos en Madrid";
 const DESCRIPTION =
 	"Impresión de catálogos de productos en Madrid (Pinto): grapado, wire-o, cola PUR y cosido. Desde 25 unidades, digital y offset, con plazos de 48 h a 7 días.";
 const IMAGE = "/impresion-dinaprint-revista.jpg";
@@ -155,7 +149,6 @@ const serviceSchema = buildServiceSchema({
 export default async function Page() {
 	return (
 		<main>
-			<JsonLd data={getLocalBusinessSchema()} />
 			<JsonLd data={serviceSchema} />
 
 			<SectionPrincipalBanner
@@ -322,6 +315,7 @@ export default async function Page() {
 				<FAQ items={faqItems} />
 			</section>
 
+			<LocalCoverage product="catálogos" />
 			<KnowMore path={"/contacto"} copy={"PEDIR PRESUPUESTO"} />
 		</main>
 	);

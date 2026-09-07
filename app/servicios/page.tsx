@@ -1,7 +1,7 @@
 import { Services } from "@/components/organisms";
-import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, ogImage, ogImageUrl } from "@/lib/seo";
 
-import { FAQ, JsonLd } from "@/components/atoms";
+import { FAQ } from "@/components/atoms";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -72,7 +72,6 @@ const faqItems = [
 export default async function Page() {
 	return (
 		<main>
-			<JsonLd data={getLocalBusinessSchema()} />
 			<Services />
 			<section className="px-5 pb-10 mx-auto max-w-[1200px]">
 				<FAQ items={faqItems} />

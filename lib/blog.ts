@@ -27,6 +27,18 @@ import { SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/seo";
 export interface BlogPost {
 	slug: string;
 	title: string;
+	/**
+	 * Título para la etiqueta `<title>`, cuando el titular editorial no cabe.
+	 *
+	 * Google corta el título de la SERP alrededor de los 60 caracteres, y a eso
+	 * hay que restarle el " | Dinaprint" que añade la plantilla del layout. Buena
+	 * parte de los artículos pasa de 90, así que la parte informativa se pierde
+	 * justo donde decide el clic. Con este campo el `title` queda corto y en
+	 * `title` (el H1 de la página) se conserva el titular completo.
+	 *
+	 * Opcional: si no está, se usa `title`.
+	 */
+	seoTitle?: string;
 	description: string;
 	image: string;
 	author: string;

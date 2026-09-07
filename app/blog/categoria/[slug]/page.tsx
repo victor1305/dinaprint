@@ -8,9 +8,9 @@ import {
 	getCategoryBySlug,
 	getPostsByCategory,
 } from "@/lib/blog";
-import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, ogImage, ogImageUrl } from "@/lib/seo";
 
-import { Breadcrumbs, JsonLd, SectionPrincipalBanner } from "@/components/atoms";
+import { Breadcrumbs, SectionPrincipalBanner } from "@/components/atoms";
 
 import type { Metadata } from "next";
 
@@ -72,8 +72,6 @@ export default function CategoryPage({ params }: PageProps) {
 
 	return (
 		<main>
-			<JsonLd data={getLocalBusinessSchema()} />
-
 			<SectionPrincipalBanner
 				title={category}
 				h1={`${category} de imprenta e impresión`}

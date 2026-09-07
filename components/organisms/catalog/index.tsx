@@ -1,9 +1,9 @@
 import { catalogOptions } from "@/lib/constants";
 
 import {
-	type FAQItem,
 	CatalogOption,
 	FAQ,
+	type FAQItem,
 	KnowMore,
 	SectionPrincipalBanner,
 } from "@/components/atoms";

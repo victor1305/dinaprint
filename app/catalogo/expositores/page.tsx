@@ -1,18 +1,12 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import {
-	OG_DEFAULTS,
-	absoluteUrl,
-	buildServiceSchema,
-	getLocalBusinessSchema,
-	ogImage,
-	ogImageUrl,
-} from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, buildServiceSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
+import type { ProductSection } from "@/components/atoms";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Expositores para punto de venta",
+	title: "Expositores de cartón y PLV en Madrid",
 	description:
 		"Expositores para punto de venta en Madrid (Pinto): soluciones para retail con medidas y acabados personalizados.",
 	alternates: {
@@ -21,14 +15,14 @@ export const metadata: Metadata = {
 	openGraph: {
 		...OG_DEFAULTS,
 		type: "website",
-		title: "Expositores para punto de venta",
+		title: "Expositores de cartón y PLV en Madrid",
 		url: absoluteUrl("/catalogo/expositores"),
 		description:
 			"Expositores personalizados para retail, ferias y puntos de venta. Múltiples materiales y acabados.",
 		images: [ogImage("/stand-001.jpg", "Expositores - Dinaprint")],
 	},
 	twitter: {
-		title: "Expositores para punto de venta",
+		title: "Expositores de cartón y PLV en Madrid",
 		images: [ogImageUrl("/stand-001.jpg")],
 	},
 	keywords: [
@@ -119,8 +113,33 @@ const faqItems = [
 	},
 ];
 
+const contentSections: ProductSection[] = [
+	{
+		title: "Elegir el tipo de expositor según dónde se coloca",
+		body: [
+			"Un expositor de cartón funciona o no según el sitio que le dé la tienda, y ese sitio hay que negociarlo antes de fabricar. Fabricar un expositor de suelo para una cadena que solo cede espacio en mostrador es dinero perdido.",
+			"El de <strong>mostrador</strong> es el de menor coste y el que más fácil se coloca: producto pequeño, compra por impulso, junto a la caja. El de <strong>suelo</strong> necesita metro y medio de pasillo y se reserva para lanzamientos y campañas con acuerdo previo. La <strong>cabecera de góndola</strong> es la posición más cara del lineal y suele ir asociada a un acuerdo comercial. El <strong>expositor encajado en palé</strong> es el que mejor funciona en superficies grandes, porque llega montado y el personal de tienda no tiene que hacer nada.",
+		],
+	},
+	{
+		title: "La carga manda sobre el material",
+		body: [
+			"Antes de diseñar hay que saber cuánto pesa el producto y cuántas unidades van por balda. El cartón microcanal aguanta bien producto ligero —cosmética, sobres, bolsas— pero se vence con conservas o botellas.",
+			"Con peso real hay que ir a canal B de 3 mm, y por encima de unos 5 kg por balda, a doble canal con refuerzo interior. Es la diferencia entre un expositor que aguanta la campaña entera y uno que se hunde la primera semana y acaba retirado por la propia tienda.",
+			"Siempre fabricamos un prototipo troquelado antes de la tirada y lo cargamos con el producto real. Es el paso que más disgustos evita, porque los problemas de estabilidad no se ven en un render.",
+		],
+	},
+	{
+		title: "Montaje y transporte",
+		body: [
+			"Un expositor se envía plegado y se monta en tienda. Si el montaje requiere más de un minuto o instrucciones complicadas, el personal de la tienda no lo monta y se queda en el almacén.",
+			"Diseñamos con pestañas de encaje y sin necesidad de cinta ni herramientas, y numeramos las piezas cuando el montaje tiene varios pasos. También podemos servirlo premontado si la campaña lo justifica y el transporte lo permite.",
+		],
+	},
+];
+
 const serviceSchema = buildServiceSchema({
-	name: "Expositores para punto de venta",
+	name: "Expositores de cartón y PLV en Madrid",
 	description:
 		"Expositores personalizados para retail, ferias y puntos de venta. Múltiples materiales y acabados.",
 	slug: "/catalogo/expositores",
@@ -130,8 +149,10 @@ const serviceSchema = buildServiceSchema({
 export default async function Page() {
 	const data = {
 		title: "Expositores",
-		h1: "Expositores de cartón para punto de venta",
+		h1: "Expositores de cartón y PLV en Madrid",
 		product: "Expositores",
+		localProduct: "expositores",
+		sections: contentSections,
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/stand-001.jpg",
 		specs: specRows,
@@ -145,9 +166,6 @@ export default async function Page() {
 	};
 	return (
 		<main>
-			{/* Schema del negocio */}
-			<JsonLd data={getLocalBusinessSchema()} />
-
 			{/* Schema del servicio */}
 			<JsonLd data={serviceSchema} />
 

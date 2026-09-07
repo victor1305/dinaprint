@@ -1,18 +1,12 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import {
-	OG_DEFAULTS,
-	absoluteUrl,
-	buildServiceSchema,
-	getLocalBusinessSchema,
-	ogImage,
-	ogImageUrl,
-} from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, buildServiceSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
+import type { ProductSection } from "@/components/atoms";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Cajas y packaging personalizados",
+	title: "Cajas y packaging personalizado en Madrid",
 	description:
 		"Cajas y packaging personalizados en Madrid (Pinto): impresión de calidad, acabados y tiradas cortas con impresión digital.",
 	alternates: {
@@ -21,13 +15,13 @@ export const metadata: Metadata = {
 	openGraph: {
 		...OG_DEFAULTS,
 		type: "website",
-		title: "Cajas y packaging personalizados",
+		title: "Cajas y packaging personalizado en Madrid",
 		url: absoluteUrl("/catalogo/cajas-y-packaging"),
 		description: "Packaging personalizado: cajas, estuches y envoltorios con acabados premium.",
 		images: [ogImage("/packing-01.jpg", "Cajas y packaging - Dinaprint")],
 	},
 	twitter: {
-		title: "Cajas y packaging personalizados",
+		title: "Cajas y packaging personalizado en Madrid",
 		images: [ogImageUrl("/packing-01.jpg")],
 	},
 	keywords: [
@@ -120,8 +114,35 @@ const faqItems = [
 	},
 ];
 
+const contentSections: ProductSection[] = [
+	{
+		title: "El troquel es la decisión que más condiciona el presupuesto",
+		body: [
+			"En packaging, el coste no está tanto en la impresión como en el troquel: la cuchilla que corta y hendida la caja. Un troquel nuevo es una inversión inicial que se amortiza con la tirada, y por eso el precio por unidad cae tanto al subir cantidad.",
+			"Si tu caja encaja en una de las formas estándar que ya tenemos troqueladas —automontable, con solapa, tipo estuche, con tapa y fondo—, te ahorras ese coste y bajas el plazo a la mitad. Merece la pena preguntar antes de diseñar una forma propia.",
+			"Cuando sí hace falta troquel nuevo, te pasamos el desarrollo en vectorial para que el diseñador monte el arte final sobre él. Diseñar primero y adaptar después es la vía rápida a que el logotipo caiga justo sobre un hendido.",
+		],
+	},
+	{
+		title: "Medir la caja por el producto, no al revés",
+		body: [
+			"Las medidas que necesitamos son las interiores, no las exteriores, y con el producto ya protegido. Un error de 2 mm en una caja ajustada significa que el producto no entra o que baila dentro.",
+			"Hay que contar también con el grosor del cartón en las tres dimensiones —en canal B son 3 mm por pared— y con el espacio del interior si lleva cuna, separadores o espuma.",
+			"Lo más seguro es traernos una unidad del producto al taller de Pinto. Fabricamos un prototipo troquelado en blanco, metemos el producto dentro y comprobamos el ajuste real antes de lanzar la tirada.",
+		],
+	},
+	{
+		title: "Packaging que resiste el transporte y la apertura",
+		body: [
+			"Si la caja va a viajar por mensajería, tiene que aguantar caídas, apilado y manipulación. Ahí el cartón compacto no basta: hace falta canal y, en producto frágil, interior de protección.",
+			"Y si es packaging de marca para venta online, el momento de la apertura importa tanto como la protección. Interior impreso, cierre con pestaña de seguridad y cinta personalizada son detalles baratos que cambian por completo la percepción de la entrega.",
+			"En sostenibilidad, trabajamos con cartón reciclado y certificado FSC, tintas de base vegetal y acabados sin plastificar cuando el producto lo permite. Es lo que permite que la caja siga siendo reciclable en el contenedor azul.",
+		],
+	},
+];
+
 const serviceSchema = buildServiceSchema({
-	name: "Cajas y packaging personalizados",
+	name: "Cajas y packaging personalizado en Madrid",
 	description: "Packaging personalizado: cajas, estuches y envoltorios con acabados premium.",
 	slug: "/catalogo/cajas-y-packaging",
 	imagePath: "/packing-01.jpg",
@@ -132,6 +153,8 @@ export default async function Page() {
 		title: "Cajas y packaging",
 		h1: "Cajas y packaging personalizado en Madrid",
 		product: "Cajas y packaging",
+		localProduct: "cajas y packaging",
+		sections: contentSections,
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/packing-01.jpg",
 		specs: specRows,
@@ -145,9 +168,6 @@ export default async function Page() {
 	};
 	return (
 		<main>
-			{/* Schema del negocio */}
-			<JsonLd data={getLocalBusinessSchema()} />
-
 			{/* Schema del servicio */}
 			<JsonLd data={serviceSchema} />
 

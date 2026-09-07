@@ -1,18 +1,12 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import {
-	OG_DEFAULTS,
-	absoluteUrl,
-	buildServiceSchema,
-	getLocalBusinessSchema,
-	ogImage,
-	ogImageUrl,
-} from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, buildServiceSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
+import type { ProductSection } from "@/components/atoms";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Impresión de calendarios personalizados",
+	title: "Calendarios personalizados en Madrid",
 	description:
 		"Impresión de calendarios personalizados en Madrid (Pinto): de pared, mesa o bolsillo, en cualquier cantidad, medida y soporte.",
 	alternates: {
@@ -21,14 +15,14 @@ export const metadata: Metadata = {
 	openGraph: {
 		...OG_DEFAULTS,
 		type: "website",
-		title: "Impresión de calendarios personalizados",
+		title: "Calendarios personalizados en Madrid",
 		url: absoluteUrl("/catalogo/calendarios"),
 		description:
 			"Impresión de calendarios personalizados en Madrid (Pinto): de pared, mesa o bolsillo, en cualquier cantidad, medida y soporte.",
 		images: [ogImage("/calendar-1.jpg", "Calendarios personalizados - Dinaprint")],
 	},
 	twitter: {
-		title: "Impresión de calendarios personalizados",
+		title: "Calendarios personalizados en Madrid",
 		description:
 			"Impresión de calendarios personalizados en Madrid (Pinto): de pared, mesa o bolsillo, en cualquier cantidad, medida y soporte.",
 		images: [ogImageUrl("/calendar-1.jpg")],
@@ -122,6 +116,34 @@ const faqItems = [
 	},
 ];
 
+const contentSections: ProductSection[] = [
+	{
+		title: "El calendario de empresa se cierra en octubre",
+		body: [
+			"Es el producto más estacional del catálogo y el que peor se planifica. Para que un calendario llegue a los clientes antes de Navidad, el arte final tiene que estar cerrado en octubre: hay que contar con la tirada, el encuadernado, el troquelado de la percha o el montaje del caballete, y con que la última semana de noviembre las imprentas van a tope.",
+			"Quien lo deja para diciembre acaba repartiendo el calendario en enero, que es exactamente cuando ya no sirve: el cliente lleva dos semanas usando el de otro proveedor.",
+		],
+	},
+	{
+		title: "Qué formato encaja con qué objetivo",
+		body: ["No todos los calendarios cumplen la misma función, y elegir mal es tirar la tirada:"],
+		list: [
+			"<strong>De pared con espiral:</strong> el clásico de 12 hojas. Va en cocina, taller o almacén y es el que más tiempo permanece a la vista. Necesita imagen grande y buena; es medio póster.",
+			"<strong>De sobremesa con caballete:</strong> el que funciona en oficina. Se ve de cerca, así que admite más información: teléfonos, servicios, notas. Es el mejor para B2B.",
+			"<strong>De bolsillo:</strong> barato y de tirada alta. Sirve para repartir en punto de venta, no para fidelizar.",
+			"<strong>Magnético de nevera:</strong> muy efectivo en negocios de servicio a domicilio y reparación, porque se queda a mano justo donde se necesita el teléfono.",
+			"<strong>Planificador de pared anual:</strong> una sola hoja grande. Es el que más agradecen los equipos que trabajan por proyectos.",
+		],
+	},
+	{
+		title: "Detalles que se pasan por alto",
+		body: [
+			"El santoral, las fases lunares y los festivos autonómicos hay que confirmarlos: los festivos de la Comunidad de Madrid no son los de Andalucía, y un calendario con el festivo equivocado se convierte en una anécdota que circula por toda la empresa.",
+			"En calendarios de pared, deja margen inferior suficiente para que el taladro de la percha no se coma información. Y si van imágenes propias, necesitamos 300 ppp a tamaño real: una foto sacada de una web se ve perfecta en pantalla y granulada en papel a tamaño A3.",
+		],
+	},
+];
+
 const serviceSchema = buildServiceSchema({
 	name: "Calendarios personalizados",
 	description:
@@ -133,8 +155,10 @@ const serviceSchema = buildServiceSchema({
 export default async function Page() {
 	const data = {
 		title: "Calendarios",
-		h1: "Impresión de calendarios personalizados",
+		h1: "Calendarios personalizados en Madrid",
 		product: "Calendarios",
+		localProduct: "calendarios",
+		sections: contentSections,
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/calendar-1.jpg",
 		specs: specRows,
@@ -148,9 +172,6 @@ export default async function Page() {
 	};
 	return (
 		<main>
-			{/* Schema del negocio */}
-			<JsonLd data={getLocalBusinessSchema()} />
-
 			{/* Schema del servicio */}
 			<JsonLd data={serviceSchema} />
 

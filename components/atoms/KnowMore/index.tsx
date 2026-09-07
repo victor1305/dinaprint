@@ -16,6 +16,8 @@ const KnowMore = ({ path, copy }: KnowMoreProps) => (
 		<div className="absolute bg-[url('/CTA-Shapes.png')] bg-cover bg-[left_center] bg-no-repeat w-full h-full top-0 left-0 opacity-20 lg:bg-center" />
 		<div className="absolute top-[-1px] left-0 overflow-hidden w-full">
 			<svg
+				aria-hidden="true"
+				focusable="false"
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 1000 100"
 				preserveAspectRatio="none"
@@ -25,7 +27,6 @@ const KnowMore = ({ path, copy }: KnowMoreProps) => (
 				}}
 				className="block relative left-1/2 h-[70px] overflow-hidden lg:h-[120px]"
 			>
-				<title>Separador decorativo</title>
 				<path
 					className="fill-white !overflow-hidden"
 					d="M421.9,6.5c22.6-2.5,51.5,0.4,75.5,5.3c23.6,4.9,70.9,23.5,100.5,35.7c75.8,32.2,133.7,44.5,192.6,49.7

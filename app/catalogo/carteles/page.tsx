@@ -1,18 +1,12 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import {
-	OG_DEFAULTS,
-	absoluteUrl,
-	buildServiceSchema,
-	getLocalBusinessSchema,
-	ogImage,
-	ogImageUrl,
-} from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, buildServiceSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
+import type { ProductSection } from "@/components/atoms";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Impresión de carteles",
+	title: "Impresión de carteles en Madrid",
 	description:
 		"Impresión de carteles en Madrid (Pinto): distintos soportes (papel y rígidos), medidas y cantidades, con acabados como UVI, barnices y troquelado.",
 	alternates: {
@@ -21,13 +15,13 @@ export const metadata: Metadata = {
 	openGraph: {
 		...OG_DEFAULTS,
 		type: "website",
-		title: "Impresión de carteles",
+		title: "Impresión de carteles en Madrid",
 		url: absoluteUrl("/catalogo/carteles"),
 		description: "Impresión de carteles en papel, rígidos y lonas con acabados profesionales.",
 		images: [ogImage("/carteles-01.jpg", "Impresión de carteles - Dinaprint")],
 	},
 	twitter: {
-		title: "Impresión de carteles",
+		title: "Impresión de carteles en Madrid",
 		description: "Impresión de carteles en papel, rígidos y lonas con acabados profesionales.",
 		images: [ogImageUrl("/carteles-01.jpg")],
 	},
@@ -119,6 +113,36 @@ const faqItems = [
 	},
 ];
 
+const contentSections: ProductSection[] = [
+	{
+		title: "Papel o rígido: cómo elegir el soporte",
+		body: [
+			"La primera decisión de un cartel no es el tamaño, es dónde va a vivir y cuánto tiempo. De ahí sale el material, y el material es lo que marca el precio.",
+			"Para escaparate o pared interior con vida corta —una promoción de dos semanas, un evento— el estucado de 200 a 250 g cumple de sobra y es la opción más económica. Si el cartel va colgado y tiene que quedar plano sin ondularse, conviene subir a 300 g o montarlo sobre foam de 5 mm.",
+			"En exterior el papel no aguanta. Ahí van PVC de 3 mm, Dibond para instalaciones permanentes o lona de 510 g si hay que tensarla en una valla. La diferencia real entre un cartel de exterior que dura tres meses y uno que dura tres años está en el laminado, no en la tinta.",
+		],
+	},
+	{
+		title: "El tamaño se decide por la distancia de lectura",
+		body: [
+			"Una regla que evita bastantes carteles inútiles: la altura de letra en centímetros debe ser aproximadamente la distancia de lectura en metros. Un texto que se lee a 5 metros necesita 5 cm de altura de letra; a 20 metros, 20 cm.",
+			"Aplicado a los formatos habituales: un A3 funciona en mostrador y ascensor, un A2 en escaparate a pie de calle, un A1 y un 70×100 en pared de local o valla interior, y de ahí hacia arriba ya hablamos de gran formato.",
+			"El otro error clásico es meter demasiado texto. Un cartel se lee en dos segundos desde la acera: un titular, un dato y una llamada. Todo lo demás sobra y resta legibilidad.",
+		],
+	},
+	{
+		title: "Acabados que cambian el resultado",
+		body: ["No todos los acabados aportan lo mismo según dónde vaya el cartel:"],
+		list: [
+			"<strong>Plastificado mate:</strong> imprescindible en locales con focos o luz cenital. Elimina el brillo que impide leer desde ciertos ángulos.",
+			"<strong>Plastificado brillo:</strong> satura el color y funciona bien en escaparate con luz natural, pero refleja.",
+			"<strong>Barniz UVI selectivo:</strong> brillo solo sobre el logotipo o una imagen, con el resto mate. Es lo que da sensación de pieza cuidada.",
+			"<strong>Troquelado a forma:</strong> el cartel deja de ser un rectángulo. Requiere troquel propio, que se amortiza a partir de cierta tirada.",
+			"<strong>Ojales y refuerzo:</strong> obligatorio en lona que vaya tensada, o el viento la rompe por los puntos de sujeción.",
+		],
+	},
+];
+
 const serviceSchema = buildServiceSchema({
 	name: "Carteles",
 	description: "Impresión de carteles en papel, rígidos y lonas con acabados profesionales.",
@@ -131,6 +155,8 @@ export default async function Page() {
 		title: "Carteles",
 		h1: "Impresión de carteles y cartelería en Madrid",
 		product: "Carteles",
+		localProduct: "carteles",
+		sections: contentSections,
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/carteles-01.jpg",
 		specs: specRows,
@@ -144,9 +170,6 @@ export default async function Page() {
 	};
 	return (
 		<main>
-			{/* Schema del negocio */}
-			<JsonLd data={getLocalBusinessSchema()} />
-
 			{/* Schema del servicio */}
 			<JsonLd data={serviceSchema} />
 

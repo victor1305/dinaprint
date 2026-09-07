@@ -5,21 +5,15 @@ import {
 	FAQ,
 	JsonLd,
 	KnowMore,
+	LocalCoverage,
 	SectionPrincipalBanner,
 	SpecTable,
 } from "@/components/atoms";
-import {
-	OG_DEFAULTS,
-	absoluteUrl,
-	buildServiceSchema,
-	getLocalBusinessSchema,
-	ogImage,
-	ogImageUrl,
-} from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, buildServiceSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
-const TITLE = "Impresión de cartas y menús para restaurantes";
+const TITLE = "Cartas y menús de restaurante en Madrid";
 const DESCRIPTION =
 	"Impresión de cartas y menús de restaurante en Madrid: papel laminado, sintético lavable y fundas. Formatos, gramajes y plazos desde 25 unidades.";
 const IMAGE = "/folletos.jpg";
@@ -150,12 +144,11 @@ const serviceSchema = buildServiceSchema({
 export default async function Page() {
 	return (
 		<main>
-			<JsonLd data={getLocalBusinessSchema()} />
 			<JsonLd data={serviceSchema} />
 
 			<SectionPrincipalBanner
 				title="Cartas y menús"
-				h1="Impresión de cartas y menús para restaurantes"
+				h1="Impresión de cartas y menús de restaurante en Madrid"
 				subtitle="Hostelería · Madrid y toda la península"
 			/>
 
@@ -276,6 +269,7 @@ export default async function Page() {
 				<FAQ items={faqItems} />
 			</section>
 
+			<LocalCoverage product="cartas y menús" />
 			<KnowMore path={"/contacto"} copy={"PEDIR PRESUPUESTO"} />
 		</main>
 	);

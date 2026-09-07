@@ -1,18 +1,12 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import {
-	OG_DEFAULTS,
-	absoluteUrl,
-	buildServiceSchema,
-	getLocalBusinessSchema,
-	ogImage,
-	ogImageUrl,
-} from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, buildServiceSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
+import type { ProductSection } from "@/components/atoms";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Roll up: impresión y montaje para ferias y eventos",
+	title: "Roll up en Madrid para ferias y eventos",
 	description:
 		"Roll up en Madrid (Pinto): impresión a todo color, varios tamaños y acabados. Ideal para ferias, exposiciones y eventos.",
 	alternates: {
@@ -21,14 +15,14 @@ export const metadata: Metadata = {
 	openGraph: {
 		...OG_DEFAULTS,
 		type: "website",
-		title: "Roll up: impresión y montaje para ferias y eventos",
+		title: "Roll up en Madrid para ferias y eventos",
 		url: absoluteUrl("/catalogo/roll-up"),
 		description:
 			"Roll up en Madrid (Pinto): impresión a todo color, varios tamaños y acabados. Ideal para ferias, exposiciones y eventos.",
 		images: [ogImage("/rollup-001.jpg", "Roll up - Dinaprint")],
 	},
 	twitter: {
-		title: "Roll up: impresión y montaje para ferias y eventos",
+		title: "Roll up en Madrid para ferias y eventos",
 		images: [ogImageUrl("/rollup-001.jpg")],
 	},
 	keywords: [
@@ -118,6 +112,32 @@ const faqItems = [
 	},
 ];
 
+const contentSections: ProductSection[] = [
+	{
+		title: "Qué separa un roll up que dura de uno que no",
+		body: [
+			"Todos los roll ups se parecen en la foto y se diferencian al tercer montaje. La estructura es donde está la diferencia real de precio y de vida útil.",
+			"Un mecanismo económico lleva base ligera y barra de un tramo: se ondula con el uso, la gráfica no queda tensa y el conjunto se vence si alguien lo roza. Uno profesional lleva base de aluminio con peso, barra de tres tramos y tensión regulable, y aguanta decenas de montajes sin que la lona se abarquille.",
+			"Si el roll up es para una feria puntual, el económico cumple. Si va a viajar a seis ferias al año en el maletero de un coche, el profesional sale más barato a la segunda temporada.",
+		],
+	},
+	{
+		title: "Diseñar para que se lea de pie",
+		body: [
+			"El error más repetido en gráficas de roll up es maquetar el diseño como si fuera un folleto en pantalla. Un roll up se ve de pie, a dos o tres metros y con gente delante.",
+			"Los primeros 15 cm inferiores quedan ocultos dentro del mecanismo: cualquier cosa que pongas ahí desaparece. Y por debajo de 60 cm el visitante no mira, porque tiene el cuerpo de otra persona delante.",
+			"El contenido que importa —marca, propuesta, forma de contacto— va entre 120 y 180 cm de altura, que es la franja de lectura cómoda. Arriba del todo, el logotipo; abajo, solo elementos decorativos.",
+		],
+	},
+	{
+		title: "Reaprovechar la estructura",
+		body: [
+			"Si ya tienes roll ups de una feria anterior y la estructura está bien, no hace falta comprar el conjunto entero: imprimimos solo la gráfica nueva y la cambiamos sobre el mecanismo existente. Sale bastante más barato y evita acumular estructuras en el almacén.",
+			"Para eso necesitamos saber la medida exacta de la gráfica actual y el tipo de fijación —adhesivo, perfil de clip o riel—, así que lo más práctico es traer el roll up al taller de Pinto y lo vemos en un momento.",
+		],
+	},
+];
+
 const serviceSchema = buildServiceSchema({
 	name: "Roll up",
 	description:
@@ -129,8 +149,10 @@ const serviceSchema = buildServiceSchema({
 export default async function Page() {
 	const data = {
 		title: "Roll up",
-		h1: "Impresión de roll ups para ferias y eventos",
+		h1: "Impresión de roll ups en Madrid para ferias y eventos",
 		product: "Roll up",
+		localProduct: "roll ups",
+		sections: contentSections,
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/rollup-001.jpg",
 		specs: specRows,
@@ -144,9 +166,6 @@ export default async function Page() {
 	};
 	return (
 		<main>
-			{/* Schema del negocio */}
-			<JsonLd data={getLocalBusinessSchema()} />
-
 			{/* Schema del servicio */}
 			<JsonLd data={serviceSchema} />
 

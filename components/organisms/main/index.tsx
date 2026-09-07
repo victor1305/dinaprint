@@ -1,6 +1,6 @@
 import type React from "react";
 
-import { MainLast, MainPrincipal, MainSecond, MainWhy } from "@/components/atoms";
+import { MainLast, MainLocal, MainPrincipal, MainSecond, MainWhy } from "@/components/atoms";
 import { MainSwiper } from "@/components/molecules";
 
 const Main: React.FC = () => (
@@ -14,6 +14,9 @@ const Main: React.FC = () => (
 		</div>
 		<div className="mt-20">
 			<MainSwiper />
+		</div>
+		<div className="mt-20">
+			<MainLocal />
 		</div>
 		<div className="mt-20 mb-20">
 			<MainLast />

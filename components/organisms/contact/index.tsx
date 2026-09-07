@@ -3,9 +3,9 @@
 import type React from "react";
 
 import {
-	type FAQItem,
 	ContactMain,
 	FAQ,
+	type FAQItem,
 	KnowMore,
 	SectionPrincipalBanner,
 } from "@/components/atoms";

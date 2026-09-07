@@ -2,9 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { POSTS_PER_PAGE, getAllPosts, getCategoriesWithPosts } from "@/lib/blog";
-import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, ogImage, ogImageUrl } from "@/lib/seo";
 
-import { Breadcrumbs, JsonLd, Pagination, SectionPrincipalBanner } from "@/components/atoms";
+import { Breadcrumbs, Pagination, SectionPrincipalBanner } from "@/components/atoms";
 import { PostGrid } from "@/components/molecules";
 
 import type { Metadata } from "next";
@@ -62,8 +62,6 @@ export default function BlogPaginatedPage({ params }: PageProps) {
 
 	return (
 		<main>
-			<JsonLd data={getLocalBusinessSchema()} />
-
 			<SectionPrincipalBanner
 				title="Blog"
 				h1={`Blog de imprenta — página ${page}`}

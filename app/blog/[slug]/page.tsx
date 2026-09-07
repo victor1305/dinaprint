@@ -11,9 +11,10 @@ import {
 	getPostBySlug,
 	getRelatedPosts,
 } from "@/lib/blog";
-import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
+import { getRelatedService } from "@/lib/related-service";
+import { OG_DEFAULTS, absoluteUrl, ogImage, ogImageUrl } from "@/lib/seo";
 
-import { Breadcrumbs, JsonLd } from "@/components/atoms";
+import { Breadcrumbs, JsonLd, ServiceCallout } from "@/components/atoms";
 
 import type { Metadata } from "next";
 
@@ -34,8 +35,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 		return { title: "Artículo no encontrado" };
 	}
 
+	// `seoTitle` recorta el titular para que no se trunque en la SERP; el H1 de
+	// la página sigue siendo `title`, con el enunciado completo.
+	const metaTitle = post.seoTitle ?? post.title;
+
 	return {
-		title: post.title,
+		title: metaTitle,
 		description: post.description,
 		alternates: {
 			canonical: `/blog/${post.slug}`,
@@ -44,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 		openGraph: {
 			...OG_DEFAULTS,
 			type: "article",
-			title: post.title,
+			title: metaTitle,
 			description: post.description,
 			url: absoluteUrl(`/blog/${slug}`),
 			images: [ogImage(post.image, post.title)],
@@ -54,7 +59,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 		},
 		twitter: {
 			card: "summary_large_image",
-			title: post.title,
+			title: metaTitle,
 			description: post.description,
 			images: [ogImageUrl(post.image)],
 		},
@@ -70,11 +75,12 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 	}
 
 	const relatedPosts = getRelatedPosts(slug);
+	// Ficha de catálogo que corresponde al tema del artículo, si la hay.
+	const relatedService = getRelatedService(slug);
 	const articleSchema = getArticleSchema(post, absoluteUrl(`/blog/${slug}`));
 
 	return (
 		<main className="bg-gray-50">
-			<JsonLd data={getLocalBusinessSchema()} />
 			<JsonLd data={articleSchema} />
 
 			{/* Hero del artículo */}
@@ -155,6 +161,8 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 					</span>
 				</div>
 
+				{relatedService && <ServiceCallout service={relatedService} />}
+
 				{/* Contenido del artículo */}
 				<div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-li:text-gray-700 prose-blockquote:border-primary prose-blockquote:bg-primary/5 prose-blockquote:py-1 prose-blockquote:rounded-r-lg">
 					<ReactMarkdown
@@ -230,21 +238,25 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 					))}
 				</div>
 
-				{/* CTA */}
-				<div className="bg-primary/10 rounded-xl p-6 md:p-8 mt-10 text-center">
-					<h3 className="text-xl font-bold text-gray-900 mb-3">
-						¿Necesitas ayuda con tu proyecto de impresión?
-					</h3>
-					<p className="text-gray-600 mb-5">
-						Contacta con nosotros y te asesoramos sin compromiso.
-					</p>
-					<Link
-						href="/contacto"
-						className="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors"
-					>
-						Solicitar presupuesto
-					</Link>
-				</div>
+				{/* CTA: hacia la ficha del producto cuando el artículo tiene una */}
+				{relatedService ? (
+					<ServiceCallout service={relatedService} variant="cta" />
+				) : (
+					<div className="bg-primary/10 rounded-xl p-6 md:p-8 mt-10 text-center">
+						<h3 className="text-xl font-bold text-gray-900 mb-3">
+							¿Necesitas ayuda con tu proyecto de impresión?
+						</h3>
+						<p className="text-gray-600 mb-5">
+							Somos una imprenta en Pinto (sur de Madrid). Contacta y te asesoramos sin compromiso.
+						</p>
+						<Link
+							href="/contacto"
+							className="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+						>
+							Solicitar presupuesto
+						</Link>
+					</div>
+				)}
 			</article>
 
 			{/* Artículos relacionados */}

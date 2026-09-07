@@ -38,8 +38,11 @@ tocar una página:
   `/og/<archivo>.jpg` — recortes generados por el build, no a la imagen original.
 - Los schemas se construyen con `buildServiceSchema`, `buildProductSchema`, `getLocalBusinessSchema`,
   `getOrganizationSchema`, `getWebSiteSchema` y se pintan con `<JsonLd data={...} />`.
-- El `localBusiness` schema se emite **por página**, no en el layout, para que los rastreadores no
-  concatenen JSON-LD duplicado.
+- El `localBusiness` schema se emite **solo en las páginas que son la ficha del negocio**: la home,
+  `/contacto` y las tres de zona. Nunca en el layout (los rastreadores concatenarían JSON-LD
+  duplicado) y ya no en catálogo ni en el blog: llegó a estar en 23 páginas, incluido cada artículo,
+  y así ninguna destacaba como la ficha local. En una ficha de catálogo el vínculo con la empresa lo
+  aporta el `provider` de `buildServiceSchema`; en un artículo, el `publisher` de `getArticleSchema`.
 
 ### FAQ: el schema lo emite el componente
 
@@ -106,9 +109,41 @@ rutas: `@/*` → raíz del proyecto.
 
 Las páginas de `app/catalogo/*` comparten estructura (ver [roll-up](app/catalogo/roll-up/page.tsx)
 como referencia canónica): `metadata` con canonical + OG + twitter + keywords, constantes locales
-`specRows` y `faqItems`, un `serviceSchema` de `buildServiceSchema`, y un render de
-`<JsonLd>` × 2 + `<Product {...data} />` + `<FAQ items>`. Una página nueva de catálogo debe además
-darse de alta en `ROUTE_LAST_MODIFIED` y, si toca, en `catalogOptions` de [lib/constants.ts](lib/constants.ts).
+`specRows`, `contentSections` y `faqItems`, un `serviceSchema` de `buildServiceSchema`, y un render
+de `<JsonLd data={serviceSchema} />` + `<Product {...data} />` + `<FAQ items>`. Una página nueva de
+catálogo debe además darse de alta en `ROUTE_LAST_MODIFIED`, en `llms.txt` y, si toca, en
+`catalogOptions` de [lib/constants.ts](lib/constants.ts).
+
+El objeto `data` que recibe `Product` lleva tres campos que existen por lo que contaba Search
+Console del trimestre jun-sep 2026 (fichas a posición media 44, 5 clics en tres meses):
+
+- **`sections`** (`ProductSection[]`, la constante `contentSections`): el contenido largo y propio de
+  la ficha, bajo la tabla de especificaciones. Criterio de compra real —qué material elegir según el
+  uso, qué se pide mal, qué hay que decidir antes de presupuestar—, no descripción genérica. Las
+  fichas cortas rondaban las 700 palabras; con esto pasan de 1.000.
+- **`localProduct`** (string en minúscula y plural): activa `<LocalCoverage>`, el bloque de cobertura
+  con dirección, recogida en taller y enlaces a las tres páginas de zona.
+- **`h1`** y el `title`: llevan **modificador local** ("en Madrid"). Los términos nacionales secos
+  ("papelería corporativa", "impresión de catálogos") salían en posición 45-70; las variantes con
+  ciudad, en 20-45. Es el terreno ganable, así que las fichas nuevas se nombran igual.
+
+`/catalogo/cartas-y-menus` y `/catalogo/catalogos` no usan `Product` —tienen maquetación propia— pero
+sí montan `<LocalCoverage>` a mano antes del `<KnowMore>`.
+
+### Blog → catálogo: `lib/related-service.ts`
+
+Cada artículo declara ahí la ficha de catálogo que le corresponde, y la plantilla de
+[app/blog/[slug]](app/blog/[slug]/page.tsx) pinta con ella un `<ServiceCallout>` antes del cuerpo y
+otro, en variante `cta`, al cerrar.
+
+Existe porque los artículos estaban canibalizando a las fichas: el post de cartas y menús acumulaba
+4.966 impresiones y 47 clics mientras `/catalogo/cartas-y-menus` se quedaba literalmente en cero, y
+lo mismo entre el de catálogos (1.794) y `/catalogo/catalogos` (339). El artículo capta la búsqueda
+informacional; el callout es lo que lleva a la página que pide presupuesto, y de paso da a las fichas
+los enlaces contextuales que no tenían.
+
+**Un artículo nuevo debe darse de alta en ese mapa.** Si no aparece, no se rompe nada: cae en el CTA
+genérico hacia `/contacto`, pero pierde el enlace a la ficha.
 
 ### Contenido editable sin tocar componentes
 
@@ -138,6 +173,13 @@ escucha en **3001** (`PORT`/`HOSTNAME` ya fijados) y arranca con `node server.js
 
 - Analítica: Plausible self-hosted, script en [app/layout.tsx](app/layout.tsx).
 - `NEXT_PUBLIC_SITE_URL` sobrescribe el dominio; por defecto `https://dinaprint.com`.
+- El dominio canónico es el **apex**. `next.config.js` redirige `www` con un 308 permanente; antes lo
+  resolvía Cloudflare con un 307 temporal y Search Console lo contaba como propiedad aparte.
+- **El `robots.txt` que se sirve no es solo el de la app.** Cloudflare le antepone un bloque
+  "Managed content" que hoy prohíbe GPTBot, ClaudeBot, Google-Extended, CCBot, Amazonbot,
+  Applebot-Extended, Bytespider y meta-externalagent, y marca `ai-train=no`. Eso deja sin efecto el
+  trabajo de [/llms.txt](app/llms.txt/route.ts): el índice existe pero ningún modelo puede leerlo.
+  Se decide en el panel de Cloudflare, no en el repo.
 - Conviven `bun.lock` y `package-lock.json`; los scripts documentados van con npm.
 - `.agents/`, `skills-lock.json` y casi todo `.claude/` están en `.gitignore`: son tooling de
   agentes, no parte de la aplicación. Las excepciones versionadas son
@@ -171,8 +213,8 @@ Y uno de `PreToolUse`:
 ## Subagente y skill del proyecto
 
 - [seo-page-reviewer](.claude/agents/seo-page-reviewer.md): revisa una página contra las convenciones
-  de este fichero (esparcido de `OG_DEFAULTS`, canonical, `ogImage()`, `localBusiness` por página, un
-  solo `<FAQ>`, alta en `ROUTE_LAST_MODIFIED` y en `llms.txt`). Verifica sobre el HTML de
+  de este fichero (esparcido de `OG_DEFAULTS`, canonical, `ogImage()`, `localBusiness` solo en home /
+  contacto / zonas, un solo `<FAQ>`, alta en `ROUTE_LAST_MODIFIED` y en `llms.txt`). Verifica sobre el HTML de
   `.next/server/app/`, no solo leyendo el JSX. Conviene pasarlo tras crear o tocar un `page.tsx`.
 - [nuevo-post](.claude/skills/nuevo-post/SKILL.md): alta de un artículo del blog. Incluye el paso que
   más disgustos evita —comprobar solapamiento con lo ya publicado antes de escribir, para no

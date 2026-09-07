@@ -15,6 +15,17 @@
 		"enabled": true
 	},
 	"files": {
-		"ignore": ["node_modules", ".next", "out", "build", "dist", "public"]
+		"ignore": [
+			"node_modules",
+			".next",
+			"out",
+			"build",
+			"dist",
+			"public",
+			".agents",
+			".claude/skills",
+			".claude/agents",
+			"skills-lock.json"
+		]
 	}
 }

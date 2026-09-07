@@ -1,18 +1,12 @@
 import { FAQ, JsonLd } from "@/components/atoms";
 import { Product } from "@/components/organisms";
-import {
-	OG_DEFAULTS,
-	absoluteUrl,
-	buildServiceSchema,
-	getLocalBusinessSchema,
-	ogImage,
-	ogImageUrl,
-} from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, buildServiceSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
+import type { ProductSection } from "@/components/atoms";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Papelería corporativa en Madrid: tarjetas y carpetas",
+	title: "Papelería corporativa para empresas en Madrid",
 	description:
 		"Papelería corporativa en Madrid (Pinto): tarjetas de visita, carpetas, cartas, catálogos y folletos con acabados profesionales.",
 	alternates: {
@@ -21,14 +15,14 @@ export const metadata: Metadata = {
 	openGraph: {
 		...OG_DEFAULTS,
 		type: "website",
-		title: "Papelería corporativa en Madrid: tarjetas y carpetas",
+		title: "Papelería corporativa para empresas en Madrid",
 		url: absoluteUrl("/catalogo/papeleria-corporativa"),
 		description:
 			"Papelería corporativa en Madrid (Pinto): tarjetas de visita, carpetas, cartas, catálogos y folletos con acabados profesionales.",
 		images: [ogImage("/papeleria-corporativa-01.jpg", "Papelería corporativa - Dinaprint")],
 	},
 	twitter: {
-		title: "Papelería corporativa en Madrid: tarjetas y carpetas",
+		title: "Papelería corporativa para empresas en Madrid",
 		images: [ogImageUrl("/papeleria-corporativa-01.jpg")],
 	},
 	keywords: [
@@ -118,6 +112,36 @@ const faqItems = [
 	},
 ];
 
+const contentSections: ProductSection[] = [
+	{
+		title: "Qué decidir antes de pedir presupuesto",
+		body: [
+			"La papelería corporativa se presupuesta mal cuando se pide «tarjetas y carpetas» sin más. El precio y, sobre todo, el resultado dependen de tres decisiones que conviene tomar antes: el gramaje, si la impresión va a una o dos caras y qué acabado lleva.",
+			"En tarjetas de visita, por debajo de 300 g el resultado se nota blando en la mano y es la queja más habitual. El estándar razonable son 350 g estucado; a partir de 400 g con acabado soft touch la pieza pasa a otra categoría, y ahí ya compensa plantearse un troquelado o un canto pintado.",
+			"En hojas de carta ocurre lo contrario: subir de 100 g no aporta nada porque el papel tiene que pasar por la impresora láser del cliente. El offset ahuesado de 90 o 100 g es lo que mejor funciona y lo que menos problemas da luego en la oficina.",
+		],
+	},
+	{
+		title: "Los errores que más veces devolvemos en preimpresión",
+		body: [
+			"Revisamos todos los archivos antes de tirar y estos cuatro son los que aparecen una y otra vez:",
+		],
+		list: [
+			"<strong>Logotipo en RGB o en JPG.</strong> El azul corporativo que se ve en pantalla no existe en CMYK. Si la marca tiene un Pantone definido, mándanoslo y lo respetamos.",
+			"<strong>Sin sangre.</strong> Cualquier color o imagen que llegue al borde necesita 3 mm de más por cada lado, o aparecerá un filo blanco al guillotinar.",
+			"<strong>Texto demasiado cerca del corte.</strong> Deja al menos 4 mm de margen de seguridad; la guillotina tiene una tolerancia real de 1 mm.",
+			"<strong>Negro al 100 % en fondos grandes.</strong> Un negro plano sale lavado. Para masas usamos un negro rico (60/40/40/100), que es lo que da profundidad.",
+		],
+	},
+	{
+		title: "Producir toda la identidad de una vez sale mejor",
+		body: [
+			"Si vas a renovar la imagen, agrupa las piezas en un solo pedido en vez de ir sacándolas por separado a lo largo del año. No es solo cuestión de precio: cuando las tarjetas, las carpetas y el papel de carta salen de la misma tirada, el color es idéntico en todas. Repartido en tres pedidos con meses de diferencia, el mismo Pantone acaba bailando entre piezas y se nota al ponerlas juntas encima de una mesa.",
+			"Lo habitual en un arranque de identidad es tarjetas de visita, hojas de carta, sobres americanos con y sin ventana, carpetas portadocumentos y sellos. A partir de ahí se añade lo que pida el sector: talonarios, etiquetas o albaranes autocopiativos.",
+		],
+	},
+];
+
 const serviceSchema = buildServiceSchema({
 	name: "Papelería corporativa",
 	description:
@@ -131,6 +155,8 @@ export default async function Page() {
 		title: "Papelería corporativa",
 		h1: "Papelería corporativa para empresas en Madrid",
 		product: "Papelería corporativa",
+		localProduct: "papelería corporativa",
+		sections: contentSections,
 		subtitle: "Soluciones y servicios gráficos",
 		image: "/papeleria-corporativa-01.jpg",
 		specs: specRows,
@@ -145,9 +171,6 @@ export default async function Page() {
 	};
 	return (
 		<main>
-			{/* Schema del negocio */}
-			<JsonLd data={getLocalBusinessSchema()} />
-
 			{/* Schema del servicio */}
 			<JsonLd data={serviceSchema} />
 

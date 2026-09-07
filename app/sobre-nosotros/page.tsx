@@ -1,5 +1,5 @@
 import { AboutUs } from "@/components/organisms";
-import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
+import { OG_DEFAULTS, absoluteUrl, getOrganizationSchema, ogImage, ogImageUrl } from "@/lib/seo";
 
 import { JsonLd } from "@/components/atoms";
 import type { Metadata } from "next";
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 export default async function Page() {
 	return (
 		<main>
-			<JsonLd data={getLocalBusinessSchema()} />
+			<JsonLd data={getOrganizationSchema()} />
 			<AboutUs />
 		</main>
 	);
