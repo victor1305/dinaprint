@@ -1,5 +1,4 @@
 import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
-import { findBoxes } from "@/lib/constants";
 import { formatBusinessHours } from "@/lib/hours";
 import { type NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
@@ -129,7 +128,12 @@ const sanitizeHeader = (value: string) => value.replace(/[\r\n]+/g, " ").trim();
 const escapeHtml = (value: string) =>
 	value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-const phoneNumber = findBoxes.find((box) => box.title === "Teléfono")?.subtitle ?? "";
+/**
+ * Teléfono que se ofrece en el acuse de recibo. Es solo el 404, que es también
+ * el de WhatsApp: la ficha de contacto (`findBoxes`) agrupa los dos números en
+ * una sola cadena y no sirve aquí.
+ */
+const AUTO_REPLY_PHONE = { display: "678 519 404", tel: "+34678519404" };
 
 const hostnameOf = (value: string) => {
 	try {
@@ -340,7 +344,7 @@ export async function POST(request: NextRequest) {
 				"",
 				"Hemos recibido tu mensaje y te contactaremos a la mayor brevedad.",
 				"",
-				`Si prefieres hablarlo por teléfono: ${phoneNumber}`,
+				`Si prefieres hablarlo por teléfono: ${AUTO_REPLY_PHONE.display}`,
 				`Horario: ${formatBusinessHours()}`,
 				"",
 				"Esta es una copia de lo que nos has enviado:",
@@ -353,7 +357,7 @@ export async function POST(request: NextRequest) {
 			html: `
 				<p>Hola ${escapeHtml(name)}:</p>
 				<p>Hemos recibido tu mensaje y <strong>te contactaremos a la mayor brevedad</strong>.</p>
-				<p>Si prefieres hablarlo por teléfono: <strong>${escapeHtml(phoneNumber)}</strong><br />
+				<p>Si prefieres hablarlo por teléfono: <strong><a href="tel:${AUTO_REPLY_PHONE.tel}">${AUTO_REPLY_PHONE.display}</a></strong><br />
 				Horario: ${escapeHtml(formatBusinessHours())}</p>
 				<hr />
 				<p><strong>Esta es una copia de lo que nos has enviado:</strong></p>

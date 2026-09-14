@@ -167,8 +167,9 @@ API devolvía `Gmail_API: Invalid grant` en cada intento.
   y el contacto no se pierde, de modo que al visitante no se le devuelve error.
 - El remitente es siempre el buzón propio y el visitante va en `replyTo`. Poner su dirección en
   `from` rompe SPF y DKIM y manda el aviso a spam.
-- El acuse de recibo saca el horario de `formatBusinessHours()` y el teléfono de `findBoxes`, para no
-  volver a duplicar datos de contacto que ya tienen fuente única.
+- El acuse de recibo saca el horario de `formatBusinessHours()`, para no duplicarlo. El teléfono es
+  solo el 678 519 404, en la constante `AUTO_REPLY_PHONE` de la ruta: `findBoxes` junta los dos
+  números en una cadena y no permite ofrecer uno solo.
 - **El captcha se valida en el servidor.** `GET` sortea la suma, la firma con HMAC junto a un nonce y
   el instante, y devuelve solo los sumandos y el token; la solución nunca viaja al cliente. En el
   `POST` se vuelve a firmar con la respuesta recibida y se compara. El reto caduca a los 30 minutos,
