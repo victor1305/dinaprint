@@ -26,6 +26,9 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+# Ojo: `.env*.local` no cubre un `.env` a secas, y ahi viven las
+# credenciales SMTP del formulario de contacto.
+.env
 .env*.local
 
 # vercel

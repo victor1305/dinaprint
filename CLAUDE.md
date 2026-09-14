@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Sitio web corporativo de **Dinaprint**, imprenta en Pinto (sur de Madrid). Next.js 14 (App Router),
 TypeScript, Tailwind. Es un sitio estático de marketing orientado a SEO local: no hay base de datos,
-ni API, ni autenticación. El formulario de contacto se envía por EmailJS desde el cliente.
+ni autenticación. La única API es la del formulario de contacto, que envía por SMTP propio.
 
 El contenido está en castellano y los comentarios del código también.
 
@@ -150,6 +150,46 @@ genérico hacia `/contacto`, pero pierde el enlace a la ficha.
 [lib/constants.ts](lib/constants.ts) concentra los textos y listados de la home, servicios, catálogo
 y datos de contacto. Cambios de copy o de tarjetas van casi siempre ahí, no en el JSX.
 
+### Formulario de contacto: `app/api/contacto`
+
+El envío ya no se hace desde el cliente. Antes iba con EmailJS y las tres credenciales incrustadas
+en el bundle (`NEXT_PUBLIC_FORM_*`); dependía de un token OAuth de Gmail que caducó sin avisar y la
+API devolvía `Gmail_API: Invalid grant` en cada intento.
+
+- `GET /api/contacto` entrega el reto anti-robots y `POST /api/contacto` envía. Runtime Node y
+  `force-dynamic`. Lee `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `CONTACT_TO`,
+  `CONTACT_FROM` y la opcional `CONTACT_SECRET` **en cada petición**: son variables de runtime, no
+  build args, así que no quedan escritas en ninguna capa de la imagen.
+- **Salen dos correos.** El aviso interno va al buzón con `replyTo` del visitante, así que responder
+  le escribe directamente. El acuse de recibo va al visitante con `replyTo` del buzón y con las
+  cabeceras `Auto-Submitted: auto-replied` y `X-Auto-Response-Suppress`, que evitan un bucle si su
+  servidor también autorresponde. El acuse va en su propio `try`: si falla, el aviso interno ya salió
+  y el contacto no se pierde, de modo que al visitante no se le devuelve error.
+- El remitente es siempre el buzón propio y el visitante va en `replyTo`. Poner su dirección en
+  `from` rompe SPF y DKIM y manda el aviso a spam.
+- El acuse de recibo saca el horario de `formatBusinessHours()` y el teléfono de `findBoxes`, para no
+  volver a duplicar datos de contacto que ya tienen fuente única.
+- **El captcha se valida en el servidor.** `GET` sortea la suma, la firma con HMAC junto a un nonce y
+  el instante, y devuelve solo los sumandos y el token; la solución nunca viaja al cliente. En el
+  `POST` se vuelve a firmar con la respuesta recibida y se compara. El reto caduca a los 30 minutos,
+  se rechaza si llega antes de 3 segundos (ningún humano rellena tan rápido) y el nonce es de un solo
+  uso, así que no se puede reutilizar. Antes la suma se comprobaba solo en el navegador y bastaba con
+  llamar al endpoint a pelo para saltársela.
+- Resto de defensas: honeypot (campo `company`, oculto; si viene lleno se responde 200 para no avisar
+  al bot), comprobación de `Origin`, límite de 5 envíos por IP cada 10 minutos, longitudes máximas y
+  saneado de saltos de línea en las cabeceras.
+- **`Origin` se compara con la cabecera `Host` y con `NEXT_PUBLIC_SITE_URL`, nunca con
+  `request.url`.** En la salida standalone `request.url` siempre dice `http://localhost:<puerto>`, así
+  que detrás del proxy de Coolify no coincidiría jamás con `https://dinaprint.com` y el endpoint
+  rechazaría todos los envíos buenos.
+- Los límites por IP, los nonces gastados y la clave del captcha viven **en memoria del proceso**, así
+  que todo esto asume **una sola réplica** del contenedor. Con varias habría que fijar
+  `CONTACT_SECRET` y sacar los contadores fuera.
+- El componente [ContactForm](components/molecules/ContactForm/index.tsx) solo pinta "Formulario
+  enviado!" cuando el servidor lo confirma. La versión anterior marcaba el éxito de forma síncrona,
+  fuera de la promesa, y mandaba el error a `console.log`: por eso el fallo de EmailJS estuvo meses
+  sin detectarse. Cualquier cambio ahí debe mantener el estado de error visible.
+
 ## Estilos
 
 Tailwind con paleta de marca en `tailwind.config.ts` (`primary` #ff6b00, `secondary` #18988b,
@@ -168,6 +208,8 @@ escucha en **3001** (`PORT`/`HOSTNAME` ya fijados) y arranca con `node server.js
   `NEXT_PUBLIC_SITE_URL`, el sitio se despliega con el dominio por defecto.
 - Healthcheck: [app/api/health/route.ts](app/api/health/route.ts) devuelve `200` con el cuerpo
   exacto `OK`. Es la ruta que debe apuntar Coolify (`/api/health`, puerto 3001), no `/`.
+- Las credenciales SMTP del formulario van como variables **de runtime** en Coolify, no de build.
+  Si faltan, `/api/contacto` responde 500 y lo deja escrito en el log del contenedor.
 
 ## Notas
 

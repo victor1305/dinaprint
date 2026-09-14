@@ -92,12 +92,14 @@ export default async function Page() {
 				de encargo, y únicamente tratan los datos conforme a nuestras instrucciones:
 			</p>
 			<p className="pb-4">
-				- <b>EmailJS:</b> servicio de envío del formulario de contacto. Tiene acceso a los datos que
-				usted introduce en dicho formulario (nombre, correo electrónico, teléfono y contenido del
-				mensaje) con la única finalidad de hacérnoslos llegar por correo electrónico. Este proveedor
-				puede tratar los datos en servidores situados fuera del Espacio Económico Europeo, en cuyo
-				caso la transferencia internacional se ampara en las cláusulas contractuales tipo aprobadas
-				por la Comisión Europea u otra garantía adecuada prevista en el capítulo V del RGPD.
+				- <b>Google Ireland Limited (Google Workspace):</b> proveedor del correo corporativo de
+				DINAPRINT S.L y del servidor a través del cual se remiten los mensajes del formulario de
+				contacto y el acuse de recibo automático. Tiene acceso a los datos que usted introduce en
+				dicho formulario (nombre, correo electrónico, teléfono y contenido del mensaje) con la
+				finalidad de hacérnoslos llegar y de conservarlos en nuestro buzón. Este proveedor puede
+				tratar los datos en servidores situados fuera del Espacio Económico Europeo, en cuyo caso la
+				transferencia internacional se ampara en las cláusulas contractuales tipo aprobadas por la
+				Comisión Europea y en las demás garantías previstas en el capítulo V del RGPD.
 			</p>
 			<p className="pb-4">
 				- <b>Cloudflare:</b> red de distribución de contenidos y protección del sitio web. Trata
@@ -108,6 +110,18 @@ export default async function Page() {
 				- <b>Contabo GmbH:</b> proveedor de alojamiento (hosting) del sitio web y de la herramienta
 				de analítica. Los servidores se encuentran ubicados en la Unión Europea. Da soporte a la
 				infraestructura del sitio y almacena los datos técnicos y las comunicaciones alojadas en él.
+				El formulario de contacto se procesa en este servidor antes de remitirse por correo
+				electrónico.
+			</p>
+			<p className="pb-4 font-medium">Respuesta automática y medidas antifraude</p>
+			<p className="pb-8">
+				Al enviar el formulario recibirá en la dirección indicada un acuse de recibo automático que
+				confirma que su mensaje ha llegado e incluye una copia de su contenido. Se trata de una
+				comunicación de servicio, necesaria para atender su solicitud, y no de una comunicación
+				comercial. Asimismo, con el fin de impedir envíos automatizados y abusos, el servidor trata
+				de forma temporal su dirección IP durante unos minutos, sin conservarla después ni asociarla
+				al contenido de su mensaje. La base jurídica de este tratamiento es el interés legítimo de
+				DINAPRINT S.L en garantizar la seguridad y la disponibilidad del sitio.
 			</p>
 			<p className="pb-4 font-medium">Analítica web</p>
 			<p className="pb-8">

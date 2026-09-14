@@ -28,16 +28,16 @@ WORKDIR /app
 # que llegar como build args. En Coolify: marcar estas variables como
 # "Build Variable / Available at Buildtime".
 ARG NEXT_PUBLIC_SITE_URL
-ARG NEXT_PUBLIC_FORM_SERVICE
-ARG NEXT_PUBLIC_FORM_TEMPLATE
-ARG NEXT_PUBLIC_FORM_KEY
 # Ojo con el valor por defecto: Coolify pasa `--build-arg NOMBRE` sin valor para
 # variables que no tiene, y eso define el ENV como cadena vacía. Con el dominio
 # vacío, `new URL()` rompe el build al recolectar las páginas.
-ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://dinaprint.com} \
-	NEXT_PUBLIC_FORM_SERVICE=$NEXT_PUBLIC_FORM_SERVICE \
-	NEXT_PUBLIC_FORM_TEMPLATE=$NEXT_PUBLIC_FORM_TEMPLATE \
-	NEXT_PUBLIC_FORM_KEY=$NEXT_PUBLIC_FORM_KEY
+ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://dinaprint.com}
+
+# El correo del formulario ya no se envía desde el cliente con EmailJS, sino por
+# SMTP desde `app/api/contacto`. Sus credenciales (SMTP_HOST, SMTP_PORT,
+# SMTP_USER, SMTP_PASSWORD, CONTACT_TO, CONTACT_FROM) NO van aquí: se leen en
+# cada petición, así que se declaran en Coolify como variables de runtime. Si
+# entrasen como build args quedarían escritas en una capa de la imagen.
 
 ENV NEXT_TELEMETRY_DISABLED=1
 

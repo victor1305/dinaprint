@@ -1,22 +1,39 @@
 "use client";
 
-import emailjs from "@emailjs/browser";
 import Link from "next/link";
 import type React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
+/**
+ * Estado del envío. Antes solo había un booleano `formSent` que se ponía a true
+ * nada más disparar la petición, así que el visitante veía "Formulario enviado!"
+ * aunque el correo hubiese fallado. De ahí que el fallo de EmailJS pasara meses
+ * inadvertido. Ahora el éxito solo se pinta cuando el servidor lo confirma.
+ */
+type SendStatus = "idle" | "sending" | "sent" | "error";
+
+/**
+ * Reto anti-robots servido por `GET /api/contacto`. La suma correcta no viaja
+ * aquí: va dentro de la firma del token, y solo el servidor puede comprobarla.
+ * La versión anterior sorteaba los números en el navegador, así que un bot que
+ * llamara al endpoint directamente se saltaba la comprobación entera.
+ */
+type Challenge = { first: number; second: number; challenge: string };
 
 const ContactForm: React.FC = () => {
 	const [validationNumber, setValidationNumber] = useState(0);
 	const [validationError, setValidationError] = useState(false);
-	const [firstNumber, setFirstNumber] = useState(0);
-	const [secondNumber, setSecondNumber] = useState(0);
-	const [formSent, setFormSent] = useState(false);
+	const [challenge, setChallenge] = useState<Challenge | null>(null);
+	const [status, setStatus] = useState<SendStatus>("idle");
+	const [errorMessage, setErrorMessage] = useState("");
 	const [privacyAccepted, setPrivacyAccepted] = useState(false);
 	const [form, setForm] = useState({
 		name: "",
 		email: "",
 		phone: "",
 		message: "",
+		// Trampa para bots; se queda vacío salvo que lo rellene un robot.
+		company: "",
 	});
 
 	const [formErrors, setFormErrors] = useState({
@@ -27,8 +44,6 @@ const ContactForm: React.FC = () => {
 		privacy: false,
 	});
 
-	const formRef = useRef<HTMLFormElement>(null);
-
 	const validateForm = () => {
 		setFormErrors({
 			name: !form.name.trim().length,
@@ -38,22 +53,17 @@ const ContactForm: React.FC = () => {
 			privacy: !privacyAccepted,
 		});
 
-		return (
-			form.name.length &&
-			form.email.length &&
-			form.phone.length &&
-			form.message.length &&
-			privacyAccepted
+		return Boolean(
+			form.name.trim().length &&
+				form.email.trim().length &&
+				form.phone.trim().length &&
+				form.message.trim().length &&
+				privacyAccepted,
 		);
 	};
 
 	const resetForm = () => {
-		setForm({
-			name: "",
-			email: "",
-			phone: "",
-			message: "",
-		});
+		setForm({ name: "", email: "", phone: "", message: "", company: "" });
 		setFormErrors({
 			name: false,
 			email: false,
@@ -62,41 +72,80 @@ const ContactForm: React.FC = () => {
 			privacy: false,
 		});
 		setPrivacyAccepted(false);
-		setFirstNumber(Math.floor(Math.random() * 10));
-		setSecondNumber(Math.floor(Math.random() * 10));
 		setValidationError(false);
 		setValidationNumber(0);
 	};
 
-	const sendForm = (e: React.MouseEvent<HTMLButtonElement>) => {
+	// Cada reto es de un solo uso, así que se pide uno nuevo al montar y otro
+	// después de cada envío, salga bien o mal.
+	const loadChallenge = useCallback(async () => {
+		try {
+			const response = await fetch("/api/contacto", { cache: "no-store" });
+			if (!response.ok) throw new Error("challenge");
+			setChallenge(await response.json());
+		} catch {
+			setChallenge(null);
+		}
+	}, []);
+
+	const sendForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-		setValidationError(firstNumber + secondNumber !== validationNumber);
-		if (firstNumber + secondNumber !== validationNumber) return;
-		if (!validateForm()) return;
-		//AQUÍ ENVÍO EL FORMULARIO
-		if (formRef.current) {
-			emailjs
-				.sendForm(
-					process.env.NEXT_PUBLIC_FORM_SERVICE as string,
-					process.env.NEXT_PUBLIC_FORM_TEMPLATE as string,
-					formRef.current,
-					process.env.NEXT_PUBLIC_FORM_KEY as string,
-				)
-				.then((result) => console.log(result))
-				.catch((error: Error) => console.log(error));
-			setFormSent(true);
+		if (status === "sending") return;
+
+		// Las dos comprobaciones se ejecutan siempre, para enseñar de una vez
+		// todo lo que falta en vez de ir revelándolo de uno en uno. La suma se
+		// vuelve a verificar en el servidor: esto es solo para avisar antes.
+		const sumIsWrong = !challenge || challenge.first + challenge.second !== validationNumber;
+		setValidationError(sumIsWrong);
+		const fieldsAreValid = validateForm();
+		if (sumIsWrong || !fieldsAreValid || !challenge) return;
+
+		setStatus("sending");
+		setErrorMessage("");
+
+		try {
+			const response = await fetch("/api/contacto", {
+				method: "POST",
+				headers: { "content-type": "application/json" },
+				body: JSON.stringify({
+					...form,
+					privacy: privacyAccepted,
+					challenge: challenge.challenge,
+					answer: validationNumber,
+				}),
+			});
+
+			if (!response.ok) {
+				const data = await response.json().catch(() => ({}));
+				setErrorMessage(
+					typeof data.error === "string"
+						? data.error
+						: "No hemos podido enviar el mensaje. Inténtalo de nuevo o llámanos.",
+				);
+				setStatus("error");
+				loadChallenge();
+				return;
+			}
+
+			setStatus("sent");
 			resetForm();
+			loadChallenge();
+		} catch {
+			setErrorMessage(
+				"No hemos podido conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.",
+			);
+			setStatus("error");
+			loadChallenge();
 		}
 	};
 
 	useEffect(() => {
-		setFirstNumber(Math.floor(Math.random() * 10));
-		setSecondNumber(Math.floor(Math.random() * 10));
-	}, []);
+		loadChallenge();
+	}, [loadChallenge]);
 
 	return (
 		<div className="m-[5%] p-[10%] mx-auto rounded-[10px] shadow-findBox max-w-[600px] min-[650px]:p-10 lg:my-0">
-			<form ref={formRef} className="w-full mx-auto">
+			<form className="w-full mx-auto">
 				<input
 					className="w-full py-2.5 px-4 m-2.5 bg-[#f2f3f4] mx-auto"
 					placeholder="Nombre"
@@ -136,6 +185,16 @@ const ContactForm: React.FC = () => {
 				{formErrors.message && (
 					<p className="text-sm text-red-600 px-4 pb-2.5">Nos falta el mensaje</p>
 				)}
+				{/* Honeypot: invisible y fuera del recorrido de tabulación. */}
+				<input
+					className="hidden"
+					tabIndex={-1}
+					autoComplete="off"
+					aria-hidden="true"
+					name="company"
+					onChange={(e) => setForm({ ...form, company: e.target.value })}
+					value={form.company}
+				/>
 				<div className="m-2.5 px-1">
 					<label className="flex items-start gap-2 text-sm text-[#262626]">
 						<input
@@ -164,12 +223,12 @@ const ContactForm: React.FC = () => {
 						<p className="text-sm text-red-600 pt-2">Debes aceptar la politica de privacidad</p>
 					)}
 				</div>
-				{!formSent ? (
+				{status !== "sent" ? (
 					<>
 						<div className="m-2.5 flex flex-col min-[375px]:flex-row w-full items-center justify-between mx-auto">
 							<p>
 								<span>
-									{firstNumber} + {secondNumber} =
+									{challenge ? `${challenge.first} + ${challenge.second} =` : "Cargando..."}
 								</span>
 								<input
 									type="text"
@@ -180,18 +239,26 @@ const ContactForm: React.FC = () => {
 							</p>
 							<button
 								type="button"
-								className="text-base font-semibold bg-primary py-2.5 px-6 text-white hover:shadow-xl"
-								onClick={(e: React.MouseEvent<HTMLButtonElement>) => sendForm(e)}
+								disabled={status === "sending" || !challenge}
+								className="text-base font-semibold bg-primary py-2.5 px-6 text-white hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed"
+								onClick={sendForm}
 							>
-								ENVIAR
+								{status === "sending" ? "ENVIANDO..." : "ENVIAR"}
 							</button>
 						</div>
 						{validationError && (
 							<p className="text-sm text-red-600">Necesitamos que resuelvas la suma</p>
 						)}
+						{status === "error" && (
+							<p className="text-sm text-red-600 mt-2.5" role="alert">
+								{errorMessage}
+							</p>
+						)}
 					</>
 				) : (
-					<p className="text-center text-green-600 font-medium mt-2.5">Formulario enviado!</p>
+					<output className="block text-center text-green-600 font-medium mt-2.5">
+						Formulario enviado!
+					</output>
 				)}
 			</form>
 		</div>
