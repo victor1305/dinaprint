@@ -6,7 +6,7 @@ import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl }
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Imprenta en Madrid",
+	title: "Imprenta en Madrid con entrega en toda la ciudad",
 	description:
 		"Imprenta en Madrid especializada en impresión digital y offset. Papelería corporativa, folletos, carteles, packaging y más. Servicio en Madrid y sur de Madrid.",
 	alternates: {
@@ -15,14 +15,14 @@ export const metadata: Metadata = {
 	openGraph: {
 		...OG_DEFAULTS,
 		type: "website",
-		title: "Imprenta en Madrid",
+		title: "Imprenta en Madrid con entrega en toda la ciudad",
 		url: absoluteUrl("/imprenta-madrid"),
 		description:
 			"Imprenta en Madrid especializada en impresión digital y offset. Papelería corporativa, folletos, carteles, packaging y más.",
 		images: [ogImage("/slider-principal-dinaprint.jpg", "Imprenta Dinaprint - Madrid")],
 	},
 	twitter: {
-		title: "Imprenta en Madrid",
+		title: "Imprenta en Madrid con entrega en toda la ciudad",
 		images: [ogImageUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
@@ -167,8 +167,56 @@ export default async function Page() {
 						href="/catalogo/roll-up"
 						className="p-4 rounded-xl shadow-findBox bg-white hover:shadow-lg transition-shadow"
 					>
-						<h4 className="font-semibold">Roll ups y expositores</h4>
-						<p className="text-sm pt-1">Soluciones para ferias, eventos y punto de venta.</p>
+						<h4 className="font-semibold">Roll ups</h4>
+						<p className="text-sm pt-1">
+							Para ferias y eventos, con estructura y bolsa de transporte.
+						</p>
+					</Link>
+					<Link
+						href="/catalogo/expositores"
+						className="p-4 rounded-xl shadow-findBox bg-white hover:shadow-lg transition-shadow"
+					>
+						<h4 className="font-semibold">Expositores</h4>
+						<p className="text-sm pt-1">
+							Cartón de mostrador, suelo y lineal para el punto de venta.
+						</p>
+					</Link>
+					<Link
+						href="/catalogo/catalogos"
+						className="p-4 rounded-xl shadow-findBox bg-white hover:shadow-lg transition-shadow"
+					>
+						<h4 className="font-semibold">Catálogos</h4>
+						<p className="text-sm pt-1">Catálogos de producto y dosieres en digital y offset.</p>
+					</Link>
+					<Link
+						href="/catalogo/cartas-y-menus"
+						className="p-4 rounded-xl shadow-findBox bg-white hover:shadow-lg transition-shadow"
+					>
+						<h4 className="font-semibold">Cartas y menús</h4>
+						<p className="text-sm pt-1">
+							Cartas de restaurante preparadas para el uso diario en sala.
+						</p>
+					</Link>
+					<Link
+						href="/catalogo/calendarios"
+						className="p-4 rounded-xl shadow-findBox bg-white hover:shadow-lg transition-shadow"
+					>
+						<h4 className="font-semibold">Calendarios</h4>
+						<p className="text-sm pt-1">De pared, sobremesa y bolsillo, con espiral o wire-o.</p>
+					</Link>
+					<Link
+						href="/catalogo/regalo-promocional"
+						className="p-4 rounded-xl shadow-findBox bg-white hover:shadow-lg transition-shadow"
+					>
+						<h4 className="font-semibold">Regalo promocional</h4>
+						<p className="text-sm pt-1">Serigrafía, tampografía, láser y bordado.</p>
+					</Link>
+					<Link
+						href="/catalogo"
+						className="p-4 rounded-xl shadow-findBox bg-white hover:shadow-lg transition-shadow"
+					>
+						<h4 className="font-semibold">Todo el catálogo</h4>
+						<p className="text-sm pt-1">Las once fichas, con formatos, papeles y acabados.</p>
 					</Link>
 				</div>
 

@@ -114,6 +114,13 @@ de `<JsonLd data={serviceSchema} />` + `<Product {...data} />` + `<FAQ items>`. 
 catálogo debe además darse de alta en `ROUTE_LAST_MODIFIED`, en `llms.txt` y, si toca, en
 `catalogOptions` de [lib/constants.ts](lib/constants.ts).
 
+`Product` pinta también `<Breadcrumbs>` (con su `BreadcrumbList`) y `<RelatedProducts>`, tres fichas
+relacionadas sacadas de `relatedProducts` en [lib/constants.ts](lib/constants.ts). Los dos resuelven
+la ficha por la URL, así que la página no pasa nada. Existen porque el rastreo de septiembre de 2026
+contó que las fichas no se enlazaban entre sí: cartas y menús recibía enlaces desde 3 páginas y
+calendarios desde 5. **Una ficha nueva debe entrar en `relatedProducts`** (como origen y como destino
+de alguna otra) y, si su slug no se formatea bien solo, en el `nameMap` de `Breadcrumbs`.
+
 El objeto `data` que recibe `Product` lleva tres campos que existen por lo que contaba Search
 Console del trimestre jun-sep 2026 (fichas a posición media 44, 5 clics en tres meses):
 
@@ -218,11 +225,16 @@ escucha en **3001** (`PORT`/`HOSTNAME` ya fijados) y arranca con `node server.js
 - `NEXT_PUBLIC_SITE_URL` sobrescribe el dominio; por defecto `https://dinaprint.com`.
 - El dominio canónico es el **apex**. `next.config.js` redirige `www` con un 308 permanente; antes lo
   resolvía Cloudflare con un 307 temporal y Search Console lo contaba como propiedad aparte.
+  **A 14 sep 2026 producción sigue devolviendo el 307** (`server: cloudflare`): la regla del panel de
+  Cloudflare responde antes de que la petición llegue a Next, así que el 308 no se ejecuta hasta que
+  se borre. `dinaprint.es` tampoco está bien: un Apache antiguo responde 302 hacia
+  `http://dinaprint.com` (tres saltos hasta la home) y `https://dinaprint.es` no contesta.
 - **El `robots.txt` que se sirve no es solo el de la app.** Cloudflare le antepone un bloque
   "Managed content" que hoy prohíbe GPTBot, ClaudeBot, Google-Extended, CCBot, Amazonbot,
-  Applebot-Extended, Bytespider y meta-externalagent, y marca `ai-train=no`. Eso deja sin efecto el
-  trabajo de [/llms.txt](app/llms.txt/route.ts): el índice existe pero ningún modelo puede leerlo.
-  Se decide en el panel de Cloudflare, no en el repo.
+  Applebot-Extended, Bytespider y meta-externalagent, y marca `ai-train=no`. Son rastreadores de
+  **entrenamiento**: los de búsqueda (OAI-SearchBot, PerplexityBot) no están en la lista y
+  Google-Extended no afecta a los AI Overviews, así que [/llms.txt](app/llms.txt/route.ts) sigue
+  siendo legible para las respuestas con búsqueda. Se decide en el panel de Cloudflare, no en el repo.
 - Conviven `bun.lock` y `package-lock.json`; los scripts documentados van con npm.
 - `.agents/`, `skills-lock.json` y casi todo `.claude/` están en `.gitignore`: son tooling de
   agentes, no parte de la aplicación. Las excepciones versionadas son

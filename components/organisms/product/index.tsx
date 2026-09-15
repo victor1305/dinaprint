@@ -1,10 +1,12 @@
 import type React from "react";
 
 import {
+	Breadcrumbs,
 	CatalogDetail,
 	KnowMore,
 	LocalCoverage,
 	ProductSections,
+	RelatedProducts,
 	SectionPrincipalBanner,
 	SpecTable,
 } from "@/components/atoms";
@@ -32,6 +34,10 @@ interface ProductProps {
 	sections?: ProductSection[];
 }
 
+/**
+ * Migas de pan y fichas relacionadas se resuelven por la URL (ver
+ * `Breadcrumbs` y `RelatedProducts`): la página no tiene que pasar nada.
+ */
 const Product: React.FC<ProductProps> = ({
 	title,
 	h1,
@@ -47,7 +53,10 @@ const Product: React.FC<ProductProps> = ({
 }: ProductProps) => (
 	<div>
 		<SectionPrincipalBanner {...{ title, subtitle, h1 }} />
-		<div className="pt-10">
+		<div className="px-5 pt-8 mx-auto max-w-[1200px]">
+			<Breadcrumbs />
+		</div>
+		<div className="pt-6">
 			<CatalogDetail {...{ product, text, image, list }} />
 		</div>
 		{specs && specs.length > 0 && (
@@ -61,6 +70,7 @@ const Product: React.FC<ProductProps> = ({
 		)}
 		{sections && sections.length > 0 && <ProductSections sections={sections} />}
 		{localProduct && <LocalCoverage product={localProduct} />}
+		<RelatedProducts />
 		<KnowMore path={"/contacto"} copy={"PEDIR PRESUPUESTO"} />
 	</div>
 );

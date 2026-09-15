@@ -4,7 +4,7 @@ import { OG_DEFAULTS, absoluteUrl, ogImage, ogImageUrl } from "@/lib/seo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Catálogo de productos de imprenta",
+	title: "Catálogo de productos de imprenta en Madrid",
 	description:
 		"Catálogo de productos de imprenta: papelería corporativa, folletos y revistas, carteles, packaging, expositores, roll up, calendarios y regalo promocional.",
 	alternates: {
@@ -13,14 +13,14 @@ export const metadata: Metadata = {
 	openGraph: {
 		...OG_DEFAULTS,
 		type: "website",
-		title: "Catálogo de productos de imprenta",
+		title: "Catálogo de productos de imprenta en Madrid",
 		url: absoluteUrl("/catalogo"),
 		description:
 			"Catálogo de productos de imprenta: papelería corporativa, folletos y revistas, carteles, packaging, expositores, roll up, calendarios y regalo promocional.",
 		images: [ogImage("/calendar-1.jpg", "Catálogo Dinaprint")],
 	},
 	twitter: {
-		title: "Catálogo de productos de imprenta",
+		title: "Catálogo de productos de imprenta en Madrid",
 		images: [ogImageUrl("/calendar-1.jpg")],
 	},
 	keywords: [
@@ -61,10 +61,13 @@ const faqItems = [
 	},
 ];
 
+const intro =
+	"Todo lo que producimos en nuestro taller de Pinto, desde una sola unidad en digital hasta tiradas largas en offset. Cada ficha detalla formatos, papeles y acabados, y lo que conviene decidir antes de pedir presupuesto. Si lo que necesitas no aparece, pregúntanos: también hacemos formatos y manipulados a medida.";
+
 export default async function Page() {
 	return (
 		<main>
-			<Catalog faqItems={faqItems} />
+			<Catalog faqItems={faqItems} intro={intro} />
 		</main>
 	);
 }

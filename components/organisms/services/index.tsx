@@ -6,6 +6,7 @@ const Services = () => (
 	<div>
 		<SectionPrincipalBanner
 			title="Soluciones y servicios"
+			h1="Servicios de imprenta en Madrid"
 			subtitle="Soluciones y servicios gráficos"
 		/>
 		<div className="pt-10">

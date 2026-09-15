@@ -23,6 +23,15 @@ const nextConfig = {
 				destination: "https://dinaprint.com/:path*",
 				permanent: true,
 			},
+			// "Tendencias" tenía un solo artículo y un listado de 90 palabras. El
+			// artículo pasó a Guías en septiembre de 2026 y la categoría dejó de
+			// generarse, pero su URL estaba indexada. Si algún día vuelve a haber
+			// posts en Tendencias, hay que quitar esta redirección.
+			{
+				source: "/blog/categoria/tendencias",
+				destination: "/blog/categoria/guias",
+				permanent: true,
+			},
 		];
 	},
 };

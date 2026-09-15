@@ -19,6 +19,7 @@ import MainSwiperText from "./MainSwiperText";
 import MainWhy from "./MainWhy";
 import Pagination from "./Pagination";
 import ProductSections from "./ProductSections";
+import RelatedProducts from "./RelatedProducts";
 import SectionPrincipalBanner from "./SectionPrincipalBanner";
 import Service from "./Service";
 import ServiceCallout from "./ServiceCallout";
@@ -48,6 +49,7 @@ export {
 	MainWhy,
 	Pagination,
 	ProductSections,
+	RelatedProducts,
 	SectionPrincipalBanner,
 	Service,
 	ServiceCallout,

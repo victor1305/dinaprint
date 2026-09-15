@@ -19,6 +19,31 @@ export const GOOGLE_KG_MID = "/g/11j79bn2w8";
 /** Ficha de empresa en Google, construida a partir del MID. */
 export const GOOGLE_BUSINESS_PROFILE_URL = `https://www.google.com/search?kgmid=${GOOGLE_KG_MID}`;
 
+/**
+ * Enlace al formulario de reseña, tal cual lo da el panel de la ficha en "Pedir
+ * reseñas". Es el mismo que debe llevar el QR de las tarjetas de los pedidos.
+ */
+export const GOOGLE_REVIEW_URL = "https://g.page/r/CRQptti2UuXBECE/review";
+
+/**
+ * CID de la ficha. No hace falta pedirlo aparte: el código de `g.page/r/...` es
+ * un protobuf en base64 cuyo primer campo es el CID, y la redirección del enlace
+ * lo confirma (`0xd42216029833e89:0xc1e552b6d8b62914`, la segunda mitad en hex).
+ */
+export const GOOGLE_MAPS_CID = "13971664364260174100";
+
+/** La ficha en Google Maps: es lo que declara `hasMap`. */
+export const GOOGLE_MAPS_URL = `https://maps.google.com/?cid=${GOOGLE_MAPS_CID}`;
+
+/**
+ * Ruta en Google Maps hasta el taller. Va por nombre y dirección porque el
+ * destino exacto (`destination_place_id`) pide el place ID (`ChIJ...`), que no
+ * es el CID. El nombre importa: en Coto de Doñana, 9 está también Gráficas Aries.
+ */
+export const GOOGLE_MAPS_DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+	"Dinaprint, C/ Coto de Doñana 9, 28320 Pinto, Madrid",
+)}`;
+
 export const OG_IMAGE_PATH = "/slider-principal-dinaprint.jpg";
 
 /** Medida real de los recortes que genera `scripts/generate-og.mjs`. */
@@ -142,8 +167,8 @@ export function getLocalBusinessSchema() {
 		priceRange: "€€",
 		// MID del Knowledge Graph de Google para "Dinaprint SL".
 		identifier: GOOGLE_KG_MID,
-		hasMap: GOOGLE_BUSINESS_PROFILE_URL,
-		sameAs: [GOOGLE_BUSINESS_PROFILE_URL],
+		hasMap: GOOGLE_MAPS_URL,
+		sameAs: [GOOGLE_BUSINESS_PROFILE_URL, GOOGLE_MAPS_URL],
 	};
 }
 

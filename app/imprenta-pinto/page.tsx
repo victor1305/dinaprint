@@ -2,12 +2,19 @@ import Link from "next/link";
 
 import { FAQ, JsonLd, KnowMore, SectionPrincipalBanner } from "@/components/atoms";
 import { FindUs } from "@/components/molecules";
-import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl } from "@/lib/seo";
+import {
+	GOOGLE_MAPS_DIRECTIONS_URL,
+	OG_DEFAULTS,
+	absoluteUrl,
+	getLocalBusinessSchema,
+	ogImage,
+	ogImageUrl,
+} from "@/lib/seo";
 
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Imprenta en Pinto (Madrid)",
+	title: "Imprenta en Pinto (Madrid) con recogida en taller",
 	description:
 		"Imprenta en Pinto (Madrid) con impresión digital y offset. Papelería corporativa, folletos, carteles, packaging y acabados. Servicio para el sur de Madrid.",
 	alternates: {
@@ -16,14 +23,14 @@ export const metadata: Metadata = {
 	openGraph: {
 		...OG_DEFAULTS,
 		type: "website",
-		title: "Imprenta en Pinto (Madrid)",
+		title: "Imprenta en Pinto (Madrid) con recogida en taller",
 		url: absoluteUrl("/imprenta-pinto"),
 		description:
 			"Imprenta en Pinto (Madrid) con impresión digital y offset. Papelería corporativa, folletos, carteles, packaging y acabados. Servicio para el sur de Madrid.",
 		images: [ogImage("/slider-principal-dinaprint.jpg", "Imprenta Dinaprint - Pinto")],
 	},
 	twitter: {
-		title: "Imprenta en Pinto (Madrid)",
+		title: "Imprenta en Pinto (Madrid) con recogida en taller",
 		images: [ogImageUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
@@ -174,6 +181,30 @@ export default async function Page() {
 					>
 						<span className="font-semibold">Merchandising</span>
 					</Link>
+					<Link
+						href="/catalogo/catalogos"
+						className="p-4 rounded-xl shadow-findBox bg-white text-center hover:shadow-lg transition-shadow"
+					>
+						<span className="font-semibold">Catálogos</span>
+					</Link>
+					<Link
+						href="/catalogo/cartas-y-menus"
+						className="p-4 rounded-xl shadow-findBox bg-white text-center hover:shadow-lg transition-shadow"
+					>
+						<span className="font-semibold">Cartas y menús</span>
+					</Link>
+					<Link
+						href="/catalogo/flyers-y-desplegables"
+						className="p-4 rounded-xl shadow-findBox bg-white text-center hover:shadow-lg transition-shadow"
+					>
+						<span className="font-semibold">Flyers</span>
+					</Link>
+					<Link
+						href="/catalogo"
+						className="p-4 rounded-xl shadow-findBox bg-white text-center hover:shadow-lg transition-shadow"
+					>
+						<span className="font-semibold">Todo el catálogo</span>
+					</Link>
 				</div>
 
 				{/* Ventajas */}
@@ -213,6 +244,16 @@ export default async function Page() {
 					Si te mueves en transporte público, la línea <strong>C-3 de Cercanías</strong> para en
 					Pinto. Y si prefieres no desplazarte, enviamos a toda la península sin coste en la mayoría
 					de pedidos.
+				</p>
+				<p className="pt-4 text-base lg:text-lg">
+					<a
+						href={GOOGLE_MAPS_DIRECTIONS_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="text-primary underline"
+					>
+						Abrir la ruta al taller en Google Maps
+					</a>
 				</p>
 
 				{/* Recogida y entrega */}

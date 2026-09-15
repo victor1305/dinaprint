@@ -7,7 +7,7 @@ import { OG_DEFAULTS, absoluteUrl, getLocalBusinessSchema, ogImage, ogImageUrl }
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Imprenta en el sur de Madrid",
+	title: "Imprenta sur de Madrid: Getafe, Parla y Valdemoro",
 	description:
 		"Imprenta en el sur de Madrid: impresión digital y offset, acabados y envío. Servicio para Pinto, Valdemoro, Getafe y alrededores.",
 	alternates: {
@@ -16,13 +16,13 @@ export const metadata: Metadata = {
 	openGraph: {
 		...OG_DEFAULTS,
 		type: "website",
-		title: "Imprenta sur de Madrid",
+		title: "Imprenta sur de Madrid: Getafe, Parla y Valdemoro",
 		url: absoluteUrl("/imprenta-sur-de-madrid"),
 		description: "Imprenta en la zona sur de Madrid: servicio rápido y envíos a toda la península.",
 		images: [ogImage("/slider-principal-dinaprint.jpg", "Imprenta sur de Madrid - Dinaprint")],
 	},
 	twitter: {
-		title: "Imprenta sur de Madrid",
+		title: "Imprenta sur de Madrid: Getafe, Parla y Valdemoro",
 		images: [ogImageUrl("/slider-principal-dinaprint.jpg")],
 	},
 	keywords: [
@@ -208,6 +208,24 @@ export default async function Page() {
 						className="px-4 py-2 bg-white shadow-findBox rounded-full hover:shadow-lg transition-shadow"
 					>
 						Calendarios
+					</Link>
+					<Link
+						href="/catalogo/catalogos"
+						className="px-4 py-2 bg-white shadow-findBox rounded-full hover:shadow-lg transition-shadow"
+					>
+						Catálogos
+					</Link>
+					<Link
+						href="/catalogo/cartas-y-menus"
+						className="px-4 py-2 bg-white shadow-findBox rounded-full hover:shadow-lg transition-shadow"
+					>
+						Cartas y menús
+					</Link>
+					<Link
+						href="/catalogo/regalo-promocional"
+						className="px-4 py-2 bg-white shadow-findBox rounded-full hover:shadow-lg transition-shadow"
+					>
+						Regalo promocional
 					</Link>
 				</div>
 

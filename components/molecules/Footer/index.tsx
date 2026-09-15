@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { formatBusinessHours } from "@/lib/hours";
+import { GOOGLE_MAPS_DIRECTIONS_URL, GOOGLE_REVIEW_URL } from "@/lib/seo";
 
 const Footer = () => (
 	<footer>
@@ -163,6 +164,16 @@ const Footer = () => (
 						<h2 className="text-base font-semibold">INFORMACIÓN</h2>
 						<p className="pt-1 pb-3">
 							C/ Coto de Doñana, 9 Área Empresarial Andalucía 28320, Pinto, Madrid
+						</p>
+						<p className="text-footer-li pb-3 hover:text-primary">
+							<a href={GOOGLE_MAPS_DIRECTIONS_URL} target="_blank" rel="noopener noreferrer">
+								Cómo llegar
+							</a>
+						</p>
+						<p className="text-footer-li pb-3 hover:text-primary">
+							<a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">
+								Déjanos una reseña en Google
+							</a>
 						</p>
 						<p className="pb-3">{formatBusinessHours(" · ")}</p>
 						<p className="text-footer-li pb-3 hover:text-primary">

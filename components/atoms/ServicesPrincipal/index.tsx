@@ -19,6 +19,10 @@ const ServicesPrincipal: React.FC = () => (
 			<p className="pb-4">
 				Aportamos soluciones para todas las necesidades en comunicación gráfica.
 			</p>
+			<p className="pb-4">
+				Todo el proceso pasa por nuestro taller de Pinto, en el sur de Madrid: asesoramiento,
+				preimpresión, impresión digital y offset, acabados y envío.
+			</p>
 			<p>
 				Dependemos de nosotros mismos y no de terceros, por lo tanto, el control de la producción
 				desde que se acepta el presupuesto, hasta su distribución, es solo nuestro. De esta manera

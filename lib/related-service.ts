@@ -176,6 +176,10 @@ const POST_SERVICE: Record<string, { key: keyof typeof CATALOG; copy: string }> 
 		key: "carteles",
 		copy: "Imprimimos vinilo de rotulación con laminado de protección para flotas y vehículos comerciales.",
 	},
+	"carteles-escaparate-promociones-materiales-formatos-consejos": {
+		key: "carteles",
+		copy: "Imprimimos cartelería de escaparate en papel, sintéticos y vinilo, y te ayudamos a elegir tamaño y material según dónde vaya colocada.",
+	},
 	"impresion-textil-serigrafia-dtf-dtg-vinilo-guia": {
 		key: "regalo",
 		copy: "Personalizamos ropa corporativa y textil promocional con la técnica que mejor encaje con tu tirada.",

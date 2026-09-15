@@ -1,4 +1,5 @@
 import { formatBusinessHours } from "@/lib/hours";
+import { GOOGLE_MAPS_DIRECTIONS_URL } from "@/lib/seo";
 
 export const mainAnswers = [
 	{
@@ -47,6 +48,12 @@ export const firstMainSwiper = [
 		backImage: "/carteles.jpg",
 		url: "/catalogo/carteles",
 	},
+	{
+		title: "Catálogos",
+		image: "/folletos.png",
+		backImage: "/catalogos.jpg",
+		url: "/catalogo/catalogos",
+	},
 ];
 
 export const secondMainSwiper = [
@@ -67,6 +74,12 @@ export const secondMainSwiper = [
 		image: "/calendarios.png",
 		backImage: "/calendarios.jpg",
 		url: "/catalogo/calendarios",
+	},
+	{
+		title: "Cartas y menús",
+		image: "/papeleria-corporativa.png",
+		backImage: "/folletos.jpg",
+		url: "/catalogo/cartas-y-menus",
 	},
 ];
 
@@ -194,6 +207,59 @@ export const catalogOptions = [
 	},
 ];
 
+/**
+ * Tres fichas relacionadas por ficha de catálogo, en el orden en que se pintan.
+ *
+ * Lo consume `RelatedProducts` al pie de cada ficha de `Product`. Las parejas
+ * salen de lo que se pide junto de verdad (roll up con expositores y carteles,
+ * papelería con catálogos y folletos…) y a la vez reparten enlaces hacia las
+ * fichas que menos recibían: cartas y menús, calendarios, expositores y regalo
+ * promocional. Toda ruta tiene que existir en `catalogOptions`.
+ */
+export const relatedProducts: Record<string, string[]> = {
+	"/catalogo/papeleria-corporativa": [
+		"/catalogo/catalogos",
+		"/catalogo/flyers-y-desplegables",
+		"/catalogo/folletos-y-revistas",
+	],
+	"/catalogo/flyers-y-desplegables": [
+		"/catalogo/folletos-y-revistas",
+		"/catalogo/carteles",
+		"/catalogo/cartas-y-menus",
+	],
+	"/catalogo/folletos-y-revistas": [
+		"/catalogo/catalogos",
+		"/catalogo/flyers-y-desplegables",
+		"/catalogo/papeleria-corporativa",
+	],
+	"/catalogo/calendarios": [
+		"/catalogo/regalo-promocional",
+		"/catalogo/papeleria-corporativa",
+		"/catalogo/catalogos",
+	],
+	"/catalogo/roll-up": [
+		"/catalogo/expositores",
+		"/catalogo/carteles",
+		"/catalogo/flyers-y-desplegables",
+	],
+	"/catalogo/expositores": [
+		"/catalogo/roll-up",
+		"/catalogo/cajas-y-packaging",
+		"/catalogo/carteles",
+	],
+	"/catalogo/cajas-y-packaging": [
+		"/catalogo/expositores",
+		"/catalogo/regalo-promocional",
+		"/catalogo/catalogos",
+	],
+	"/catalogo/regalo-promocional": [
+		"/catalogo/calendarios",
+		"/catalogo/cajas-y-packaging",
+		"/catalogo/papeleria-corporativa",
+	],
+	"/catalogo/carteles": ["/catalogo/roll-up", "/catalogo/expositores", "/catalogo/cartas-y-menus"],
+};
+
 export const findBoxes = [
 	{
 		title: "Teléfono",
@@ -206,6 +272,8 @@ export const findBoxes = [
 	{
 		title: "Ubicación",
 		subtitle: "C/ Coto de Doñana, 9 Área Empresarial Andalucía 28320, Pinto, Madrid",
+		href: GOOGLE_MAPS_DIRECTIONS_URL,
+		linkLabel: "Cómo llegar",
 	},
 	{
 		title: "Horario",
