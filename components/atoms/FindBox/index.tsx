@@ -16,7 +16,7 @@ interface FindBoxProps {
  * escritorio.
  */
 const FindBox: React.FC<FindBoxProps> = ({ title, subtitle, href, linkLabel }: FindBoxProps) => {
-	// "678 519 403 | 678 519 404": cada número va entero en su línea si no caben
+	// "678 519 404 | 678 519 403": cada número va entero en su línea si no caben
 	// los dos, en lugar de partirse por la mitad en las cuatro columnas.
 	const parts = subtitle.split(" | ");
 

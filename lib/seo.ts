@@ -143,7 +143,7 @@ export function getLocalBusinessSchema() {
 		image: absoluteUrl(OG_IMAGE_PATH),
 		logo: absoluteUrl("/logo-dinaprint-final-02.png"),
 		email: "dinaprint@dinaprint.com",
-		telephone: "+34678519403",
+		telephone: "+34678519404",
 		address: {
 			"@type": "PostalAddress",
 			streetAddress: "C/ Coto de Doñana, 9 Área Empresarial Andalucía",
@@ -230,7 +230,7 @@ export function getOrganizationSchema() {
 		url: getSiteUrl(),
 		logo: absoluteUrl("/logo-dinaprint-final-02.png"),
 		email: "dinaprint@dinaprint.com",
-		telephone: "+34678519403",
+		telephone: "+34678519404",
 		address: {
 			"@type": "PostalAddress",
 			streetAddress: "C/ Coto de Doñana, 9 Área Empresarial Andalucía",

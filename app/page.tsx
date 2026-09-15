@@ -72,7 +72,7 @@ const faqItems = [
 	{
 		question: "¿Cómo pido un presupuesto?",
 		answer:
-			"Por el formulario de la página de contacto, por teléfono en el 678 519 403 / 678 519 404 o escribiendo a dinaprint@dinaprint.com. Los precios no se publican en la web porque dependen del formato, el papel, la tirada y los acabados.",
+			"Por el formulario de la página de contacto, por teléfono en el 678 519 404 / 678 519 403 o escribiendo a dinaprint@dinaprint.com. Los precios no se publican en la web porque dependen del formato, el papel, la tirada y los acabados.",
 	},
 	{
 		question: "¿En qué formato tengo que enviar los archivos?",

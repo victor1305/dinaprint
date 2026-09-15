@@ -223,12 +223,19 @@ escucha en **3001** (`PORT`/`HOSTNAME` ya fijados) y arranca con `node server.js
 
 - Analítica: Plausible self-hosted, script en [app/layout.tsx](app/layout.tsx).
 - `NEXT_PUBLIC_SITE_URL` sobrescribe el dominio; por defecto `https://dinaprint.com`.
+- **El 678 519 404 es el teléfono principal en todo** (decisión de septiembre de 2026): `telephone`
+  del schema, primero en el pie, en `findBoxes`, en las FAQ y en `llms.txt`, y el de WhatsApp y el
+  acuse de recibo. El 678 519 403 queda como secundario. La ficha de Google y los directorios deben
+  dar el mismo principal, o Google ve datos de contacto que no cuadran.
+- Dinaprint es **partner de Gráficas Aries** y por eso comparten dirección (C/ Coto de Doñana, 9).
+  No es un error de datos que haya que corregir: la ficha de Google tiene que distinguirse por
+  categoría, teléfono, web y reseñas propias.
 - El dominio canónico es el **apex**. `next.config.js` redirige `www` con un 308 permanente; antes lo
   resolvía Cloudflare con un 307 temporal y Search Console lo contaba como propiedad aparte.
-  **A 14 sep 2026 producción sigue devolviendo el 307** (`server: cloudflare`): la regla del panel de
-  Cloudflare responde antes de que la petición llegue a Next, así que el 308 no se ejecuta hasta que
-  se borre. `dinaprint.es` tampoco está bien: un Apache antiguo responde 302 hacia
-  `http://dinaprint.com` (tres saltos hasta la home) y `https://dinaprint.es` no contesta.
+  Desde el 15 sep 2026 `https://www.dinaprint.com` responde **308** hacia el apex y conserva la ruta
+  (la cabecera `server: cloudflare` sale igual, porque Cloudflare hace de proxy). `dinaprint.es` está
+  a medias: el Apache antiguo ya manda en un solo salto a `https://dinaprint.com` con la ruta, pero
+  con un **302** temporal en lugar de un 301, y `https://dinaprint.es` falla en el handshake TLS.
 - **El `robots.txt` que se sirve no es solo el de la app.** Cloudflare le antepone un bloque
   "Managed content" que hoy prohíbe GPTBot, ClaudeBot, Google-Extended, CCBot, Amazonbot,
   Applebot-Extended, Bytespider y meta-externalagent, y marca `ai-train=no`. Son rastreadores de

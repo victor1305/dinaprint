@@ -180,10 +180,10 @@ const Footer = () => (
 							<a href="mailto:dinaprint@dinaprint.com">dinaprint@dinaprint.com</a>
 						</p>
 						<p className="text-footer-li hover:text-primary">
-							<a href="tel:+34678519403">678 519 403</a>
+							<a href="tel:+34678519404">678 519 404</a>
 						</p>
 						<p className="text-footer-li hover:text-primary">
-							<a href="tel:+34678519404">678 519 404</a>
+							<a href="tel:+34678519403">678 519 403</a>
 						</p>
 					</div>
 				</div>

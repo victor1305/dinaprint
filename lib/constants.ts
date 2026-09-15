@@ -263,7 +263,7 @@ export const relatedProducts: Record<string, string[]> = {
 export const findBoxes = [
 	{
 		title: "Teléfono",
-		subtitle: "678 519 403 | 678 519 404",
+		subtitle: "678 519 404 | 678 519 403",
 	},
 	{
 		title: "Email",

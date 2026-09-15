@@ -57,7 +57,7 @@ export function GET() {
 		"",
 		"Dinaprint es una imprenta con taller propio en el Área Empresarial Andalucía de Pinto (Madrid). Cubre el proceso completo — asesoramiento y diseño, preimpresión, impresión offset y digital (Fujifilm Jet Press 7S), acabados y manipulados, distribución y envíos — para tiradas cortas y largas. El sitio está en castellano y atiende sobre todo a empresas de Madrid capital y del sur de la región.",
 		"",
-		`Contacto: 678 519 403 / 678 519 404 · dinaprint@dinaprint.com · C/ Coto de Doñana, 9, Área Empresarial Andalucía, 28320 Pinto (Madrid) · Horario: ${formatBusinessHours()}. Los presupuestos se piden por formulario, teléfono o email; los precios no se publican en la web.`,
+		`Contacto: 678 519 404 / 678 519 403 · dinaprint@dinaprint.com · C/ Coto de Doñana, 9, Área Empresarial Andalucía, 28320 Pinto (Madrid) · Horario: ${formatBusinessHours()}. Los presupuestos se piden por formulario, teléfono o email; los precios no se publican en la web.`,
 		"",
 		"## Páginas principales",
 		"",

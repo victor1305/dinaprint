@@ -45,7 +45,7 @@ const faqItems = [
 	{
 		question: "¿Por qué vías puedo contactar?",
 		answer:
-			"Por el formulario de esta página, por teléfono en el 678 519 403 y el 678 519 404, o por correo a dinaprint@dinaprint.com. Contestamos por el mismo canal por el que nos escribas.",
+			"Por el formulario de esta página, por teléfono en el 678 519 404 y el 678 519 403, o por correo a dinaprint@dinaprint.com. Contestamos por el mismo canal por el que nos escribas.",
 	},
 	{
 		question: "¿Cuál es el horario de atención?",
