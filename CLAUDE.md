@@ -233,9 +233,11 @@ escucha en **3001** (`PORT`/`HOSTNAME` ya fijados) y arranca con `node server.js
 - El dominio canónico es el **apex**. `next.config.js` redirige `www` con un 308 permanente; antes lo
   resolvía Cloudflare con un 307 temporal y Search Console lo contaba como propiedad aparte.
   Desde el 15 sep 2026 `https://www.dinaprint.com` responde **308** hacia el apex y conserva la ruta
-  (la cabecera `server: cloudflare` sale igual, porque Cloudflare hace de proxy). `dinaprint.es` está
-  a medias: el Apache antiguo ya manda en un solo salto a `https://dinaprint.com` con la ruta, pero
-  con un **302** temporal en lugar de un 301, y `https://dinaprint.es` falla en el handshake TLS.
+  (la cabecera `server: cloudflare` sale igual, porque Cloudflare hace de proxy). `dinaprint.es` ya no
+  pasa por IONOS: la zona está en Cloudflare y una regla de redireccionamiento responde **301** hacia
+  `https://dinaprint.com` con la ruta, en las cuatro variantes (http y https, con y sin www). Antes
+  IONOS daba un 302 y, con el proxy puesto, un 525 por https. Los A/AAAA del `.es` tienen que seguir
+  en proxy o la regla no se ejecuta; `autodiscover`, `_dmarc` y `_domainconnect` van en "Solo DNS".
 - **El `robots.txt` que se sirve no es solo el de la app.** Cloudflare le antepone un bloque
   "Managed content" que hoy prohíbe GPTBot, ClaudeBot, Google-Extended, CCBot, Amazonbot,
   Applebot-Extended, Bytespider y meta-externalagent, y marca `ai-train=no`. Son rastreadores de
